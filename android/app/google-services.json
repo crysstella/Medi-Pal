@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "675867067235",
+    "firebase_url": "https://medipal-9cc60-default-rtdb.firebaseio.com",
+    "project_id": "medipal-9cc60",
+    "storage_bucket": "medipal-9cc60.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:675867067235:android:c5b34c1f62a5db58f84956",
+        "android_client_info": {
+          "package_name": "com.example.health_assessment"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmIvFFLAsHzklszqfL90QvGf5Zjg522Wg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:675867067235:android:75216368d5ab88b4f84956",
+        "android_client_info": {
+          "package_name": "com.example.medipal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmIvFFLAsHzklszqfL90QvGf5Zjg522Wg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
