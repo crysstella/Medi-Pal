@@ -1,12 +1,9 @@
-/*
 import 'package:flutter/material.dart';
 import 'package:medipal/components/pages/Schedule/med_schedule.dart';
 import 'package:medipal/components/pages/Profile/profile.dart';
 import 'package:unicons/unicons.dart';
 
-*/
-/* This is a drawer on the side of the app that users can access some features *//*
-
+/* This is a drawer on the side of the app that users can access some features */
 class SideMenu extends StatefulWidget {
   const SideMenu({super.key});
 
@@ -17,9 +14,7 @@ class SideMenu extends StatefulWidget {
 class SideMenuState extends State<SideMenu> {
   int currentIndex = 3; // The drawer index will start with 3 (manually)
 
-  */
-/* Set current state when the icon is tapped. *//*
-
+  /* Set current state when the icon is tapped. */
   void _onItemTapped(int index) {
     setState(() {
       currentIndex = index;
@@ -42,11 +37,9 @@ class SideMenuState extends State<SideMenu> {
         children: [
           IconButton(
               onPressed: () {
-                */
-/*Navigator.pushReplacement(
+                /*Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => ));*//*
-
+                MaterialPageRoute(builder: (context) => ));*/
               },
               icon: const Icon(UniconsLine.setting, size: 38))
         ],
@@ -67,8 +60,7 @@ class SideMenuState extends State<SideMenu> {
           ),
           const Divider(color: Colors.black12),
           const SizedBox(height: 10),
-        */
-/*ListTile(
+        /*ListTile(
 
           leading: Icon(UniconsLine.schedule, size: 38),
           selected: currentIndex == 3,
@@ -98,8 +90,7 @@ class SideMenuState extends State<SideMenu> {
             // Then close the drawer
             Navigator.pop(context);
           },
-        ),*//*
-
+        ),*/
           Wrap(runSpacing: 20, children: <Widget>[
             IconButton(
                 onPressed: () {
@@ -108,30 +99,24 @@ class SideMenuState extends State<SideMenu> {
                     context,
                     MaterialPageRoute(builder: (context) => MedicationSchedule()),
                   );
-                  */
-/*Navigator.pushReplacement(
+                  /*Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => MedicationSchedule()));*//*
-
+                          builder: (context) => MedicationSchedule()));*/
                 },
                 icon: const Icon(UniconsLine.schedule, size: 38)),
             IconButton(
                 onPressed: () {
                   _onItemTapped(4);
-                  */
-/*Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => ChatBot()));*//*
-
+                  /*Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => ChatBot()));*/
                 },
                 icon: const Icon(UniconsLine.comment_alt, size: 38)),
             IconButton(
                 onPressed: () {
                   _onItemTapped(5);
-                  */
-/*Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => Favorite()));*//*
-
+                  /*Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => Favorite()));*/
                 },
                 icon: const Icon(UniconsLine.heart, size: 38))
           ]),
@@ -142,4 +127,3 @@ class SideMenuState extends State<SideMenu> {
         ])));
   }
 }
-*/

@@ -1,8 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:medipal/theme/textTheme.dart';
+import 'package:medipal/theme/theme.dart';
 import 'package:unicons/unicons.dart';
-
-import '../LogIn/login.dart';
+import 'package:medipal/components/pages/Login/login.dart';
+import 'package:medipal/components/menu_bar/verticalBar.dart';
 
 class registerScreen extends StatefulWidget {
   @override
@@ -93,10 +94,10 @@ class _registerScreenState extends State<registerScreen> {
                   ),
                   child: Center(
                     child: Text(
-                        "Register",
-                        style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                      "Register",
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
                           color: Theme.of(context).colorScheme.onPrimary,
-                        )
+                      )
                     ),
                   ),
                 ),
@@ -106,10 +107,10 @@ class _registerScreenState extends State<registerScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                      "Already have an account?",
-                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                        color: Theme.of(context).colorScheme.primary,
-                      )
+                    "Already have an account?",
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
+                    )
                   ),
                   TextButton(
                     onPressed: () {
@@ -120,10 +121,10 @@ class _registerScreenState extends State<registerScreen> {
                           ));
                     },
                     child: Text(
-                        "Log In",
-                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                      "Log In",
+                      style: Theme.of(context).textTheme.titleSmall!.copyWith(
                           color: Theme.of(context).colorScheme.onPrimaryContainer,
-                        )
+                    )
                     ),
                   ),
                 ],

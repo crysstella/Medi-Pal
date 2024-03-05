@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:medipal/theme/textTheme.dart';
+import 'package:medipal/theme/theme.dart';
 import 'package:unicons/unicons.dart';
-
-import '../../start/start/startApp.dart';
-import '../Register/register.dart';
+import 'package:medipal/components/start/start/startApp.dart';
+import 'package:medipal/components/pages/Register/register.dart';
 
 class loginScreen extends StatefulWidget {
   @override
@@ -59,12 +60,12 @@ class _loginScreenState extends State<loginScreen> {
                 padding: const EdgeInsets.all(15),
                 child: InkWell(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => StartApp(),
-                        ));
-                  },
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => StartApp(),
+                          ));
+                        },
                   child: Container(
                     padding: EdgeInsets.symmetric(vertical: 15),
                     width: double.infinity,
@@ -79,26 +80,26 @@ class _loginScreenState extends State<loginScreen> {
                       ],
                     ),
                     child: Center(
-                      //   TextButton(
-                      //     onPressed: () {
-                      //     Navigator.push(
-                      //       context,
-                      //       MaterialPageRoute(
-                      //         builder: (context) => searchScreen(),
-                      //       ));
-                      //     },
-                      //   child: Text(
-                      //     "Log In",
-                      //     style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                      //       color: Theme.of(context).colorScheme.onPrimaryContainer,
-                      // )
-                      // ),
-                      // ),
+                    //   TextButton(
+                    //     onPressed: () {
+                    //     Navigator.push(
+                    //       context,
+                    //       MaterialPageRoute(
+                    //         builder: (context) => searchScreen(),
+                    //       ));
+                    //     },
+                    //   child: Text(
+                    //     "Log In",
+                    //     style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                    //       color: Theme.of(context).colorScheme.onPrimaryContainer,
+                    // )
+                    // ),
+                    // ),
                       child: Text(
-                          "Log In",
-                          style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                            color: Theme.of(context).colorScheme.onPrimaryContainer,
-                          )
+                        "Log In",
+                        style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                          color: Theme.of(context).colorScheme.onPrimaryContainer,
+                        )
                       ),
                     ),
                   ),
@@ -107,12 +108,12 @@ class _loginScreenState extends State<loginScreen> {
               SizedBox(height: 30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: [   
                   Text(
-                      "Don't have any account?",
-                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                        color: Theme.of(context).colorScheme.onPrimary,
-                      )
+                    "Don't have any account?",
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                          color: Theme.of(context).colorScheme.onPrimary,
+                    )
                   ),
                   TextButton(
                     onPressed: () {
@@ -123,10 +124,10 @@ class _loginScreenState extends State<loginScreen> {
                           )); //navigation to register screen
                     },
                     child: Text(
-                        "Register for Account",
-                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                      "Register for Account",
+                      style: Theme.of(context).textTheme.titleSmall!.copyWith(
                           color: Theme.of(context).colorScheme.onPrimary,
-                        )
+                    )
                     ),
                   ),
                 ],
@@ -138,3 +139,4 @@ class _loginScreenState extends State<loginScreen> {
     );
   }
 }
+

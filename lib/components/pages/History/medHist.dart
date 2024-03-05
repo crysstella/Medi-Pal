@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:medipal/theme/textTheme.dart';
+import 'package:medipal/theme/theme.dart';
 //import 'package:medipal/components/SideBar/verticalBar.dart';
 
 class MediHistory extends StatefulWidget{

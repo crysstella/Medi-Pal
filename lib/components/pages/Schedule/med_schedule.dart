@@ -1,11 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:unicons/unicons.dart';
-
-import 'event.dart';
 
 class MedicationSchedule extends StatefulWidget {
   const MedicationSchedule({super.key});
@@ -21,13 +18,6 @@ class _MedicationScheduleState extends State<MedicationSchedule>
   DateTime _focusedDay = DateTime.now();
   CalendarFormat _format = CalendarFormat.month;
   Icon _buttonDropDown = const Icon(UniconsLine.angle_up);
-
-  // Store the events created
-  Map<DateTime, List<Event>> events = {};
-  TextEditingController title = TextEditingController();
-  TextEditingController medicine = TextEditingController();
-  TextEditingController dose = TextEditingController();
-  late final ValueNotifier<List<Event>> _selectedEvents;
 
   /*@override
   void initState(){
@@ -45,7 +35,6 @@ class _MedicationScheduleState extends State<MedicationSchedule>
   void initState() {
     super.initState();
     _selectedDay = _focusedDay;
-    _selectedEvents = ValueNotifier(getEventsforDay(_selectedDay!));
   }
 
   void daySelected(DateTime day, DateTime focusedDay) {
@@ -53,7 +42,6 @@ class _MedicationScheduleState extends State<MedicationSchedule>
       setState(() {
         _selectedDay = day;
         _focusedDay = focusedDay;
-        _selectedEvents.value = getEventsforDay(day);
       });
     }
     print(_selectedDay);
@@ -69,74 +57,12 @@ class _MedicationScheduleState extends State<MedicationSchedule>
             : const Icon(UniconsLine.angle_down);
       });
 
-  List<Event> getEventsforDay(DateTime date) {
-    return events[date] ?? [];
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: content(),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            showDialog(
-                context: context,
-                builder: (context) {
-                  return AlertDialog(
-                      //scrollable: true,
-                      title: Text("New Event"),
-                      content: Container(
-                          width: double.maxFinite,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Expanded(
-                                  child: ListView(
-                                shrinkWrap: true,
-                                children: <Widget>[
-                                  TextField(
-                                    controller: title,
-                                    decoration: InputDecoration(
-                                      label: Text("Title"),
-                                    ),
-                                  ),
-                                  TextField(
-                                    controller: medicine,
-                                    decoration: InputDecoration(
-                                      label: Text("Medicine"),
-                                    ),
-                                  ),
-                                  TextField(
-                                    controller: dose,
-                                    decoration: InputDecoration(
-                                      label: Text("Dose"),
-                                    ),
-                                  ),
-                                ],
-                              ))
-                            ],
-                          )),
-                      actions: [
-                        ElevatedButton(
-                            onPressed: () {
-                              // Store the event into the map
-                              events.addAll({
-                                _selectedDay!: [
-                                  Event(
-                                      title: title.text,
-                                      dose: int.parse(dose.text),
-                                      medicine: medicine.text)
-                                ]
-                              });
-                              Navigator.of(context).pop();
-                              _selectedEvents.value = getEventsforDay(_selectedDay!);
-                            },
-                            child: Text("Submit"))
-                      ]);
-                });
-          },
-          child: Icon(UniconsLine.plus)),
-    );
+        /*appBar: AppBar(
+            title: TextButton(onPressed: formatChanged, child: Text('click'))),*/
+        body: content());
   }
 
   Widget content() {
@@ -215,7 +141,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
               border: Border(
                 bottom: BorderSide(
                   color: Colors.black12, // The color of the border
-                  width: 1.0, // The width of the border
+                  width: 0.75, // The width of the border
                 ),
               ),
             )),
@@ -241,29 +167,6 @@ class _MedicationScheduleState extends State<MedicationSchedule>
             lastDay: DateTime.utc(2050),
             selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
             onDaySelected: daySelected,
-            eventLoader: getEventsforDay,
-          ),
-          SizedBox(height: 8.0),
-          Expanded(
-            child: ValueListenableBuilder(
-                valueListenable: _selectedEvents,
-                builder: (context, value, _) {
-                  return ListView.builder(
-                      itemCount: value.length,
-                      itemBuilder: (context, index) {
-                    return Container(
-                      margin: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                      decoration: BoxDecoration(
-                        border: Border.all(),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: ListTile(
-                        onTap: () => print(""),
-                        title: Text('${value[index].title}'),
-                      )
-                    );
-                  });
-                }),
           )
         ]);
   }

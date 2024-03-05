@@ -1,7 +1,8 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'components/start/start/launch.dart';
-import 'firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:medipal/components/start/start/startApp.dart';
+import 'package:medipal/components/launch.dart';
+import 'firebase/firebase_options.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget{
     return MaterialApp(
       theme: ThemeData(
         useMaterial3: true,
-        colorSchemeSeed: const Color(0x9EA0A1FA),
+        colorSchemeSeed: Colors.pink,
         brightness: Brightness.light,
       ),
       themeMode: ThemeMode.light,

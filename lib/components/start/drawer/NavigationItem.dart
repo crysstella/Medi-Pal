@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:medipal/components/pages/ChatBot/chatBot.dart';
+import 'package:medipal/components/pages/Favorites/favorites.dart';
+import 'package:medipal/components/pages/Search/foodSearch.dart';
+import 'package:medipal/components/pages/Schedule/med_schedule.dart';
 import 'package:unicons/unicons.dart';
 
-import '../../pages/ChatBot/chatBot.dart';
-import '../../pages/Favorites/favorites.dart';
 import '../../pages/Home/home.dart';
 import '../../pages/Notification/notification.dart';
 import '../../pages/Profile/profile.dart';
-import '../../pages/Schedule/med_schedule.dart';
-import '../../pages/Search/foodSearch.dart';
 import '../../pages/Setting/setting.dart';
 
 // Navigation Item or Routing Pages list contains all the pages in the navigation bars.
