@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:unicons/unicons.dart';
 import 'package:medipal/components/drawer/NavigationItem.dart';
+
+import '../../blocs/log_in_bloc/log_in_bloc.dart';
 
 /* Start page contains navigation bars*/
 class StartApp extends StatefulWidget {
@@ -101,6 +104,17 @@ class StartAppState extends State<StartApp> {
               );
             },
           ),
+          actions: [
+							IconButton(
+								onPressed: () {
+									context.read<LogInBloc>().add(const LogOutRequired());
+								}, 
+								icon: Icon(
+									UniconsLine.x,
+									color: Theme.of(context).colorScheme.onPrimary,
+								)
+							)
+						],
         ),
         drawer: SizedBox(
             width: MediaQuery.of(context).size.width * 0.2,
