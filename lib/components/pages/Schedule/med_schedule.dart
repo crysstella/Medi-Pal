@@ -62,6 +62,12 @@ class _MedicationScheduleState extends State<MedicationSchedule>
             ? const Icon(UniconsLine.angle_up)
             : const Icon(UniconsLine.angle_down);
       });
+  void toToday() {
+    setState(() {
+      _focusedDay = DateTime.now();
+      _selectedDay = DateTime.now();
+    });
+  }
 
   List<Event> getEventsforDay(DateTime date) {
     return events[date] ?? [];
@@ -84,7 +90,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                           children: <Widget>[
                             TextField(
                               controller: title,
-                             /* onChanged: (value) {
+                              /* onChanged: (value) {
                                 setState(() {
                                   _title = value;
                                 });
@@ -119,10 +125,11 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                         ElevatedButton(
                             onPressed: () {
                               if ((title.text.isEmpty &&
-                                  /*dose.text.isEmpty||*/
-                                  medicine.text.isEmpty) || (title.text.isEmpty ||
-                                  /*dose.text.isEmpty||*/
-                                  medicine.text.isEmpty)){
+                                      /*dose.text.isEmpty||*/
+                                      medicine.text.isEmpty) ||
+                                  (title.text.isEmpty ||
+                                      /*dose.text.isEmpty||*/
+                                      medicine.text.isEmpty)) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
                                         content: Text('Invalid input!'),
@@ -191,19 +198,15 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                     child: Center(
                       child: Text(
                         date.day.toString(),
-                        style: const TextStyle(
-                            color: Colors
-                                .black), // Ensure text color is consistent
+                        style: const TextStyle(color: Colors.black),
                       ),
                     ));
               }
             }, headerTitleBuilder: (context, focusedDay) {
               return Column(
                 mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment:
-                    MainAxisAlignment.center, // Center the column vertically
-                crossAxisAlignment: CrossAxisAlignment
-                    .start, // Align children to the start of the column
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
                     "${focusedDay.year}",
@@ -224,7 +227,18 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                       IconButton(
                         onPressed: formatChanged,
                         icon: _buttonDropDown,
-                      )
+                      ),
+                      const Spacer(),
+                      IconButton(
+                        icon: const Icon(UniconsLine.focus),
+                        onPressed: toToday,
+                      ),
+                      IconButton(
+                        icon: const Icon(UniconsLine.edit),
+                        onPressed: () {
+                          print('Edit button tapped');
+                        },
+                      ),
                     ],
                   ),
                 ],
