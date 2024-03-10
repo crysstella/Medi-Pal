@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.medipal.app-mergeDebugResources-12:/values-ru/values-ru.xml",
+            "outputFile": "com.example.medipal.app-mergeDebugResources-13:/values-ru/values-ru.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Crystal Stellar\\.gradle\\caches\\transforms-3\\b265adeb376a3ac6007e3dd20039106a\\transformed\\core-1.6.0\\res\\values-ru\\values-ru.xml",

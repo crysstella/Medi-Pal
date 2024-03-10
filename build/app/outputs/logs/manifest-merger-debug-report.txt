@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 application
-INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:2:5-32:19
+INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:5:5-44:19
 MERGED from [:cloud_firestore] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
 MERGED from [:cloud_firestore] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
 MERGED from [:firebase_core] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
@@ -32,19 +32,21 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Cr
 	android:name
 		INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml
 manifest
-ADDED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:1:1-33:12
-INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:1:1-33:12
-INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:1:1-33:12
-INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:1:1-33:12
-MERGED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:1:1-33:12
+ADDED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:1:1-45:12
+INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:1:1-45:12
+INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:1:1-45:12
+INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:1:1-45:12
+MERGED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:1:1-45:12
 MERGED from [:cloud_firestore] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-17:12
 MERGED from [:firebase_core] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-17:12
+MERGED from [:flutter_local_notifications] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-12:12
 MERGED from [com.google.firebase:firebase-firestore:24.10.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b27b2ceebc9f7b2fa5454a028a46ae4a\transformed\jetified-firebase-firestore-24.10.1\AndroidManifest.xml:2:1-26:12
 MERGED from [com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\8f2136bc0ef3483dde6c7a187281cc07\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:2:1-18:12
 MERGED from [com.google.firebase:firebase-common:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:15:1-41:12
 MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b999d05729379b348abd2dada5d1bd76\transformed\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:17:1-23:12
 MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\905370d3dab651637b8835e89c66cd73\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:17:1-33:12
 MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\83444eeac11af859f08de7cde197cc11\transformed\multidex-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media:media:1.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\a9ea0e6f36d1664403592cd55c9e54f6\transformed\media-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\86085b3534d64902578f290e976b4bbf\transformed\jetified-firebase-appcheck-interop-17.0.0\AndroidManifest.xml:15:1-25:12
 MERGED from [com.google.firebase:firebase-database-collection:18.0.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\15815f4bf7bdb9ee88ef869be909fcdd\transformed\jetified-firebase-database-collection-18.0.1\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-base:18.0.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\bf7a3ac1e0e5c035cce43f602f8f8814\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:16:1-24:12
@@ -63,8 +65,8 @@ MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\Crystal Stell
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\d3ce3cfe5e3428b0558268cacb9cc21a\transformed\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\728c6a961c63d12a7a6e16b736105c6c\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:firebase-components:17.1.5] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\33ca94451157706af9868a4abfa37ecf\transformed\jetified-firebase-components-17.1.5\AndroidManifest.xml:15:1-20:12
-MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\5129d09ad602f1a0fc33e672c79c796a\transformed\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\e5b61f5d94735c005eb0a9e6af99682d\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\5129d09ad602f1a0fc33e672c79c796a\transformed\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\a3e87d4b1027e38c7342964193fc9f1f\transformed\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:17:1-22:12
 MERGED from [io.grpc:grpc-android:1.57.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\c9877c034014f4b9e2296d81426d964e\transformed\jetified-grpc-android-1.57.2\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\025fd3692ace3f7349c5a9f9557e7710\transformed\jetified-protolite-well-known-types-18.0.0\AndroidManifest.xml:2:1-11:12
@@ -74,18 +76,30 @@ INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\andro
 INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 	package
 		INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:1:1-33:12
+		ADDED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:1:1-45:12
 		INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\debug\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:1:1-33:12
+		ADDED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:1:1-45:12
 		INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\debug\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:1:1-33:12
+		ADDED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:1:1-45:12
 		INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\debug\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:1:11-69
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:2:5-80
+	android:name
+		ADDED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:2:22-78
+uses-permission#android.permission.SCHEDULE_EXACT_ALARM
+ADDED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:3:5-79
+	android:name
+		ADDED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:3:22-76
+uses-permission#android.permission.USE_EXACT_ALARM
+ADDED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:4:5-74
+	android:name
+		ADDED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:4:22-71
 uses-sdk
 INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml
@@ -94,6 +108,8 @@ MERGED from [:cloud_firestore] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Me
 MERGED from [:cloud_firestore] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:firebase_core] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:firebase_core] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:flutter_local_notifications] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:flutter_local_notifications] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:firebase-firestore:24.10.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b27b2ceebc9f7b2fa5454a028a46ae4a\transformed\jetified-firebase-firestore-24.10.1\AndroidManifest.xml:6:5-44
 MERGED from [com.google.firebase:firebase-firestore:24.10.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b27b2ceebc9f7b2fa5454a028a46ae4a\transformed\jetified-firebase-firestore-24.10.1\AndroidManifest.xml:6:5-44
 MERGED from [com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\8f2136bc0ef3483dde6c7a187281cc07\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:5:5-44
@@ -106,6 +122,8 @@ MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\Crystal Stellar\.grad
 MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\905370d3dab651637b8835e89c66cd73\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\83444eeac11af859f08de7cde197cc11\transformed\multidex-2.0.0\AndroidManifest.xml:20:5-43
 MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\83444eeac11af859f08de7cde197cc11\transformed\multidex-2.0.0\AndroidManifest.xml:20:5-43
+MERGED from [androidx.media:media:1.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\a9ea0e6f36d1664403592cd55c9e54f6\transformed\media-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media:media:1.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\a9ea0e6f36d1664403592cd55c9e54f6\transformed\media-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\86085b3534d64902578f290e976b4bbf\transformed\jetified-firebase-appcheck-interop-17.0.0\AndroidManifest.xml:18:5-20:41
 MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\86085b3534d64902578f290e976b4bbf\transformed\jetified-firebase-appcheck-interop-17.0.0\AndroidManifest.xml:18:5-20:41
 MERGED from [com.google.firebase:firebase-database-collection:18.0.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\15815f4bf7bdb9ee88ef869be909fcdd\transformed\jetified-firebase-database-collection-18.0.1\AndroidManifest.xml:5:5-7:41
@@ -142,10 +160,10 @@ MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\Crystal Stellar\.gradle\ca
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\728c6a961c63d12a7a6e16b736105c6c\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.firebase:firebase-components:17.1.5] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\33ca94451157706af9868a4abfa37ecf\transformed\jetified-firebase-components-17.1.5\AndroidManifest.xml:18:5-44
 MERGED from [com.google.firebase:firebase-components:17.1.5] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\33ca94451157706af9868a4abfa37ecf\transformed\jetified-firebase-components-17.1.5\AndroidManifest.xml:18:5-44
-MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\5129d09ad602f1a0fc33e672c79c796a\transformed\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\5129d09ad602f1a0fc33e672c79c796a\transformed\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\e5b61f5d94735c005eb0a9e6af99682d\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\e5b61f5d94735c005eb0a9e6af99682d\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\5129d09ad602f1a0fc33e672c79c796a\transformed\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\5129d09ad602f1a0fc33e672c79c796a\transformed\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\a3e87d4b1027e38c7342964193fc9f1f\transformed\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\a3e87d4b1027e38c7342964193fc9f1f\transformed\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
 MERGED from [io.grpc:grpc-android:1.57.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\c9877c034014f4b9e2296d81426d964e\transformed\jetified-grpc-android-1.57.2\AndroidManifest.xml:5:5-44
@@ -198,6 +216,14 @@ ADDED from [:firebase_core] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-
 		ADDED from [:firebase_core] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:13:17-82
 	android:name
 		ADDED from [:firebase_core] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:12:17-124
+uses-permission#android.permission.VIBRATE
+ADDED from [:flutter_local_notifications] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-66
+	android:name
+		ADDED from [:flutter_local_notifications] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-63
+uses-permission#android.permission.POST_NOTIFICATIONS
+ADDED from [:flutter_local_notifications] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:10:5-77
+	android:name
+		ADDED from [:flutter_local_notifications] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:10:22-74
 uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from [com.google.firebase:firebase-firestore:24.10.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b27b2ceebc9f7b2fa5454a028a46ae4a\transformed\jetified-firebase-firestore-24.10.1\AndroidManifest.xml:10:5-79
 MERGED from [io.grpc:grpc-android:1.57.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\c9877c034014f4b9e2296d81426d964e\transformed\jetified-grpc-android-1.57.2\AndroidManifest.xml:7:5-79

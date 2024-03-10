@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:unicons/unicons.dart';
@@ -24,28 +23,23 @@ class _MedicationScheduleState extends State<MedicationSchedule>
 
   // Store the events created
   Map<DateTime, List<Event>> events = {};
+  String _title = '';
   TextEditingController title = TextEditingController();
+  String _medicine = '';
   TextEditingController medicine = TextEditingController();
-  TextEditingController dose = TextEditingController();
+  //TextEditingController dose = TextEditingController();
   late final ValueNotifier<List<Event>> _selectedEvents;
-
-  /*@override
-  void initState(){
-    super.initState();
-    ticker = createTicker((Duration elapsed) { });
-  }
-
-  @override
-  void dispose(){
-    ticker.dispose();
-    super.dispose();
-  }*/
 
   @override
   void initState() {
     super.initState();
     _selectedDay = _focusedDay;
     _selectedEvents = ValueNotifier(getEventsforDay(_selectedDay!));
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   void daySelected(DateTime day, DateTime focusedDay) {
@@ -83,59 +77,86 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                 context: context,
                 builder: (context) {
                   return AlertDialog(
-                      //scrollable: true,
-                      title: Text("New Event"),
-                      content: Container(
-                          width: double.maxFinite,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Expanded(
-                                  child: ListView(
-                                shrinkWrap: true,
-                                children: <Widget>[
-                                  TextField(
-                                    controller: title,
-                                    decoration: InputDecoration(
-                                      label: Text("Title"),
-                                    ),
-                                  ),
-                                  TextField(
-                                    controller: medicine,
-                                    decoration: InputDecoration(
-                                      label: Text("Medicine"),
-                                    ),
-                                  ),
-                                  TextField(
-                                    controller: dose,
-                                    decoration: InputDecoration(
-                                      label: Text("Dose"),
-                                    ),
-                                  ),
-                                ],
-                              ))
-                            ],
-                          )),
+                      title: const Text('New Reminder',
+                          style: TextStyle(fontSize: 18)),
+                      content: SingleChildScrollView(
+                        child: ListBody(
+                          children: <Widget>[
+                            TextField(
+                              controller: title,
+                             /* onChanged: (value) {
+                                setState(() {
+                                  _title = value;
+                                });
+                              },*/
+                              decoration: const InputDecoration(
+                                  hintText: 'Enter Title'),
+                            ),
+                            TextField(
+                              controller: medicine,
+                              /*onChanged: (value) {
+                                setState(() {
+                                  _medicine = value;
+                                });
+                              },*/
+                              decoration: const InputDecoration(
+                                  hintText: 'Enter Medicine'),
+                            ),
+
+                            /* TextField(
+                              controller: dose,
+                              decoration: const InputDecoration(
+                                label: Text("Dose"),
+                              ),
+                            ),*/
+                          ],
+                        ),
+                      ),
                       actions: [
+                        TextButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: const Text('Cancel')),
                         ElevatedButton(
                             onPressed: () {
-                              // Store the event into the map
-                              events.addAll({
-                                _selectedDay!: [
-                                  Event(
+                              if ((title.text.isEmpty &&
+                                  /*dose.text.isEmpty||*/
+                                  medicine.text.isEmpty) || (title.text.isEmpty ||
+                                  /*dose.text.isEmpty||*/
+                                  medicine.text.isEmpty)){
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text('Invalid input!'),
+                                        duration: Duration(seconds: 2)));
+                                return;
+                              } else {
+                                if (events[_selectedDay!] != null) {
+                                  print(_selectedDay);
+                                  events[_selectedDay!]?.add(Event(
                                       title: title.text,
-                                      dose: int.parse(dose.text),
-                                      medicine: medicine.text)
-                                ]
-                              });
-                              Navigator.of(context).pop();
-                              _selectedEvents.value = getEventsforDay(_selectedDay!);
+                                      //dose: int.parse(dose.text),
+                                      medicine: medicine.text));
+                                } else {
+                                  events[_selectedDay!] = [
+                                    Event(
+                                        title: title.text,
+                                        //dose: int.parse(dose.text),
+                                        medicine: medicine.text)
+                                  ];
+                                }
+
+                                Navigator.of(context).pop();
+                                _selectedEvents.value =
+                                    getEventsforDay(_selectedDay!);
+                                title.clear();
+                                //dose.clear();
+                                medicine.clear();
+                              }
                             },
-                            child: Text("Submit"))
+                            child: const Text("Add"))
                       ]);
                 });
           },
-          child: Icon(UniconsLine.plus)),
+          child: const Icon(UniconsLine.plus)),
     );
   }
 
@@ -144,7 +165,6 @@ class _MedicationScheduleState extends State<MedicationSchedule>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           TableCalendar(
-            //pageAnimationDuration: const Duration(milliseconds: 600),
             formatAnimationDuration: const Duration(milliseconds: 275),
             formatAnimationCurve: Curves.easeInOutSine,
             locale: "en_US",
@@ -206,7 +226,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                         icon: _buttonDropDown,
                       )
                     ],
-                  )
+                  ),
                 ],
               );
             }),
@@ -243,7 +263,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
             onDaySelected: daySelected,
             eventLoader: getEventsforDay,
           ),
-          SizedBox(height: 8.0),
+          const SizedBox(height: 8.0),
           Expanded(
             child: ValueListenableBuilder(
                 valueListenable: _selectedEvents,
@@ -251,18 +271,19 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                   return ListView.builder(
                       itemCount: value.length,
                       itemBuilder: (context, index) {
-                    return Container(
-                      margin: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                      decoration: BoxDecoration(
-                        border: Border.all(),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: ListTile(
-                        onTap: () => print(""),
-                        title: Text('${value[index].title}'),
-                      )
-                    );
-                  });
+                        return Container(
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 12, vertical: 4),
+                            decoration: BoxDecoration(
+                              border: Border.all(),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: ListTile(
+                              onTap: () => print(value.length),
+                              title: Text(
+                                  '${value[index].title}\n${value[index].medicine}'),
+                            ));
+                      });
                 }),
           )
         ]);
