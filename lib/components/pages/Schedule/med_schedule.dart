@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:unicons/unicons.dart';
@@ -15,6 +18,7 @@ class MedicationSchedule extends StatefulWidget {
 
 class _MedicationScheduleState extends State<MedicationSchedule>
     with SingleTickerProviderStateMixin {
+  DateTime _dateTime = DateTime.now();
   DateTime today = DateTime.now();
   DateTime? _selectedDay;
   DateTime _focusedDay = DateTime.now();
@@ -23,35 +27,34 @@ class _MedicationScheduleState extends State<MedicationSchedule>
 
   // Store the events created
   Map<DateTime, List<Event>> events = {};
-  String _title = '';
-  TextEditingController title = TextEditingController();
-  String _medicine = '';
+  final String _title = '';
+  //TextEditingController title = TextEditingController();
+  final String _medicine = '';
   TextEditingController medicine = TextEditingController();
+  TextEditingController duration = TextEditingController();
   //TextEditingController dose = TextEditingController();
-  late final ValueNotifier<List<Event>> _selectedEvents;
+  late ValueNotifier<List<Event>> _selectedEvents;
 
   @override
   void initState() {
     super.initState();
     _selectedDay = _focusedDay;
-    _selectedEvents = ValueNotifier(getEventsforDay(_selectedDay!));
+    _selectedEvents = ValueNotifier(getEventsForDay(_selectedDay!));
   }
 
-  @override
+  /* @override
   void dispose() {
     super.dispose();
-  }
+  }*/
 
   void daySelected(DateTime day, DateTime focusedDay) {
     if (!isSameDay(_selectedDay, day)) {
       setState(() {
         _selectedDay = day;
         _focusedDay = focusedDay;
-        _selectedEvents.value = getEventsforDay(day);
       });
     }
-    print(_selectedDay);
-    print(_focusedDay);
+    _selectedEvents.value = getEventsForDay(getNormalizedDate(day));
   }
 
   void formatChanged() => setState(() {
@@ -62,6 +65,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
             ? const Icon(UniconsLine.angle_up)
             : const Icon(UniconsLine.angle_down);
       });
+
   void toToday() {
     setState(() {
       _focusedDay = DateTime.now();
@@ -69,10 +73,70 @@ class _MedicationScheduleState extends State<MedicationSchedule>
     });
   }
 
-  List<Event> getEventsforDay(DateTime date) {
-    return events[date] ?? [];
+  List<Event> getEventsForDay(DateTime date) {
+    return events[getNormalizedDate(date)] ?? [];
   }
 
+  DateTime getNormalizedDate(DateTime date){
+    return DateTime(date.year, date.month, date.day);
+  }
+
+  bool inputValid() {
+    if ((duration.text.isEmpty && medicine.text.isEmpty) ||
+        /*dose.text.isEmpty||*/
+        (duration.text.isEmpty || medicine.text.isEmpty)) {
+      /*dose.text.isEmpty||*/
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Invalid input!'), duration: Duration(seconds: 2)));
+      return false;
+    }
+    return true;
+  }
+
+  void addEventsForDate(DateTime date, String medicine, String duration) {
+    if (events[getNormalizedDate(date)] != null) {
+      print('Events in $date day is not null');
+      events[getNormalizedDate(date)]?.add(Event(
+          //dose: int.parse(dose.text),
+          medicine: medicine,
+      duration: duration));
+    } else {
+      print(events[getNormalizedDate(date)]?.length);
+      print('null');
+      events[getNormalizedDate(date)] = [
+        Event(
+            medicine: medicine,
+            duration: duration
+            //dose: int.parse(dose.text),
+        )];
+    }
+  }
+
+  void showPicker(BuildContext context){
+    showDialog(context: context, builder: (BuildContext context){
+      return AlertDialog(
+          content: TimePickerSpinner(
+        is24HourMode: false,
+        normalTextStyle: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w200
+        ),
+        highlightedTextStyle: TextStyle(
+            fontSize: 25,
+            color: Theme.of(context).primaryColor
+        ),
+        spacing: 20,
+        itemHeight: 60,
+        isForce2Digits: true,
+        onTimeChange: (time) {
+          setState(() {
+            _dateTime = time;
+            print(_dateTime);
+          });
+        },
+      ));
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,25 +152,20 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                       content: SingleChildScrollView(
                         child: ListBody(
                           children: <Widget>[
-                            TextField(
+                            /*TextField(
                               controller: title,
-                              /* onChanged: (value) {
-                                setState(() {
-                                  _title = value;
-                                });
-                              },*/
                               decoration: const InputDecoration(
                                   hintText: 'Enter Title'),
-                            ),
+                            ),*/
                             TextField(
                               controller: medicine,
-                              /*onChanged: (value) {
-                                setState(() {
-                                  _medicine = value;
-                                });
-                              },*/
                               decoration: const InputDecoration(
-                                  hintText: 'Enter Medicine'),
+                                  hintText: 'Medicine'),
+                            ),
+                            TextField(
+                              controller: duration,
+                              decoration: const InputDecoration(
+                                  hintText: 'Duration'),
                             ),
 
                             /* TextField(
@@ -124,40 +183,18 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                             child: const Text('Cancel')),
                         ElevatedButton(
                             onPressed: () {
-                              if ((title.text.isEmpty &&
-                                      /*dose.text.isEmpty||*/
-                                      medicine.text.isEmpty) ||
-                                  (title.text.isEmpty ||
-                                      /*dose.text.isEmpty||*/
-                                      medicine.text.isEmpty)) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                        content: Text('Invalid input!'),
-                                        duration: Duration(seconds: 2)));
-                                return;
+                              print('tap');
+                              if (inputValid()) {
+                                addEventsForDate(
+                                    _selectedDay!, medicine.text, duration.text);
                               } else {
-                                if (events[_selectedDay!] != null) {
-                                  print(_selectedDay);
-                                  events[_selectedDay!]?.add(Event(
-                                      title: title.text,
-                                      //dose: int.parse(dose.text),
-                                      medicine: medicine.text));
-                                } else {
-                                  events[_selectedDay!] = [
-                                    Event(
-                                        title: title.text,
-                                        //dose: int.parse(dose.text),
-                                        medicine: medicine.text)
-                                  ];
-                                }
-
-                                Navigator.of(context).pop();
-                                _selectedEvents.value =
-                                    getEventsforDay(_selectedDay!);
-                                title.clear();
-                                //dose.clear();
-                                medicine.clear();
+                                return;
                               }
+                              //dose.clear();
+                              medicine.clear();
+                              duration.clear();
+                              Navigator.of(context).pop();
+                              _selectedEvents.value = getEventsForDay(_selectedDay!);
                             },
                             child: const Text("Add"))
                       ]);
@@ -239,6 +276,10 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                           print('Edit button tapped');
                         },
                       ),
+                      IconButton(
+                        icon: const Icon(UniconsLine.clock),
+                        onPressed: () => showPicker(context),
+                      ),
                     ],
                   ),
                 ],
@@ -275,7 +316,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
             lastDay: DateTime.utc(2050),
             selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
             onDaySelected: daySelected,
-            eventLoader: getEventsforDay,
+            eventLoader: getEventsForDay,
           ),
           const SizedBox(height: 8.0),
           Expanded(
@@ -289,13 +330,15 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                             margin: const EdgeInsets.symmetric(
                                 horizontal: 12, vertical: 4),
                             decoration: BoxDecoration(
-                              border: Border.all(),
-                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: Colors.black26
+                              ),
+                              borderRadius: BorderRadius.circular(7),
                             ),
                             child: ListTile(
                               onTap: () => print(value.length),
                               title: Text(
-                                  '${value[index].title}\n${value[index].medicine}'),
+                                  '${value[index].medicine}\n${value[index].duration}'),
                             ));
                       });
                 }),
