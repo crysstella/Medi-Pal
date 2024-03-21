@@ -37,11 +37,18 @@ dependencies:
   cupertino_icons: ^1.0.6
   unicons: ^2.1.1
   table_calendar: ^3.1.0
-  cloud_firestore: ^4.15.6
+  cloud_firestore: ^4.15.9
   firebase_core: ^2.25.5
   intl: ^0.19.0
   flutter_local_notifications: ^16.3.3
   flutter_time_picker_spinner: ^2.0.0
+  flutter_bloc: ^8.1.4
+  firebase_auth: ^4.17.9
+  equatable: ^2.0.5
+
+  user_repository:
+    path: packages/user_repository
+  meta: ^1.11.0
 
 dev_dependencies:
   flutter_test:
