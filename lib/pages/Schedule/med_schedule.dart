@@ -27,8 +27,8 @@ class _MedicationScheduleState extends State<MedicationSchedule>
 
   // Store the events created
   Map<DateTime, List<Event>> events = {};
-  TextEditingController medicine = TextEditingController();
-  TextEditingController duration = TextEditingController();
+  TextEditingController medicineController = TextEditingController();
+  TextEditingController typeController = TextEditingController();
   //TextEditingController dose = TextEditingController();
   late ValueNotifier<List<Event>> _selectedEvents;
 
@@ -79,7 +79,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
   }
 
   bool inputValid() {
-    if (medicine.text.isEmpty) {
+    if (medicineController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Invalid input!'), duration: Duration(seconds: 2)));
       return false;
@@ -87,18 +87,21 @@ class _MedicationScheduleState extends State<MedicationSchedule>
     return true;
   }
 
-  void addEventsForDate(DateTime date, String medicine) {
+  void addEventsForDate(DateTime date, String medicine, String type) {
     if (events[getNormalizedDate(date)] != null) {
       //print('Events in $date day is not null');
-      events[getNormalizedDate(date)]?.add(Event(
-          //dose: int.parse(dose.text),
-          medicine: medicine,
-          date: getNormalizedDate(date)));
+      events[getNormalizedDate(date)]?.add(
+        Event(
+            //dose: int.parse(dose.text),
+            medicine: medicine,
+            date: getNormalizedDate(date),
+            type: type),
+      );
     } else {
       //print(events[getNormalizedDate(date)]?.length);
       //print('null');
       events[getNormalizedDate(date)] = [
-        Event(medicine: medicine, date: getNormalizedDate(date)
+        Event(medicine: medicine, date: getNormalizedDate(date), type: type
             //dose: int.parse(dose.text),
             )
       ];
@@ -108,7 +111,8 @@ class _MedicationScheduleState extends State<MedicationSchedule>
   TimePickerSpinner showPicker(BuildContext context) {
     return TimePickerSpinner(
       is24HourMode: false,
-      normalTextStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w200),
+      normalTextStyle:
+          const TextStyle(fontSize: 18, fontWeight: FontWeight.w200),
       highlightedTextStyle:
           TextStyle(fontSize: 25, color: Theme.of(context).primaryColor),
       spacing: 20,
@@ -117,7 +121,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
       onTimeChange: (time) {
         setState(() {
           _dateTime = time;
-         // print(_dateTime);
+          // print(_dateTime);
         });
       },
     );
@@ -139,19 +143,24 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                 context: context,
                 builder: (context) {
                   return AlertDialog(
-                      title: const Text('New Reminder',
+                      title: const Text('New Medicine Reminder',
                           style: TextStyle(fontSize: 18)),
                       content: SingleChildScrollView(
                         child: ListBody(
                           children: <Widget>[
-                            Container(
-                              child: TextField(
-                                controller: medicine,
-                                decoration: const InputDecoration(
-                                    hintText: 'Medicine',
-                                    hintStyle: TextStyle(
-                                        fontSize: 16, color: Colors.black87)),
-                              ),
+                            TextFormField(
+                              controller: typeController,
+                              decoration: const InputDecoration(
+                                  hintText: 'Type',
+                                  hintStyle: TextStyle(
+                                      fontSize: 16, color: Colors.black87)),
+                            ),
+                            TextFormField(
+                              controller: medicineController,
+                              decoration: const InputDecoration(
+                                  hintText: 'Name',
+                                  hintStyle: TextStyle(
+                                      fontSize: 16, color: Colors.black87)),
                             ),
                             const Spacer(),
                             ListTile(
@@ -181,8 +190,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                                     border: Border.all(color: Colors.black26),
                                     borderRadius: BorderRadius.circular(20),
                                   ),
-                                  child:
-                                      showPicker(context),
+                                  child: showPicker(context),
                                 ),
                               ),
                             ),
@@ -225,12 +233,15 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                             onPressed: () {
                               print('tap');
                               if (inputValid()) {
-                                addEventsForDate(_selectedDay!, medicine.text);
+                                addEventsForDate(
+                                    _selectedDay!,
+                                    medicineController.text,
+                                    typeController.text);
                               } else {
                                 return;
                               }
                               //dose.clear();
-                              medicine.clear();
+                              medicineController.clear();
                               Navigator.of(context).pop();
                               _selectedEvents.value =
                                   getEventsForDay(_selectedDay!);

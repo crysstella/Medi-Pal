@@ -1,58 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:medipal/firebase/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MedicineInfoScreen extends StatelessWidget {
-  final String medicineTypeID;
-  final String medicineBrandID;
-
-  MedicineInfoScreen({
-    this.medicineTypeID = "ZUFJnzKbBHVcIoSNASDr",
-    this.medicineBrandID = "ckRw2atQibDjcQb1ik7z",
-  });
-
-  Future<Map<String, dynamic>> _getAllMedicineTypes(
-      String medicineTypeID,
-      ) async {
-    var collection = FirebaseFirestore.instance.collection("Medicine Types");
-    var document = await collection.doc(medicineTypeID).get();
-
-    if (document.exists) {
-      return document.data()!;
-    } else {
-      throw Exception("Document not found");
-    }
-  }
-
-  Future<Map<String, dynamic>> _getMedicineBrandInfo(
-      String medicineBrandID,
-      String medicineBrand,
-      ) async {
-    var collection = FirebaseFirestore.instance.collection("Medicine Brands");
-    var document = await collection.doc(medicineBrandID).get();
-
-    if (document.exists) {
-      return document.data()!;
-    } else {
-      throw Exception("Document not found");
-    }
-  }
+  DataService medService = DataService();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Medicine Information'),
+        title: const Text('Medicine Information'),
       ),
       body: Center(
         child: FutureBuilder<Map<String, dynamic>>(
-          future: _getAllMedicineTypes(medicineTypeID),
+          future: medService.getAllMedicineTypes(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return CircularProgressIndicator();
+              return const CircularProgressIndicator();
             } else if (snapshot.hasError) {
               return Text("Error: ${snapshot.error}");
             } else if (snapshot.data == null || snapshot.data!.isEmpty) {
-              return Text("No data available for any medicines");
+              return const Text("No data available for any medicines");
             } else {
               var medicines = snapshot.data!;
               var medicineTypes = medicines.keys.toList()..sort();
@@ -74,11 +42,11 @@ class MedicineInfoScreen extends StatelessWidget {
                     ),
                     children: List<Widget>.from(medicineBrand.map((item) {
                       return FutureBuilder<Map<String, dynamic>>(
-                        future: _getMedicineBrandInfo(medicineBrandID, item),
+                        future: medService.getMedicineBrandInfo(),
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
-                            return CircularProgressIndicator();
+                            return const CircularProgressIndicator();
                           } else if (snapshot.hasError) {
                             return Text("Error: ${snapshot.error}");
                           } else {
@@ -102,7 +70,7 @@ class MedicineInfoScreen extends StatelessWidget {
                                 },
                               );
                             } else {
-                              return Text("No array found");
+                              return const Text("No array found");
                             }
                           }
                         },
