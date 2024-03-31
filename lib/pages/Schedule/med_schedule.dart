@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:unicons/unicons.dart';
 
+import '../../firebase/services.dart';
 import 'event.dart';
 
 class MedicationSchedule extends StatefulWidget {
@@ -15,6 +17,7 @@ class MedicationSchedule extends StatefulWidget {
 
 class _MedicationScheduleState extends State<MedicationSchedule>
     with SingleTickerProviderStateMixin {
+  DataService medService = DataService();
   DateTime _dateTime = DateTime.now();
   DateTime today = DateTime.now();
   DateTime? _selectedDay;
@@ -23,12 +26,11 @@ class _MedicationScheduleState extends State<MedicationSchedule>
   Icon _buttonDropDown = const Icon(UniconsLine.angle_up);
 
   bool _isExpanded = false;
-  TimeOfDay time = TimeOfDay.now();
+  TimeOfDay timeSelected = TimeOfDay.now();
 
   // Store the events created
   Map<DateTime, List<Event>> events = {};
   TextEditingController medicineController = TextEditingController();
-  TextEditingController typeController = TextEditingController();
   //TextEditingController dose = TextEditingController();
   late ValueNotifier<List<Event>> _selectedEvents;
 
@@ -87,21 +89,21 @@ class _MedicationScheduleState extends State<MedicationSchedule>
     return true;
   }
 
-  void addEventsForDate(DateTime date, String medicine, String type) {
+  void addEventsForDate(DateTime date, String medicine) {
     if (events[getNormalizedDate(date)] != null) {
       //print('Events in $date day is not null');
       events[getNormalizedDate(date)]?.add(
         Event(
-            //dose: int.parse(dose.text),
-            medicine: medicine,
-            date: getNormalizedDate(date),
-            type: type),
+          //dose: int.parse(dose.text),
+          medicine: medicine,
+          date: getNormalizedDate(date),
+        ),
       );
     } else {
       //print(events[getNormalizedDate(date)]?.length);
       //print('null');
       events[getNormalizedDate(date)] = [
-        Event(medicine: medicine, date: getNormalizedDate(date), type: type
+        Event(medicine: medicine, date: getNormalizedDate(date)
             //dose: int.parse(dose.text),
             )
       ];
@@ -121,16 +123,16 @@ class _MedicationScheduleState extends State<MedicationSchedule>
       onTimeChange: (time) {
         setState(() {
           _dateTime = time;
-          // print(_dateTime);
+          timeSelected = TimeOfDay.fromDateTime(time);
+
         });
       },
     );
   }
 
-  void timeExpanded() {
-    setState(() {
-      _isExpanded = !_isExpanded;
-    });
+  Future<List<String>> medNames() async {
+    List<String> names = await medService.getMedicineNames();
+    return names;
   }
 
   @override
@@ -140,103 +142,88 @@ class _MedicationScheduleState extends State<MedicationSchedule>
       floatingActionButton: FloatingActionButton(
           onPressed: () {
             showDialog(
+                barrierDismissible: false,
                 context: context,
                 builder: (context) {
                   return AlertDialog(
-                      title: const Text('New Medicine Reminder',
+                      title: const Text('New Reminder',
                           style: TextStyle(fontSize: 18)),
                       content: SingleChildScrollView(
                         child: ListBody(
                           children: <Widget>[
-                            TextFormField(
-                              controller: typeController,
-                              decoration: const InputDecoration(
-                                  hintText: 'Type',
-                                  hintStyle: TextStyle(
-                                      fontSize: 16, color: Colors.black87)),
-                            ),
-                            TextFormField(
+                            TypeAheadField<String>(
                               controller: medicineController,
-                              decoration: const InputDecoration(
-                                  hintText: 'Name',
-                                  hintStyle: TextStyle(
-                                      fontSize: 16, color: Colors.black87)),
+                              suggestionsCallback: (pattern) async {
+                                if (pattern.isNotEmpty) {
+                                  List<String> names =
+                                      await medService.getMedicineNames();
+                                  return names
+                                      .where((name) => name
+                                          .toLowerCase()
+                                          .contains(pattern.toLowerCase()))
+                                      .toList();
+                                } else {
+                                  return <String>[];
+                                }
+                              },
+                              builder: (context, controller, focusNode) =>
+                                  TextField(
+                                      controller: medicineController,
+                                      focusNode: focusNode,
+                                      autofocus: true,
+                                      decoration: const InputDecoration(
+                                          hintText: 'Medicine',
+                                          hintStyle: TextStyle(
+                                              fontSize: 16,
+                                              color: Colors.black87))),
+                              onSelected: (medName) {
+                                medicineController.text = medName.trim();
+                                medicineController.selection =
+                                    TextSelection.fromPosition(
+                                  TextPosition(
+                                      offset: medicineController.text.length),
+                                );
+                              },
+                              itemBuilder: (context, medName) {
+                                return ListTile(title: Text(medName));
+                              },
+                              hideOnEmpty: true,
                             ),
                             const Spacer(),
-                            ListTile(
-                              title: Text(
-                                'Time',
-                                style: TextStyle(
-                                    fontSize: 16, color: Colors.black87),
-                              ),
-                              /*trailing: TextButton(
-                                onPressed: () {
-                                  timeExpanded();
-                                },
-                                child: Text(time.format(context)),
-                              ),*/
-                              onTap: timeExpanded,
-                            ),
-                            AnimatedContainer(
-                              duration: Duration(milliseconds: 200),
-                              curve: Curves.decelerate,
-                              height: _isExpanded
-                                  ? 200
-                                  : 0, // Adjust height to show/hide content
-                              width: double.infinity,
-                              child: SingleChildScrollView(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.black26),
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  child: showPicker(context),
+                            ExpansionTile(
+                                tilePadding: EdgeInsets.zero,
+                                title: const Text(
+                                  'Time',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.black87,
+                                      fontWeight: FontWeight.w500),
                                 ),
-                              ),
-                            ),
-                            /*  Container(
-                              //padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    'Time',
-                                    style: TextStyle(
-                                        fontSize: 16, color: Colors.black87),
-                                  ),
-                                  const Spacer(),
-                                  TextButton(
-                                    onPressed: () async {
-                                      //time = await TimePickerSpinner(
-                                      showModalBottomSheet(
-                                          context: context,
-                                          builder: (BuildContext context) {
-                                            return showPicker(context);
-                                          });
-                                    },
-                                    child: Text(time.format(context)),
-                                  )
-                                ],
-                              ),
-                              decoration: BoxDecoration(
-                                  border: Border(
-                                      bottom:
-                                          BorderSide(color: Colors.black38))),
-                            )*/
+                                onExpansionChanged: (bool expanded) {
+                                  _isExpanded = expanded;
+                                },
+                                trailing: Text(timeSelected.format(context),
+                                    style: const TextStyle(fontSize: 16)),
+                                children: <Widget>[showPicker(context)]),
                           ],
                         ),
                       ),
                       actions: [
                         TextButton(
-                            onPressed: () => Navigator.pop(context),
+                            onPressed: () {
+                              medicineController.clear();
+                              Navigator.pop(context);
+                            },
                             child: const Text('Cancel')),
                         ElevatedButton(
                             onPressed: () {
                               print('tap');
                               if (inputValid()) {
                                 addEventsForDate(
-                                    _selectedDay!,
-                                    medicineController.text,
-                                    typeController.text);
+                                  _selectedDay!,
+                                  medicineController.text,
+                                );
                               } else {
                                 return;
                               }
@@ -328,7 +315,10 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                       ),
                       IconButton(
                         icon: const Icon(UniconsLine.clock),
-                        onPressed: () => showPicker(context),
+                        onPressed: () async {
+                          List<String> names =
+                              await medService.getMedicineNames();
+                        },
                       ),
                     ],
                   ),
