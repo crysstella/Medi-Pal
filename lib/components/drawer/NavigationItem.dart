@@ -55,6 +55,6 @@ class NavigationItem {
         NavigationItem(
             page: Setting(),
             icon: Icon(UniconsLine.setting),
-            title: 'Setting'),
+            title: 'Settings'),
       ];
 }
