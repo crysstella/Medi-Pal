@@ -12,7 +12,7 @@ import '../../pages/Setting/setting.dart';
 
 class NavigationItem {
   final Widget page;
-  final Widget title;
+  final String title;
   final Icon icon;
 
   NavigationItem({required this.page, required this.title, required this.icon});
@@ -20,41 +20,41 @@ class NavigationItem {
   static List<NavigationItem> get items => [
         // 0
         NavigationItem(
-            page: Home(), icon: Icon(UniconsLine.home), title: Text('Home')),
+            page: Home(), icon: Icon(UniconsLine.home), title: 'Home'),
         // 1
         NavigationItem(
             page: FoodSearch(),
             icon: Icon(UniconsLine.search),
-            title: Text('Food Search')),
+            title: 'Food Search'),
         // 2
         NavigationItem(
             page: Notifications(),
             icon: Icon(UniconsLine.bell),
-            title: Text('Notifications')),
+            title: 'Notifications'),
         // 3
         NavigationItem(
             page: Profile(),
             icon: Icon(UniconsLine.user_circle),
-            title: Text('Profile')),
+            title: 'Profile'),
         // 4
         NavigationItem(
             page: MedicationSchedule(),
             icon: Icon(UniconsLine.schedule),
-            title: Text('Medication Schedule')),
+            title: 'Medication Schedule'),
         // 5
         NavigationItem(
             page: ChatBot(),
             icon: Icon(UniconsLine.comment_alt),
-            title: Text('Chat bot')),
+            title: 'Chat bot'),
         // 6
         NavigationItem(
             page: Favorite(),
             icon: Icon(UniconsLine.heart),
-            title: Text('Favorites')),
+            title: 'Favorites'),
         // 7
         NavigationItem(
             page: Setting(),
             icon: Icon(UniconsLine.setting),
-            title: Text('Setting')),
+            title: 'Setting'),
       ];
 }

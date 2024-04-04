@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:unicons/unicons.dart';
@@ -89,6 +91,15 @@ class StartAppState extends State<StartApp> {
         key: _scaffoldKey,
         //drawer: SideMenu(),
         appBar: AppBar(
+          title: currentIndex == -1
+              ? Text(
+                  NavigationItem.items[currentIndexSide].title,
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                )
+              : Text(
+                  NavigationItem.items[currentIndex].title,
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                ),
           backgroundColor: Theme.of(context).primaryColor,
           leading: Builder(
             builder: (BuildContext context) {
@@ -105,16 +116,15 @@ class StartAppState extends State<StartApp> {
             },
           ),
           actions: [
-							IconButton(
-								onPressed: () {
-									context.read<LogInBloc>().add(const LogOutRequired());
-								}, 
-								icon: Icon(
-									UniconsLine.x,
-									color: Theme.of(context).colorScheme.onPrimary,
-								)
-							)
-						],
+            IconButton(
+                onPressed: () {
+                  context.read<LogInBloc>().add(const LogOutRequired());
+                },
+                icon: Icon(
+                  UniconsLine.x,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ))
+          ],
         ),
         drawer: SizedBox(
             width: MediaQuery.of(context).size.width * 0.2,
