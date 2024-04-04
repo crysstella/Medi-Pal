@@ -26,9 +26,12 @@ android {
     namespace "com.example.medipal"
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
-   /* defaultConfig {
+    defaultConfig {
+        compileSdkVersion 33
+        minSdkVersion flutter.minSdkVersion
+        targetSdkVersion 30
         multiDexEnabled true
-    }*/
+    }
 
     compileOptions {
         // coreLibraryDesugaringEnabled true

@@ -274,7 +274,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: Theme.of(context)
-                            .primaryColor, // Choose your color here
+                            .primaryColor,
                       ),
                       width: 6.0,
                       height: 6.0,
@@ -407,7 +407,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                                 '${value[index].getTime(context)}',
                                 style: TextStyle(
                                   height:
-                                      1.5, // Adjust line spacing to your preference
+                                      1.5, // Adjust line spacing to preference
                                 ),
                               ),
                             ));
