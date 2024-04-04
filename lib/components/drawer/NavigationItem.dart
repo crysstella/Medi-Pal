@@ -40,7 +40,7 @@ class NavigationItem {
         NavigationItem(
             page: MedicationSchedule(),
             icon: Icon(UniconsLine.schedule),
-            title: 'Medication Schedule'),
+            title: 'Schedules'),
         // 5
         NavigationItem(
             page: ChatBot(),
