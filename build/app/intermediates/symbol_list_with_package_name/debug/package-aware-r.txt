@@ -108,6 +108,7 @@ drawable common_google_signin_btn_text_light_normal_background
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_launcher_foreground
+drawable ic_noti
 drawable launch_background
 drawable notification_action_background
 drawable notification_bg

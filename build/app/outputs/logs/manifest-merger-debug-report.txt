@@ -53,6 +53,7 @@ MERGED from [:firebase_auth] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi
 MERGED from [:firebase_storage] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-17:12
 MERGED from [:cloud_firestore] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-17:12
 MERGED from [:firebase_core] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-17:12
+MERGED from [:flutter_keyboard_visibility] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\flutter_keyboard_visibility\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:flutter_local_notifications] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-12:12
 MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:17:1-75:12
 MERGED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:2:1-26:12
@@ -135,6 +136,8 @@ MERGED from [:cloud_firestore] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Me
 MERGED from [:cloud_firestore] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:firebase_core] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:firebase_core] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:flutter_keyboard_visibility] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\flutter_keyboard_visibility\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:flutter_keyboard_visibility] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\flutter_keyboard_visibility\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:flutter_local_notifications] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:flutter_local_notifications] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:21:5-23:64
