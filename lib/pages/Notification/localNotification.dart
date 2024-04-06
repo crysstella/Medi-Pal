@@ -65,38 +65,6 @@ class LocalNotifications {
             UILocalNotificationDateInterpretation.absoluteTime,
       );
 
-  /*var scheduleNotificationDateTime = tz.TZDateTime(
-      tz.local,
-      event.date.year,
-      event.date.month,
-      event.date.day,
-      event.time.hour,
-      event.time.minute,
-    );*/
-
-  /*var androidDetails = const AndroidNotificationDetails(
-        'eventID', 'Event Reminders',
-        channelDescription: 'Channel for event reminders',
-        importance: Importance.max,
-        priority: Priority.high);
-
-    var iosDetails = const DarwinNotificationDetails();
-    var platformDetails =
-        NotificationDetails(android: androidDetails, iOS: iosDetails);
-
-    print('ADDING NEW EVENT INTO NOTI');*/
-
-  /*await flutterLocalNotificationsPlugin.zonedSchedule(
-      event.hashCode,
-      event.medicine,
-      'Time to take your medicine.',
-      scheduleNotificationDateTime,
-      platformDetails,
-      payload: event.serialize(),
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
-    );*/
-
   // Show a simple notification
   /*static Future showSimpleNoti({
     required String title,
