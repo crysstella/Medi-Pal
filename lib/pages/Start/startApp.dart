@@ -2,16 +2,15 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medipal/pages/Notification/localNotification.dart';
 import 'package:unicons/unicons.dart';
 import 'package:medipal/components/drawer/NavigationItem.dart';
+import 'package:medipal/pages/Notification/notification_details.dart';
 
 import '../../blocs/log_in_bloc/log_in_bloc.dart';
 
 /* Start page contains navigation bars*/
 class StartApp extends StatefulWidget {
-  /*int selectedIndex = 0;
-  int selectedIndex_side  = 3;*/
-
   StartApp({super.key});
 
   @override
@@ -27,6 +26,12 @@ class StartAppState extends State<StartApp> {
   int currentIndexSide = 3; // Side bar starting index
 
   LastTappedBar? _lastTappedBar; // Check if the current tap is bottom or side
+
+  @override
+  void initState(){
+    super.initState();
+  }
+
 
   // Set the index of the bottom bar
   void _onItemTappedBottom(int index) {

@@ -1,13 +1,23 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+
+import '../Schedule/event.dart';
 
 class LocalNotifications {
   static final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
+  static final onClickNotification = BehaviorSubject<String>();
+
+  // On tap notification
+  static void tapNotification(NotificationResponse notificationResponse) {
+    onClickNotification.add(notificationResponse.payload!);
+  }
 
   // initialize the local notification
   static Future<void> init() async {
+    tz.initializeTimeZones();
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings('@drawable/ic_noti');
     final DarwinInitializationSettings initializationSettingsDarwin =
@@ -19,23 +29,85 @@ class LocalNotifications {
       android: initializationSettingsAndroid,
       iOS: initializationSettingsDarwin,
     );
-    flutterLocalNotificationsPlugin.initialize(
-      initializationSettings,
-      onDidReceiveNotificationResponse: (details) => null,
+    flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        onDidReceiveNotificationResponse: tapNotification,
+        onDidReceiveBackgroundNotificationResponse: tapNotification);
+  }
+
+  static notificationDetails() async {
+    return const NotificationDetails(
+      android: AndroidNotificationDetails('eventID', 'Event Reminders',
+          channelDescription: 'Channel for event reminders',
+          importance: Importance.max,
+          priority: Priority.high),
     );
   }
 
+  static Future scheduleNotification({
+    required Event event,
+  }) async =>
+      await flutterLocalNotificationsPlugin.zonedSchedule(
+        event.hashCode,
+        event.medicine,
+        'Time to take your medicine.',
+        tz.TZDateTime.from(
+            DateTime(
+              event.date.year,
+              event.date.month,
+              event.date.day,
+              event.time.hour,
+              event.time.minute,
+            ),
+            tz.local),
+        await notificationDetails(),
+        payload: event.serialize(),
+        uiLocalNotificationDateInterpretation:
+            UILocalNotificationDateInterpretation.absoluteTime,
+      );
+
+  /*var scheduleNotificationDateTime = tz.TZDateTime(
+      tz.local,
+      event.date.year,
+      event.date.month,
+      event.date.day,
+      event.time.hour,
+      event.time.minute,
+    );*/
+
+  /*var androidDetails = const AndroidNotificationDetails(
+        'eventID', 'Event Reminders',
+        channelDescription: 'Channel for event reminders',
+        importance: Importance.max,
+        priority: Priority.high);
+
+    var iosDetails = const DarwinNotificationDetails();
+    var platformDetails =
+        NotificationDetails(android: androidDetails, iOS: iosDetails);
+
+    print('ADDING NEW EVENT INTO NOTI');*/
+
+  /*await flutterLocalNotificationsPlugin.zonedSchedule(
+      event.hashCode,
+      event.medicine,
+      'Time to take your medicine.',
+      scheduleNotificationDateTime,
+      platformDetails,
+      payload: event.serialize(),
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
+    );*/
+
   // Show a simple notification
-  static Future showSimpleNoti({
+  /*static Future showSimpleNoti({
     required String title,
     required String body,
     required String payload,
   }) async {
     const AndroidNotificationDetails androidNotificationDetails =
         AndroidNotificationDetails(
-      'channel2',
-      'channelName',
-      channelDescription: 'This is Medipal noti',
+      'id',
+      'name',
+      channelDescription: 'This is Medipal',
       importance: Importance.max,
       priority: Priority.high,
       ticker: 'ticker',
@@ -51,7 +123,11 @@ class LocalNotifications {
     required String title,
     required String body,
     required String payload,
+    //required DateTime scheduleTime
   }) async {
+    tz.initializeTimeZones();
+    var localTime = tz.local;
+
     const AndroidNotificationDetails androidNotificationDetails =
         AndroidNotificationDetails(
       'channel 2',
@@ -66,5 +142,5 @@ class LocalNotifications {
     await flutterLocalNotificationsPlugin.periodicallyShow(
         1, title, body, RepeatInterval.everyMinute, notificationDetails,
         payload: payload);
-  }
+  }*/
 }

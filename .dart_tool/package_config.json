@@ -422,6 +422,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "rxdart",
+      "rootUri": "file:///C:/Users/Crystal%20Stellar/AppData/Local/Pub/Cache/hosted/pub.dev/rxdart-0.27.7",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "simple_gesture_detector",
       "rootUri": "file:///C:/Users/Crystal%20Stellar/AppData/Local/Pub/Cache/hosted/pub.dev/simple_gesture_detector-0.2.1",
       "packageUri": "lib/",
@@ -542,7 +548,7 @@
       "languageVersion": "3.3"
     }
   ],
-  "generated": "2024-04-05T01:35:09.586894Z",
+  "generated": "2024-04-05T02:26:25.256900Z",
   "generator": "pub",
   "generatorVersion": "3.3.0"
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../Schedule/event.dart';
 import 'localNotification.dart';
 
 class Notifications extends StatefulWidget {
@@ -17,7 +18,7 @@ class NotificationsState extends State<Notifications> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text('Notifications'),
-              TextButton(
+              /*TextButton(
                   onPressed: () {
                     LocalNotifications.showSimpleNoti(
                         title: 'MediPal Notification',
@@ -27,12 +28,10 @@ class NotificationsState extends State<Notifications> {
                   child: Text('Local Notification')),
               TextButton(
                   onPressed: () {
-                    LocalNotifications.showScheduleNoti(
-                        title: 'Medi-Pal',
-                        body: 'Schedule Notification',
-                        payload: 'MediPal data');
+                    LocalNotifications.scheduleNotification(
+                    Event(medicine: 'tylenol', date: DateTime.now(), time: TimeOfDay(hour: 18, minute: 32)));
                   },
-                  child: Text('Schedule Notification'))
+                  child: Text('Schedule Notification'))*/
             ]),
       ),
     );

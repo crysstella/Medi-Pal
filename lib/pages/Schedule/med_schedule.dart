@@ -4,8 +4,11 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:unicons/unicons.dart';
+import 'package:timezone/data/latest.dart' as tz;
 
 import '../../firebase/services.dart';
+import '../Notification/localNotification.dart';
+import '../Notification/notification_details.dart';
 import 'event.dart';
 
 class MedicationSchedule extends StatefulWidget {
@@ -29,9 +32,8 @@ class _MedicationScheduleState extends State<MedicationSchedule>
   late ValueNotifier<TimeOfDay> timeNotifier;
 
   // Store the events created
-  Map<DateTime, List<Event>> events = {};
+  static Map<DateTime, List<Event>> events = {};
   TextEditingController medicineController = TextEditingController();
-  //TextEditingController dose = TextEditingController();
   late ValueNotifier<List<Event>> _selectedEvents;
 
   @override
@@ -40,7 +42,17 @@ class _MedicationScheduleState extends State<MedicationSchedule>
     _selectedDay = _focusedDay;
     _selectedEvents = ValueNotifier(getEventsForDay(_selectedDay!));
     timeNotifier = ValueNotifier(timeSelected);
+    tz.initializeTimeZones();
+    //listenToNotification();
+
   }
+
+  // Listen to any notification clicked or not
+ /* listenToNotification(){
+    LocalNotifications.onClickNotification.stream.listen((String payload){
+      Navigator.push(context, MaterialPageRoute(builder: (context) => EventDetailsPage(event: event)));
+    });
+  }*/
 
   @override
   void dispose() {
@@ -91,23 +103,13 @@ class _MedicationScheduleState extends State<MedicationSchedule>
     return true;
   }
 
-  void addEventsForDate(DateTime date, String medicine, TimeOfDay time) {
-    if (events[getNormalizedDate(date)] != null) {
+  void addEventsForDate(Event newEvent) {
+    if (events[getNormalizedDate(newEvent.date)] != null) {
       //print('Events in $date day is not null');
-      events[getNormalizedDate(date)]?.add(
-        Event(
-            //dose: int.parse(dose.text),
-            medicine: medicine,
-            date: getNormalizedDate(date),
-            time: time),
-      );
+      events[getNormalizedDate(newEvent.date)]?.add(newEvent);
     } else {
       //print(events[getNormalizedDate(date)]?.length);
-      events[getNormalizedDate(date)] = [
-        Event(medicine: medicine, date: getNormalizedDate(date), time: time
-            //dose: int.parse(dose.text),
-            )
-      ];
+      events[getNormalizedDate(newEvent.date)] = [newEvent];
     }
   }
 
@@ -228,19 +230,36 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                             child: const Text('Cancel')),
                         ElevatedButton(
                             onPressed: () {
+                              // Store the context before the async operation
+                              final localContext = context;
+
                               if (inputValid()) {
-                                addEventsForDate(
-                                    _selectedDay!,
-                                    medicineController.text,
-                                    timeNotifier.value);
+                                Event newEvent = Event(
+                                  medicine: medicineController.text,
+                                  date: _selectedDay!,
+                                  time: timeNotifier.value
+                                );
+
+                                // Add event to local list
+                                addEventsForDate(newEvent);
+
+                                LocalNotifications.scheduleNotification(event: newEvent);
+
                               } else {
+                                // Clear fields
+                                medicineController.clear();
                                 return;
                               }
-                              //dose.clear();
+
+                              // Clear fields
                               medicineController.clear();
-                              Navigator.of(context).pop();
+                              // Get events in a day to display
                               _selectedEvents.value =
                                   getEventsForDay(_selectedDay!);
+
+                              // Close the dialog
+                              Navigator.of(localContext).pop();
+
                             },
                             child: const Text("Add"))
                       ]);
@@ -290,7 +309,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                   color: Theme.of(context).primaryColor,
                 ),
               );
-            }, selectedBuilder: (context, date, events) {
+            },selectedBuilder: (context, date, events) {
               if (!isSameDay(date, today)) {
                 return Container(
                     margin: const EdgeInsets.all(4.0),
