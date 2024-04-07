@@ -2,12 +2,12 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medipal/pages/Notification/localNotification.dart';
 import 'package:unicons/unicons.dart';
 import 'package:medipal/components/drawer/NavigationItem.dart';
-import 'package:medipal/pages/Notification/notification_details.dart';
 
 import '../../blocs/log_in_bloc/log_in_bloc.dart';
+import '../Notification/localNotification.dart';
+import '../Schedule/event.dart';
 
 /* Start page contains navigation bars*/
 class StartApp extends StatefulWidget {
@@ -30,9 +30,25 @@ class StartAppState extends State<StartApp> {
   @override
   void initState(){
     super.initState();
+    listenToNotification();
+
   }
 
+  // Listen to any notification clicked or not
+  listenToNotification() {
+    LocalNotifications.onClickNotification.stream.listen((String event) {
+      // Event _event = Event.deserialize(event);
+      _handleTapNotification();
 
+    });
+  }
+
+  // Handle on tap notification by setting current state
+  void _handleTapNotification(){
+    setState(() {
+      currentIndex = 2; // Index of notification page
+    });
+  }
   // Set the index of the bottom bar
   void _onItemTappedBottom(int index) {
     setState(() {
@@ -53,6 +69,11 @@ class StartAppState extends State<StartApp> {
     });
   }
 
+  void handleTapNotification(){
+    setState(() {
+      currentIndex = 3;
+    });
+  }
   // Header (profile feature) of the side bar
   Widget barHeader(BuildContext context) => IconButton(
         icon: const Icon(UniconsLine.user_circle, size: 50),
@@ -94,7 +115,6 @@ class StartAppState extends State<StartApp> {
         EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top);
     return Scaffold(
         key: _scaffoldKey,
-        //drawer: SideMenu(),
         appBar: AppBar(
           title: currentIndex == -1
               ? Text(

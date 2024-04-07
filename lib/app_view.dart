@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medipal/components/navigation_service/navigationService.dart';
 import 'package:medipal/pages/Start/launch.dart';
 import 'package:medipal/pages/Start/startApp.dart';
 
@@ -14,6 +15,9 @@ class MyAppView extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return MaterialApp(
+		  navigatorKey: navigationService.navigatorKey,
+				/*initialRoute: '/',
+			routes: {'/': (context) => LoginS,}*/
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,

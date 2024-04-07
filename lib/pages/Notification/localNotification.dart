@@ -1,19 +1,38 @@
+import 'dart:async';
+
+import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:medipal/components/navigation_service/navigationService.dart';
+import 'package:medipal/pages/Start/startApp.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 import '../Schedule/event.dart';
+import 'notification.dart';
+import 'notification_details.dart';
 
 class LocalNotifications {
   static final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
   static final onClickNotification = BehaviorSubject<String>();
+  // static final StreamController<String?> selectNotificationStream = StreamController<String?>.broadcast();
 
-  // On tap notification
+  // Handle tap notification
   static void tapNotification(NotificationResponse notificationResponse) {
     onClickNotification.add(notificationResponse.payload!);
+   if (notificationResponse.payload != null) {
+      //StartAppState currentState = navigationService.navigatorKey.currentState!.context.findAncestorStateOfType<StartAppState>()!;
+      //currentState.handleTapNotification();
+      // Event event = Event.deserialize(notificationResponse.payload!);
+      navigationService.navigatorKey.currentState?.push(
+        MaterialPageRoute(builder: (_) => StartApp())
+      );
+    }
   }
+
+  // Handle notification without tap
+
 
   // initialize the local notification
   static Future<void> init() async {
@@ -30,9 +49,20 @@ class LocalNotifications {
       iOS: initializationSettingsDarwin,
     );
     flutterLocalNotificationsPlugin.initialize(initializationSettings,
-        onDidReceiveNotificationResponse: tapNotification,
+        onDidReceiveNotificationResponse: tapNotification,/* (NotificationResponse notifcationResponse){
+          switch(notifcationResponse.notificationResponseType){
+            case NotificationResponseType.selectedNotification:
+              selectNotificationStream.add(notifcationResponse.payload);
+              break;
+            case NotificationResponseType.selectedNotificationAction:
+          }
+        },*/
         onDidReceiveBackgroundNotificationResponse: tapNotification);
   }
+
+  /*Future handleNotificationTap(NotificationResponse notificationResponse) async{
+    Navigator.push(context, MaterialPageRoute(builder: (context) => EventDetailsPage(event: _event)));
+  }*/
 
   static notificationDetails() async {
     return const NotificationDetails(
@@ -65,50 +95,5 @@ class LocalNotifications {
             UILocalNotificationDateInterpretation.absoluteTime,
       );
 
-  // Show a simple notification
-  /*static Future showSimpleNoti({
-    required String title,
-    required String body,
-    required String payload,
-  }) async {
-    const AndroidNotificationDetails androidNotificationDetails =
-        AndroidNotificationDetails(
-      'id',
-      'name',
-      channelDescription: 'This is Medipal',
-      importance: Importance.max,
-      priority: Priority.high,
-      ticker: 'ticker',
-    );
-    const NotificationDetails notificationDetails =
-        NotificationDetails(android: androidNotificationDetails);
-    await flutterLocalNotificationsPlugin
-        .show(0, title, body, notificationDetails, payload: payload);
-  }
 
-  // Show schedule notification
-  static Future showScheduleNoti({
-    required String title,
-    required String body,
-    required String payload,
-    //required DateTime scheduleTime
-  }) async {
-    tz.initializeTimeZones();
-    var localTime = tz.local;
-
-    const AndroidNotificationDetails androidNotificationDetails =
-        AndroidNotificationDetails(
-      'channel 2',
-      'channelName',
-      channelDescription: 'This is Medipal noti',
-      importance: Importance.max,
-      priority: Priority.high,
-      ticker: 'ticker',
-    );
-    const NotificationDetails notificationDetails =
-        NotificationDetails(android: androidNotificationDetails);
-    await flutterLocalNotificationsPlugin.periodicallyShow(
-        1, title, body, RepeatInterval.everyMinute, notificationDetails,
-        payload: payload);
-  }*/
 }

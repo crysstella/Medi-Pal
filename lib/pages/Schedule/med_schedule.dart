@@ -43,16 +43,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
     _selectedEvents = ValueNotifier(getEventsForDay(_selectedDay!));
     timeNotifier = ValueNotifier(timeSelected);
     tz.initializeTimeZones();
-    //listenToNotification();
-
   }
-
-  // Listen to any notification clicked or not
- /* listenToNotification(){
-    LocalNotifications.onClickNotification.stream.listen((String payload){
-      Navigator.push(context, MaterialPageRoute(builder: (context) => EventDetailsPage(event: event)));
-    });
-  }*/
 
   @override
   void dispose() {
