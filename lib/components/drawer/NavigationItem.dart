@@ -45,7 +45,7 @@ class NavigationItem {
         NavigationItem(
             page: ChatBot(),
             icon: Icon(UniconsLine.comment_alt),
-            title: 'Chat bot'),
+            title: 'Medi-Bot'),
         // 6
         NavigationItem(
             page: Favorite(),

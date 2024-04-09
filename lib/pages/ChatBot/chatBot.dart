@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:unicons/unicons.dart';
 
+import 'chatBubble.dart';
+
 class ChatBot extends StatefulWidget {
   const ChatBot({super.key});
 
@@ -10,83 +12,73 @@ class ChatBot extends StatefulWidget {
 
 class _ChatBotState extends State<ChatBot> {
   final List<String> messages = [];
-  final TextEditingController textController = TextEditingController();
+  final List<String> topic = [
+    'Diseases Information',
+    'Food Recommended',
+    'Food Avoided'
+  ];
+  String welcome = 'Hi there! How can I help you today?';
+  final List<String> botResponses = [];
+
+  @override
+  void initState() {
+    super.initState();
+    messages.insert(0, welcome);
+  }
 
   void onSubmitted(String text) {
-    textController.clear();
-    if (text.isNotEmpty) {
-      setState(() {
-        messages.insert(0, text);
-      });
-    }
+    setState(() {
+      messages.insert(0, welcome);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(children: <Widget>[
+        body: Container(
+      margin: const EdgeInsets.all(5),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Theme.of(context).primaryColor)),
+      child: Column(children: <Widget>[
         Flexible(
-          child: ListView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            reverse: true,
-            itemCount: messages.length,
-            itemBuilder: (_, int index) {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                        child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 10),
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).primaryColor,
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
-                          child: Text(
-                            style: TextStyle(color: Colors.white),
-                            messages[index],
-                            textAlign: TextAlign.left, // Aligns the text to the right
-                          ),
-                        )),
-                    Icon(UniconsLine.user_circle,
-                        size: 40), // Icon on the right side
-                  ],
-                ),
-              );
-            },
-          ),
-        ),
-        Divider(height: 5.0),
+            child: ListView.builder(
+          padding: const EdgeInsets.all(8.0),
+          itemCount: messages.length,
+          itemBuilder: (BuildContext context, int index) {
+            final message = messages[index];
+            return ChatBubble(message: message.trim(), isUser: false);
+          },
+        )),
         Container(
-          decoration: BoxDecoration(color: Theme.of(context).cardColor),
-          child: IconTheme(
-            data:
-                IconThemeData(color: Theme.of(context).primaryColor, size: 35),
-            child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Row(
-                children: <Widget>[
-                  Flexible(
+            margin: EdgeInsets.only(
+                bottom: MediaQuery.of(context).size.height * 0.02),
+            width: MediaQuery.of(context).size.width * 0.85,
+            height: MediaQuery.of(context).size.height * 0.05,
+            decoration: BoxDecoration(
+              color: Theme.of(context).cardColor,
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(color: Theme.of(context).primaryColor),
+            ),
+            child: Row(children: <Widget>[
+              const Spacer(),
+              IconButton(
+                icon: const Icon(UniconsLine.message),
+                color: Theme.of(context).primaryColor,
+                splashColor: Colors.transparent,
+                onPressed: () {},
+              )
+            ]))
+      ]),
+      /* Flexible(
                     child: TextField(
+                      maxLines: null,
                       controller: textController,
                       onSubmitted: onSubmitted,
-                      decoration: InputDecoration.collapsed(
+                      decoration: const InputDecoration.collapsed(
                           hintText: "Type a message..."),
                     ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 4.0),
-                    child: IconButton(
-                        icon: const Icon(UniconsLine.message),
-                        onPressed: () => onSubmitted(textController.text)),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        )
-      ]),
-    );
+                  ),*/
+    ));
   }
 }

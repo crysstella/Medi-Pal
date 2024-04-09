@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 
 import '../Schedule/event.dart';
@@ -42,3 +43,4 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
     );
   }
 }
+*/
