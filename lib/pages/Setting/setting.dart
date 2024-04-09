@@ -1,20 +1,218 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:unicons/unicons.dart';
+import '../../blocs/log_in_bloc/log_in_bloc.dart';
 
-class Setting extends StatefulWidget {
-  const Setting({super.key});
 
-  @override
-  State<Setting> createState() => _SettingState();
-}
+class SettingsScreen extends StatelessWidget {
+  const SettingsScreen({super.key});
 
-class _SettingState extends State<Setting> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[Text('Setting')]),
+    return Scaffold(
+      body: Padding(
+        padding: EdgeInsets.all(12.0),
+        child: SafeArea(
+          child: Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "SETTINGS",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 40,
+                          height: 40 / 32,
+                        )?.copyWith(color: Theme.of(context).colorScheme.onPrimaryContainer),
+                      ),
+                      const SizedBox(height: 14),
+                      GestureDetector(
+                        // onTap: () {
+                        //  nav to Notification
+                        // },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                const Icon(UniconsLine.bell),
+                                Text(
+                                  " Notifications",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                  ),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 6,
+                              child: Switch(
+                                value: true,
+                                onChanged: null,
+                                activeTrackColor: const Color(0x9EA0A1FA),
+                                thumbColor:
+                                MaterialStateProperty.all(Colors.white),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              const Icon(UniconsLine.sun),
+                              Text(
+                                " Theme",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                ),
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "Light Mode",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                )?.copyWith(color: const Color(0x9EA0A1FA)),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 2),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              const Icon(UniconsLine.exit),
+                              Text(
+                                " Log Out",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              IconButton(
+                                  onPressed: () {
+                                    context.read<LogInBloc>().add(const LogOutRequired());
+                                  },
+                                  icon: Icon(
+                                    UniconsLine.arrow_circle_right,
+                                    color: const Color(0x9EA0A1FA),
+                                  )
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        "SUPPORT",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 20,
+                        ).copyWith(color: Theme.of(context).colorScheme.tertiary),
+                      ),
+                      const SizedBox(height: 10),
+                      GestureDetector(
+                        // onTap: () {
+                        //   nav to about info [cubit]?
+                        // },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                const Icon(UniconsLine.info_circle),
+                                Text(
+                                  " About",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      GestureDetector(
+                        // onTap: () {
+                        //   nav to privacy policy [cubit]?
+                        // },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                const Icon(UniconsLine.clipboard_notes),
+                                Text(
+                                  " Privacy Policy",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      GestureDetector(
+                        // onTap: () {
+                        //   nav to app guide [cubit]?
+                        // },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                const Icon(UniconsLine.directions),
+                                Text(
+                                  " App Guide",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 350),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "V.1.0",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Theme.of(context).colorScheme.onPrimaryContainer,
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(height: 3.3),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

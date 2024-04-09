@@ -53,7 +53,7 @@ class NavigationItem {
             title: 'Favorites'),
         // 7
         NavigationItem(
-            page: Setting(),
+            page: SettingsScreen(),
             icon: Icon(UniconsLine.setting),
             title: 'Settings'),
       ];
