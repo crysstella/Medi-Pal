@@ -11,7 +11,7 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.all(12.0),
+        padding: const EdgeInsets.all(12.0),
         child: SafeArea(
           child: Column(
             children: [
@@ -22,11 +22,11 @@ class SettingsScreen extends StatelessWidget {
                     children: [
                       Text(
                         "SETTINGS",
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 40,
                           height: 40 / 32,
-                        )?.copyWith(color: Theme.of(context).colorScheme.onPrimaryContainer),
+                        ).copyWith(color: Theme.of(context).colorScheme.onPrimaryContainer),
                       ),
                       const SizedBox(height: 14),
                       GestureDetector(
@@ -36,9 +36,9 @@ class SettingsScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Row(
+                            const Row(
                               children: [
-                                const Icon(UniconsLine.bell),
+                                Icon(UniconsLine.bell),
                                 Text(
                                   " Notifications",
                                   style: TextStyle(
@@ -64,9 +64,9 @@ class SettingsScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
+                          const Row(
                             children: [
-                              const Icon(UniconsLine.sun),
+                              Icon(UniconsLine.sun),
                               Text(
                                 " Theme",
                                 style: TextStyle(
@@ -79,9 +79,9 @@ class SettingsScreen extends StatelessWidget {
                             children: [
                               Text(
                                 "Light Mode",
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 14,
-                                )?.copyWith(color: const Color(0x9EA0A1FA)),
+                                ).copyWith(color: const Color(0x9EA0A1FA)),
                               ),
                             ],
                           ),
@@ -91,9 +91,9 @@ class SettingsScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
+                          const Row(
                             children: [
-                              const Icon(UniconsLine.exit),
+                              Icon(UniconsLine.exit),
                               Text(
                                 " Log Out",
                                 style: TextStyle(
@@ -108,9 +108,9 @@ class SettingsScreen extends StatelessWidget {
                                   onPressed: () {
                                     context.read<LogInBloc>().add(const LogOutRequired());
                                   },
-                                  icon: Icon(
+                                  icon: const Icon(
                                     UniconsLine.arrow_circle_right,
-                                    color: const Color(0x9EA0A1FA),
+                                    color: Color(0x9EA0A1FA),
                                   )
                               ),
                             ],
@@ -120,7 +120,7 @@ class SettingsScreen extends StatelessWidget {
                       const SizedBox(height: 2),
                       Text(
                         "SUPPORT",
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 20,
                         ).copyWith(color: Theme.of(context).colorScheme.tertiary),
@@ -130,12 +130,12 @@ class SettingsScreen extends StatelessWidget {
                         // onTap: () {
                         //   nav to about info [cubit]?
                         // },
-                        child: Row(
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Row(
                               children: [
-                                const Icon(UniconsLine.info_circle),
+                                Icon(UniconsLine.info_circle),
                                 Text(
                                   " About",
                                   style: TextStyle(
@@ -152,12 +152,12 @@ class SettingsScreen extends StatelessWidget {
                         // onTap: () {
                         //   nav to privacy policy [cubit]?
                         // },
-                        child: Row(
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Row(
                               children: [
-                                const Icon(UniconsLine.clipboard_notes),
+                                Icon(UniconsLine.clipboard_notes),
                                 Text(
                                   " Privacy Policy",
                                   style: TextStyle(
@@ -174,12 +174,12 @@ class SettingsScreen extends StatelessWidget {
                         // onTap: () {
                         //   nav to app guide [cubit]?
                         // },
-                        child: Row(
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Row(
                               children: [
-                                const Icon(UniconsLine.directions),
+                                Icon(UniconsLine.directions),
                                 Text(
                                   " App Guide",
                                   style: TextStyle(

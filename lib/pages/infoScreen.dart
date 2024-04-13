@@ -5,8 +5,8 @@ class DiseaseInfoScreen extends StatelessWidget {
   final String userDisease;
   final String userDiseaseID;
 
-  DiseaseInfoScreen(
-      {this.userDiseaseID = "EO1oWhfvlkMICXgg0JqI", required this.userDisease});
+  const DiseaseInfoScreen(
+      {super.key, this.userDiseaseID = "EO1oWhfvlkMICXgg0JqI", required this.userDisease});
 
   Future<Map<String, dynamic>> _getAllDiseaseInfo(String userDiseaseID) async {
     var collection =
@@ -44,19 +44,19 @@ class DiseaseInfoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Disease Information'),
+        title: const Text('Disease Information'),
       ),
       body: Center(
         child: FutureBuilder<Map<String, dynamic>>(
           future: _getAllDiseaseInfo(userDiseaseID),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return CircularProgressIndicator();
+              return const CircularProgressIndicator();
             } else if (snapshot.hasError) {
               print(snapshot.data);
               return Text("Error: ${snapshot.error}");
             } else if (snapshot.data == null || snapshot.data!.isEmpty) {
-              return Text("No data available for any diseases");
+              return const Text("No data available for any diseases");
             } else {
               var diseases = snapshot.data!;
               print('in list: ${diseases.length}');
@@ -72,7 +72,7 @@ class DiseaseInfoScreen extends StatelessWidget {
                   }
 
                   return ExpansionTile(
-                    title: Text(diseaseName, style: TextStyle(fontWeight: FontWeight.bold)),
+                    title: Text(diseaseName, style: const TextStyle(fontWeight: FontWeight.bold)),
                     children: List<Widget>.from(info.map((item) {
                       return ListTile(title: Text(item));
                     })),

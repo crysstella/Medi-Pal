@@ -4,105 +4,65 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:medipal/components/navigation_service/navigationService.dart';
 import 'package:medipal/pages/Start/startApp.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 import '../Schedule/event.dart';
 import 'notification.dart';
-
-/*final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
-final StreamController<ReceivedNotification> didReceiveLocalNotificationStream =
-    StreamController<ReceivedNotification>.broadcast();
-final StreamController<String?> selectNotificationStream =
-    StreamController<String?>.broadcast();
-
-class ReceivedNotification {
-  ReceivedNotification({
-    required this.id,
-    required this.title,
-    required this.body,
-    required this.payload,
-  });
-  final int id;
-  final String? title;
-  final String? body;
-  final String? payload;
-}
-
-String? selectedNotificationPayload;*/
+import 'notification_details.dart';
 
 class LocalNotifications {
   static final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
-  //static final onClickNotification = BehaviorSubject<String>();
-  static StreamController<int> indexUpdateController =
-      StreamController<int>.broadcast();
-  static StreamController<String> notificationStreamController =
-      StreamController<String>.broadcast();
-  static Stream<String> get notificationStream => notificationStreamController.stream;
-  static final ValueNotifier<List<Event>> eventsNotifier = ValueNotifier<List<Event>>([]);
+  static final onClickNotification = BehaviorSubject<String>();
+  // static final StreamController<String?> selectNotificationStream = StreamController<String?>.broadcast();
 
-  //static final BehaviorSubject<String?> onNotificationStream =
-  // BehaviorSubject<String?>();
+  // Handle tap notification
+  static void tapNotification(NotificationResponse notificationResponse) {
+    onClickNotification.add(notificationResponse.payload!);
+   if (notificationResponse.payload != null) {
+      //StartAppState currentState = navigationService.navigatorKey.currentState!.context.findAncestorStateOfType<StartAppState>()!;
+      //currentState.handleTapNotification();
+      // Event event = Event.deserialize(notificationResponse.payload!);
+      navigationService.navigatorKey.currentState?.push(
+        MaterialPageRoute(builder: (_) => StartApp())
+      );
+    }
+  }
+
+  // Handle notification without tap
+
 
   // initialize the local notification
   static Future<void> init() async {
     tz.initializeTimeZones();
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings('@drawable/ic_noti');
-    /*final DarwinInitializationSettings initializationSettingsDarwin =
+    final DarwinInitializationSettings initializationSettingsDarwin =
         DarwinInitializationSettings(
-            onDidReceiveLocalNotification: _onDidReceiveLocalNotification*/ /*(id, title, body, payload) => null*/ /*);*/
+      onDidReceiveLocalNotification: (id, title, body, payload) => null,
+    );
     final InitializationSettings initializationSettings =
         InitializationSettings(
       android: initializationSettingsAndroid,
+      iOS: initializationSettingsDarwin,
     );
-    await flutterLocalNotificationsPlugin.initialize(initializationSettings,
-        onDidReceiveNotificationResponse: tapNotificationForeGround,
-        onDidReceiveBackgroundNotificationResponse: tapNotificationBackGround);
+    flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        onDidReceiveNotificationResponse: tapNotification,/* (NotificationResponse notifcationResponse){
+          switch(notifcationResponse.notificationResponseType){
+            case NotificationResponseType.selectedNotification:
+              selectNotificationStream.add(notifcationResponse.payload);
+              break;
+            case NotificationResponseType.selectedNotificationAction:
+          }
+        },*/
+        onDidReceiveBackgroundNotificationResponse: tapNotification);
   }
 
-  static void dispose() {
-    indexUpdateController.close();
-  }
-
-  static void addEvent(String eventData) {
-    Event newEvent = Event.deserialize(eventData);
-    eventsNotifier.value = List.from(eventsNotifier.value)..add(newEvent);
-  }
-
-  // Handle tap foreground notification
-  static Future<void> tapNotificationForeGround(
-      NotificationResponse notificationResponse) async {
-    if (notificationResponse.payload != null) {
-      String eventPayLoad = notificationResponse.payload!;
-      notificationStreamController.add(eventPayLoad);
-      //addEvent(notificationResponse.payload!);
-      print('FOREGROUND');
-      indexUpdateController.add(2);
-
-      // Update events in notification page
-      Event _event = Event.deserialize(eventPayLoad);
-      NotificationsState.events.add(_event);
-
-      /* // Check if StartApp is already the current screen
-      if (navigationService.navigatorKey.currentState?.context.widget is! Notifications) {
-        navigationService.navigatorKey.currentState
-            ?.push(MaterialPageRoute(builder: (_) => Notifications()));      }*/
-
-    }
-  }
-
-  // Handle tap background notification
-  static void tapNotificationBackGround(
-      NotificationResponse notificationResponse) async {
-    notificationStreamController.add(notificationResponse.payload!);
-    if (notificationResponse.payload != null) {
-      navigationService.navigatorKey.currentState
-          ?.push(MaterialPageRoute(builder: (_) => StartApp()));
-    }
-  }
+  /*Future handleNotificationTap(NotificationResponse notificationResponse) async{
+    Navigator.push(context, MaterialPageRoute(builder: (context) => EventDetailsPage(event: _event)));
+  }*/
 
   static notificationDetails() async {
     return const NotificationDetails(
@@ -119,7 +79,7 @@ class LocalNotifications {
       await flutterLocalNotificationsPlugin.zonedSchedule(
         event.hashCode,
         event.medicine,
-        'Time to take ${event.medicine}.',
+        'Time to take your medicine.',
         tz.TZDateTime.from(
             DateTime(
               event.date.year,
@@ -135,8 +95,5 @@ class LocalNotifications {
             UILocalNotificationDateInterpretation.absoluteTime,
       );
 
-  // Close a specific channel notification
-  static Future cancel(int id) async {
-    await flutterLocalNotificationsPlugin.cancel(id);
-  }
+
 }

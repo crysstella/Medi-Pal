@@ -100,6 +100,12 @@ class FirebaseUserRepository implements UserRepository {
 			rethrow;
     }
   }
+
+  @override
+  Future<bool> isLoggedIn() async{
+    final currentUser = _firebaseAuth.currentUser;
+    return currentUser != null;
+  }
   
 }
 

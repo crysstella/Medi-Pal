@@ -7,12 +7,12 @@ class Favorite extends StatefulWidget {
   final String foodID;
 
   const Favorite({
-    Key? key,
+    super.key,
     //set the disease to diabetes for now
     this.userDisease = "Diabetes",
     // Set the default document id
     this.foodID = "2O1FKL6tcyXKC8v3GPIS",
-  }) : super(key: key);
+  });
 
   @override
   State<Favorite> createState() => _FavoriteState();
@@ -63,17 +63,18 @@ class _FavoriteState extends State<Favorite> {
     }
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Favorites"),
+        title: const Text("Favorites"),
       ),
       //collects information from food database
       body: FutureBuilder<Map<String, dynamic>>(
         future: _getAllFoodInfo(widget.foodID),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.hasData) {
@@ -92,7 +93,7 @@ class _FavoriteState extends State<Favorite> {
               crossAxisAlignment: CrossAxisAlignment.start, // Added for alignment
               children: [
                 // text added for instruction
-                Text(
+                const Text(
                   "Please add your favorite food by using the dropdown menu below: ",
                   style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic, color: Colors.black),
                 ),
@@ -119,13 +120,13 @@ class _FavoriteState extends State<Favorite> {
                       //holds currently selected food
                       value: food.toString(),
                       // display food text for dropdown
-                      child: Text("• " + food.toString()), // Added bullet point
+                      child: Text("• $food"), // Added bullet point
                     );
                     //convert the map to an array
                   }).toList(),
                 ),
-                SizedBox(height: 20),
-                Text(
+                const SizedBox(height: 20),
+                const Text(
                   "Your Favorite Foods:",
                   style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic, color: Colors.black),
                 ),
@@ -134,16 +135,16 @@ class _FavoriteState extends State<Favorite> {
                     itemCount: favoriteFoods.length,
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: EdgeInsets.all(10), // Adjust padding as needed
+                        padding: const EdgeInsets.all(10), // Adjust padding as needed
                         child: Container(
-                          padding: EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            color: Color.fromARGB(255, 238, 238, 238), // Customize the color as needed
+                            color: const Color.fromARGB(255, 238, 238, 238), // Customize the color as needed
                           ),
                           child: Text(
                             favoriteFoods[index],
-                            style: TextStyle(fontSize: 16), // Adjust font size as needed
+                            style: const TextStyle(fontSize: 16), // Adjust font size as needed
                           ),
                         ),
                       );
@@ -153,7 +154,7 @@ class _FavoriteState extends State<Favorite> {
               ],
             );
           } else {
-            return Center(
+            return const Center(
               child: Text("Error"),
             );
           }

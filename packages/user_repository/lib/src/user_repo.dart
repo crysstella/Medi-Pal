@@ -18,4 +18,6 @@ abstract class UserRepository {
 
 	Future<MyUserModel> getMyUser(String myUserEmail);
 
+  Future<bool> isLoggedIn();
+
 }

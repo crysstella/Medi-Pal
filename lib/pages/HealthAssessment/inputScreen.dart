@@ -1,11 +1,13 @@
 //stateful can change
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'diseaseInfo.dart';
 
 class InputScreen extends StatefulWidget {
+  final String userEmail = "a@gmail.com";
+
+  const InputScreen({super.key});
   @override
   //initializes the state for InputScreenState
   _InputScreenState createState() => _InputScreenState();
@@ -22,7 +24,7 @@ class _InputScreenState extends State<InputScreen> {
     if (_inputValue.isNotEmpty) {
       //add thhe users input to firestore with a timestamp
       //userInput is the collection name
-      _firestore.collection("userInput").add({
+      _firestore.collection("users").add({
         //set inputValue to be saved in userInput collection
         "input": _inputValue,
         //set the timestamp in firestore when input is collected
@@ -50,7 +52,7 @@ class _InputScreenState extends State<InputScreen> {
       //the top bar
       appBar: AppBar(
         //writes the title of Health Assessment on top of Screen
-        title: Text("Health Assessment"),
+        title: const Text("Health Assessment"),
       ),
       body: Center(
         child: Column(
@@ -59,7 +61,7 @@ class _InputScreenState extends State<InputScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
 
           children: [
-            Text(
+            const Text(
               //Write prompt on why they should do the health assessment for the app to be effective
                 "Hello New User! To use this app to the utmost effectiveness, completing the health assessment is highly recommended.",
                 style: TextStyle(
@@ -67,7 +69,7 @@ class _InputScreenState extends State<InputScreen> {
                     fontStyle: FontStyle.italic,
                     color: Colors.black)),
             //vertical spacing added between the text
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             TextField(
               //textBox for user to type in
               onChanged: (value) {
@@ -76,7 +78,7 @@ class _InputScreenState extends State<InputScreen> {
                   _inputValue = value;
                 });
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 //gives text to prompt user to enter Disease
                   labelText: "Enter any Diseases you may have:",
                   // changes the font style and color of the text
@@ -85,12 +87,12 @@ class _InputScreenState extends State<InputScreen> {
                       fontStyle: FontStyle.italic,
                       color: Colors.black)),
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             //created a button for user to interact with when they need to move onto the next screen
             ElevatedButton(
               //when presses calls save Disease function
               onPressed: _saveDisease,
-              child: Text("Next"),
+              child: const Text("Next"),
             ),
           ],
         ),

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medipal/components/navigation_service/navigationService.dart';
@@ -48,7 +47,7 @@ class MyAppView extends StatelessWidget{
 										)),
 									),
 								],
-							child: StartApp(),
+							child: const StartApp(),
 						);
 					} else {
 						return const LaunchScreen();

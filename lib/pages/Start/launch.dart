@@ -28,6 +28,14 @@ class _LaunchScreenState extends State<LaunchScreen> with TickerProviderStateMix
     );
   }
 
+  // late AuthBloc authBloc;
+
+  // @override
+  // void initState() {
+  //   authBloc = BlocProvider.of<AuthBloc>(context);
+  //   super.initState();
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

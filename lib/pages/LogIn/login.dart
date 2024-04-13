@@ -89,13 +89,13 @@ class _LogInScreenState extends State<LogInScreen> {
                   setState(() {
                     passwordToggle = !passwordToggle;
                     if (passwordToggle) {   
-                      Icon(UniconsLine.eye);
+                      const Icon(UniconsLine.eye);
                     } else {
-                      Icon(UniconsLine.eye_slash);
+                      const Icon(UniconsLine.eye_slash);
                     }
                   });
                 },
-                icon: Icon(UniconsLine.eye_slash),
+                icon: const Icon(UniconsLine.eye_slash),
               ),
             ),
           ),

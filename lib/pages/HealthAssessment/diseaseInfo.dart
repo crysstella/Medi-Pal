@@ -7,9 +7,9 @@ class DiseaseInfoScreen extends StatelessWidget {
   //initialize the fb documentID
   final String userDiseaseID;
 
-  DiseaseInfoScreen(
+  const DiseaseInfoScreen(
     //set the document ID to call it from fb
-      {this.userDiseaseID = "EO1oWhfvlkMICXgg0JqI", required this.userDisease});
+      {super.key, this.userDiseaseID = "EO1oWhfvlkMICXgg0JqI", required this.userDisease});
 
   //function to get the collection Disease Information from db
   
@@ -41,7 +41,7 @@ class DiseaseInfoScreen extends StatelessWidget {
         builder: (context, snapshot) {
           //after calling returns a progress bar until this screen starts
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
             //find if snapshot has any elements
@@ -66,16 +66,16 @@ class DiseaseInfoScreen extends StatelessWidget {
                     title: Card(
                       //formatting to make the data look nicer
                         child: Padding(
-                            padding: EdgeInsets.all(16.0),
+                            padding: const EdgeInsets.all(16.0),
                             child: Text(
                               //call/ returns indexes of formattedData here
                               formattedData[index],
-                              style: TextStyle(fontSize: 16.0),
+                              style: const TextStyle(fontSize: 16.0),
                             ))));
               },
             );
           } else {
-            return Center(
+            return const Center(
               child: Text("Error"),
             );
           }

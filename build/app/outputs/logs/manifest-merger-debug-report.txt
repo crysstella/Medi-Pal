@@ -1,460 +1,460 @@
 -- Merging decision tree log ---
 application
-INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:5:5-44:19
-MERGED from [:firebase_auth] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
-MERGED from [:firebase_auth] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
-MERGED from [:firebase_storage] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
-MERGED from [:firebase_storage] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
-MERGED from [:cloud_firestore] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
-MERGED from [:cloud_firestore] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
-MERGED from [:firebase_core] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
-MERGED from [:firebase_core] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
-MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:28:5-73:19
-MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:28:5-73:19
-MERGED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:13:5-24:19
-MERGED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:13:5-24:19
-MERGED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:26:5-37:19
-MERGED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:26:5-37:19
-MERGED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\6813101a4e3db027f8f5b5e738cc9025\transformed\jetified-firebase-appcheck-17.1.2\AndroidManifest.xml:21:5-32:19
-MERGED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\6813101a4e3db027f8f5b5e738cc9025\transformed\jetified-firebase-appcheck-17.1.2\AndroidManifest.xml:21:5-32:19
-MERGED from [com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\8f2136bc0ef3483dde6c7a187281cc07\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:8:5-16:19
-MERGED from [com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\8f2136bc0ef3483dde6c7a187281cc07\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:8:5-16:19
-MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\f5aa2e10f33b9bd4a4679f70cae23246\transformed\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:7:5-8:19
-MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\f5aa2e10f33b9bd4a4679f70cae23246\transformed\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:7:5-8:19
-MERGED from [com.google.firebase:firebase-common:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:22:5-39:19
-MERGED from [com.google.firebase:firebase-common:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:22:5-39:19
-MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\905370d3dab651637b8835e89c66cd73\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:24:5-31:19
-MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\905370d3dab651637b8835e89c66cd73\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:24:5-31:19
-MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\697231b1bce03dc4bc113c0e4b4ce1f5\transformed\jetified-firebase-appcheck-interop-17.1.0\AndroidManifest.xml:21:5-20
-MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\697231b1bce03dc4bc113c0e4b4ce1f5\transformed\jetified-firebase-appcheck-interop-17.1.0\AndroidManifest.xml:21:5-20
-MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\19e1f3b8793d94c8974fa2945c736a9b\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:19:5-23:19
-MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\19e1f3b8793d94c8974fa2945c736a9b\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:19:5-23:19
-MERGED from [com.google.android.play:integrity:1.2.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\ec582f21c763e2c0f2f37f78d814b5e7\transformed\jetified-integrity-1.2.0\AndroidManifest.xml:5:5-6:19
-MERGED from [com.google.android.play:integrity:1.2.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\ec582f21c763e2c0f2f37f78d814b5e7\transformed\jetified-integrity-1.2.0\AndroidManifest.xml:5:5-6:19
-MERGED from [com.google.android.gms:play-services-tasks:18.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\3cc290559c7677786244db4663b1e427\transformed\jetified-play-services-tasks-18.1.0\AndroidManifest.xml:5:5-20
-MERGED from [com.google.android.gms:play-services-tasks:18.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\3cc290559c7677786244db4663b1e427\transformed\jetified-play-services-tasks-18.1.0\AndroidManifest.xml:5:5-20
-MERGED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\2d69b28b2c99bedfbc24d6b045de0635\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:20:5-24:19
-MERGED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\2d69b28b2c99bedfbc24d6b045de0635\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:20:5-24:19
-MERGED from [androidx.core:core:1.6.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b265adeb376a3ac6007e3dd20039106a\transformed\core-1.6.0\AndroidManifest.xml:24:5-89
-MERGED from [androidx.core:core:1.6.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b265adeb376a3ac6007e3dd20039106a\transformed\core-1.6.0\AndroidManifest.xml:24:5-89
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\e5b61f5d94735c005eb0a9e6af99682d\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\e5b61f5d94735c005eb0a9e6af99682d\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+INJECTED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\main\AndroidManifest.xml:5:5-44:19
+MERGED from [:firebase_auth] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
+MERGED from [:firebase_auth] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
+MERGED from [:firebase_storage] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
+MERGED from [:firebase_storage] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
+MERGED from [:cloud_firestore] C:\Users\tramb\MPflutter\Medi-Pal\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
+MERGED from [:cloud_firestore] C:\Users\tramb\MPflutter\Medi-Pal\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
+MERGED from [:firebase_core] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
+MERGED from [:firebase_core] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
+MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:28:5-73:19
+MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:28:5-73:19
+MERGED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\tramb\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:13:5-24:19
+MERGED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\tramb\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:13:5-24:19
+MERGED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\tramb\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:26:5-37:19
+MERGED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\tramb\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:26:5-37:19
+MERGED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\tramb\.gradle\caches\transforms-3\6813101a4e3db027f8f5b5e738cc9025\transformed\jetified-firebase-appcheck-17.1.2\AndroidManifest.xml:21:5-32:19
+MERGED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\tramb\.gradle\caches\transforms-3\6813101a4e3db027f8f5b5e738cc9025\transformed\jetified-firebase-appcheck-17.1.2\AndroidManifest.xml:21:5-32:19
+MERGED from [com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\tramb\.gradle\caches\transforms-3\8f2136bc0ef3483dde6c7a187281cc07\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:8:5-16:19
+MERGED from [com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\tramb\.gradle\caches\transforms-3\8f2136bc0ef3483dde6c7a187281cc07\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:8:5-16:19
+MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\tramb\.gradle\caches\transforms-3\f5aa2e10f33b9bd4a4679f70cae23246\transformed\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\tramb\.gradle\caches\transforms-3\f5aa2e10f33b9bd4a4679f70cae23246\transformed\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-common:20.4.2] C:\Users\tramb\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:22:5-39:19
+MERGED from [com.google.firebase:firebase-common:20.4.2] C:\Users\tramb\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:22:5-39:19
+MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\tramb\.gradle\caches\transforms-3\905370d3dab651637b8835e89c66cd73\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:24:5-31:19
+MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\tramb\.gradle\caches\transforms-3\905370d3dab651637b8835e89c66cd73\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:24:5-31:19
+MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] C:\Users\tramb\.gradle\caches\transforms-3\697231b1bce03dc4bc113c0e4b4ce1f5\transformed\jetified-firebase-appcheck-interop-17.1.0\AndroidManifest.xml:21:5-20
+MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] C:\Users\tramb\.gradle\caches\transforms-3\697231b1bce03dc4bc113c0e4b4ce1f5\transformed\jetified-firebase-appcheck-interop-17.1.0\AndroidManifest.xml:21:5-20
+MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\tramb\.gradle\caches\transforms-3\19e1f3b8793d94c8974fa2945c736a9b\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:19:5-23:19
+MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\tramb\.gradle\caches\transforms-3\19e1f3b8793d94c8974fa2945c736a9b\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:19:5-23:19
+MERGED from [com.google.android.play:integrity:1.2.0] C:\Users\tramb\.gradle\caches\transforms-3\ec582f21c763e2c0f2f37f78d814b5e7\transformed\jetified-integrity-1.2.0\AndroidManifest.xml:5:5-6:19
+MERGED from [com.google.android.play:integrity:1.2.0] C:\Users\tramb\.gradle\caches\transforms-3\ec582f21c763e2c0f2f37f78d814b5e7\transformed\jetified-integrity-1.2.0\AndroidManifest.xml:5:5-6:19
+MERGED from [com.google.android.gms:play-services-tasks:18.1.0] C:\Users\tramb\.gradle\caches\transforms-3\3cc290559c7677786244db4663b1e427\transformed\jetified-play-services-tasks-18.1.0\AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-tasks:18.1.0] C:\Users\tramb\.gradle\caches\transforms-3\3cc290559c7677786244db4663b1e427\transformed\jetified-play-services-tasks-18.1.0\AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\tramb\.gradle\caches\transforms-3\2d69b28b2c99bedfbc24d6b045de0635\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:20:5-24:19
+MERGED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\tramb\.gradle\caches\transforms-3\2d69b28b2c99bedfbc24d6b045de0635\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:20:5-24:19
+MERGED from [androidx.core:core:1.6.0] C:\Users\tramb\.gradle\caches\transforms-3\b265adeb376a3ac6007e3dd20039106a\transformed\core-1.6.0\AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.6.0] C:\Users\tramb\.gradle\caches\transforms-3\b265adeb376a3ac6007e3dd20039106a\transformed\core-1.6.0\AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\tramb\.gradle\caches\transforms-3\e5b61f5d94735c005eb0a9e6af99682d\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\tramb\.gradle\caches\transforms-3\e5b61f5d94735c005eb0a9e6af99682d\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
 	android:appComponentFactory
-		ADDED from [androidx.core:core:1.6.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b265adeb376a3ac6007e3dd20039106a\transformed\core-1.6.0\AndroidManifest.xml:24:18-86
+		ADDED from [androidx.core:core:1.6.0] C:\Users\tramb\.gradle\caches\transforms-3\b265adeb376a3ac6007e3dd20039106a\transformed\core-1.6.0\AndroidManifest.xml:24:18-86
 	android:name
-		INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\main\AndroidManifest.xml
 manifest
-ADDED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:1:1-45:12
-INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:1:1-45:12
-INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:1:1-45:12
-INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:1:1-45:12
-MERGED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:1:1-45:12
-MERGED from [:firebase_auth] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-17:12
-MERGED from [:firebase_storage] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-17:12
-MERGED from [:cloud_firestore] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-17:12
-MERGED from [:firebase_core] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-17:12
-MERGED from [:flutter_keyboard_visibility] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\flutter_keyboard_visibility\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
-MERGED from [:flutter_local_notifications] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-12:12
-MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:17:1-75:12
-MERGED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:2:1-26:12
-MERGED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:15:1-39:12
-MERGED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\6813101a4e3db027f8f5b5e738cc9025\transformed\jetified-firebase-appcheck-17.1.2\AndroidManifest.xml:15:1-34:12
-MERGED from [com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\8f2136bc0ef3483dde6c7a187281cc07\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:2:1-18:12
-MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\f5aa2e10f33b9bd4a4679f70cae23246\transformed\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:2:1-10:12
-MERGED from [com.google.firebase:firebase-common:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:15:1-41:12
-MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\d95bf26adedec78c2515c1e0f37e57ba\transformed\jetified-recaptcha-18.4.0\AndroidManifest.xml:2:1-11:12
-MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b999d05729379b348abd2dada5d1bd76\transformed\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:17:1-23:12
-MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\905370d3dab651637b8835e89c66cd73\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:17:1-33:12
-MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\83444eeac11af859f08de7cde197cc11\transformed\multidex-2.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.media:media:1.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\a9ea0e6f36d1664403592cd55c9e54f6\transformed\media-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\6c329495638ec0ea0ce4a0719f17b432\transformed\jetified-play-services-auth-api-phone-17.4.0\AndroidManifest.xml:2:1-7:12
-MERGED from [com.google.firebase:firebase-database-collection:18.0.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\15815f4bf7bdb9ee88ef869be909fcdd\transformed\jetified-firebase-database-collection-18.0.1\AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\697231b1bce03dc4bc113c0e4b4ce1f5\transformed\jetified-firebase-appcheck-interop-17.1.0\AndroidManifest.xml:15:1-23:12
-MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\19e1f3b8793d94c8974fa2945c736a9b\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:16:1-24:12
-MERGED from [com.google.android.play:integrity:1.2.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\ec582f21c763e2c0f2f37f78d814b5e7\transformed\jetified-integrity-1.2.0\AndroidManifest.xml:2:1-7:12
-MERGED from [com.google.android.gms:play-services-tasks:18.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\3cc290559c7677786244db4663b1e427\transformed\jetified-play-services-tasks-18.1.0\AndroidManifest.xml:2:1-6:12
-MERGED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\2d69b28b2c99bedfbc24d6b045de0635\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:16:1-26:12
-MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\da171f9e23de84604592d92c1511f86c\transformed\fragment-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.browser:browser:1.4.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\4d76aadac07397abe3a7d63176bb21f6\transformed\browser-1.4.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\a25ab92955628d86995c8095232aaa09\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.loader:loader:1.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\0ef3addb9f612ff9ca72914042b6e418\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.activity:activity:1.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\db9704b5ba2f399b0ba5d0b0735afec4\transformed\jetified-activity-1.0.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.customview:customview:1.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\e47695ac57789e10abd316f8151b7c67\transformed\customview-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.core:core:1.6.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b265adeb376a3ac6007e3dd20039106a\transformed\core-1.6.0\AndroidManifest.xml:17:1-26:12
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\a33dfe9b4f1b1376396bc2bce36075de\transformed\lifecycle-runtime-2.2.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\f433937aab79e980dfed3f9f18df6dd3\transformed\jetified-savedstate-1.0.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\6409fe2d8e2eb7c0b3e821d16175d1de\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\d3ce3cfe5e3428b0558268cacb9cc21a\transformed\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\728c6a961c63d12a7a6e16b736105c6c\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\d7c9e2de33d132d69552b2d08dc157ef\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [com.google.firebase:firebase-components:17.1.5] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\33ca94451157706af9868a4abfa37ecf\transformed\jetified-firebase-components-17.1.5\AndroidManifest.xml:15:1-20:12
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\e5b61f5d94735c005eb0a9e6af99682d\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
-MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\5129d09ad602f1a0fc33e672c79c796a\transformed\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\439ba954fd6d4c1ef49aa565963f6683\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\a3e87d4b1027e38c7342964193fc9f1f\transformed\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:17:1-22:12
-MERGED from [io.grpc:grpc-android:1.57.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\c9877c034014f4b9e2296d81426d964e\transformed\jetified-grpc-android-1.57.2\AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\025fd3692ace3f7349c5a9f9557e7710\transformed\jetified-protolite-well-known-types-18.0.0\AndroidManifest.xml:2:1-11:12
-MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\23292729e38e43504796ade9d18050dc\transformed\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:17:1-24:12
-INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\debug\AndroidManifest.xml:1:1-7:12
-INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\debug\AndroidManifest.xml:1:1-7:12
-INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+ADDED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\main\AndroidManifest.xml:1:1-45:12
+INJECTED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\main\AndroidManifest.xml:1:1-45:12
+INJECTED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\main\AndroidManifest.xml:1:1-45:12
+INJECTED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\main\AndroidManifest.xml:1:1-45:12
+MERGED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\main\AndroidManifest.xml:1:1-45:12
+MERGED from [:firebase_auth] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-17:12
+MERGED from [:firebase_storage] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-17:12
+MERGED from [:cloud_firestore] C:\Users\tramb\MPflutter\Medi-Pal\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-17:12
+MERGED from [:firebase_core] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-17:12
+MERGED from [:flutter_keyboard_visibility] C:\Users\tramb\MPflutter\Medi-Pal\build\flutter_keyboard_visibility\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
+MERGED from [:flutter_local_notifications] C:\Users\tramb\MPflutter\Medi-Pal\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-12:12
+MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:17:1-75:12
+MERGED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\tramb\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:2:1-26:12
+MERGED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\tramb\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:15:1-39:12
+MERGED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\tramb\.gradle\caches\transforms-3\6813101a4e3db027f8f5b5e738cc9025\transformed\jetified-firebase-appcheck-17.1.2\AndroidManifest.xml:15:1-34:12
+MERGED from [com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\tramb\.gradle\caches\transforms-3\8f2136bc0ef3483dde6c7a187281cc07\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:2:1-18:12
+MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\tramb\.gradle\caches\transforms-3\f5aa2e10f33b9bd4a4679f70cae23246\transformed\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:2:1-10:12
+MERGED from [com.google.firebase:firebase-common:20.4.2] C:\Users\tramb\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:15:1-41:12
+MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] C:\Users\tramb\.gradle\caches\transforms-3\d95bf26adedec78c2515c1e0f37e57ba\transformed\jetified-recaptcha-18.4.0\AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\tramb\.gradle\caches\transforms-3\b999d05729379b348abd2dada5d1bd76\transformed\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:17:1-23:12
+MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\tramb\.gradle\caches\transforms-3\905370d3dab651637b8835e89c66cd73\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\tramb\.gradle\caches\transforms-3\83444eeac11af859f08de7cde197cc11\transformed\multidex-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media:media:1.1.0] C:\Users\tramb\.gradle\caches\transforms-3\a9ea0e6f36d1664403592cd55c9e54f6\transformed\media-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] C:\Users\tramb\.gradle\caches\transforms-3\6c329495638ec0ea0ce4a0719f17b432\transformed\jetified-play-services-auth-api-phone-17.4.0\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.firebase:firebase-database-collection:18.0.1] C:\Users\tramb\.gradle\caches\transforms-3\15815f4bf7bdb9ee88ef869be909fcdd\transformed\jetified-firebase-database-collection-18.0.1\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] C:\Users\tramb\.gradle\caches\transforms-3\697231b1bce03dc4bc113c0e4b4ce1f5\transformed\jetified-firebase-appcheck-interop-17.1.0\AndroidManifest.xml:15:1-23:12
+MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\tramb\.gradle\caches\transforms-3\19e1f3b8793d94c8974fa2945c736a9b\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:16:1-24:12
+MERGED from [com.google.android.play:integrity:1.2.0] C:\Users\tramb\.gradle\caches\transforms-3\ec582f21c763e2c0f2f37f78d814b5e7\transformed\jetified-integrity-1.2.0\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-tasks:18.1.0] C:\Users\tramb\.gradle\caches\transforms-3\3cc290559c7677786244db4663b1e427\transformed\jetified-play-services-tasks-18.1.0\AndroidManifest.xml:2:1-6:12
+MERGED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\tramb\.gradle\caches\transforms-3\2d69b28b2c99bedfbc24d6b045de0635\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:16:1-26:12
+MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\tramb\.gradle\caches\transforms-3\da171f9e23de84604592d92c1511f86c\transformed\fragment-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.browser:browser:1.4.0] C:\Users\tramb\.gradle\caches\transforms-3\4d76aadac07397abe3a7d63176bb21f6\transformed\browser-1.4.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\tramb\.gradle\caches\transforms-3\a25ab92955628d86995c8095232aaa09\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\tramb\.gradle\caches\transforms-3\0ef3addb9f612ff9ca72914042b6e418\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\tramb\.gradle\caches\transforms-3\db9704b5ba2f399b0ba5d0b0735afec4\transformed\jetified-activity-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\tramb\.gradle\caches\transforms-3\e47695ac57789e10abd316f8151b7c67\transformed\customview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.6.0] C:\Users\tramb\.gradle\caches\transforms-3\b265adeb376a3ac6007e3dd20039106a\transformed\core-1.6.0\AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\tramb\.gradle\caches\transforms-3\a33dfe9b4f1b1376396bc2bce36075de\transformed\lifecycle-runtime-2.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\tramb\.gradle\caches\transforms-3\f433937aab79e980dfed3f9f18df6dd3\transformed\jetified-savedstate-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\tramb\.gradle\caches\transforms-3\6409fe2d8e2eb7c0b3e821d16175d1de\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\tramb\.gradle\caches\transforms-3\d3ce3cfe5e3428b0558268cacb9cc21a\transformed\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\tramb\.gradle\caches\transforms-3\728c6a961c63d12a7a6e16b736105c6c\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\tramb\.gradle\caches\transforms-3\d7c9e2de33d132d69552b2d08dc157ef\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.firebase:firebase-components:17.1.5] C:\Users\tramb\.gradle\caches\transforms-3\33ca94451157706af9868a4abfa37ecf\transformed\jetified-firebase-components-17.1.5\AndroidManifest.xml:15:1-20:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\tramb\.gradle\caches\transforms-3\e5b61f5d94735c005eb0a9e6af99682d\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\tramb\.gradle\caches\transforms-3\5129d09ad602f1a0fc33e672c79c796a\transformed\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\tramb\.gradle\caches\transforms-3\439ba954fd6d4c1ef49aa565963f6683\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\tramb\.gradle\caches\transforms-3\a3e87d4b1027e38c7342964193fc9f1f\transformed\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:17:1-22:12
+MERGED from [io.grpc:grpc-android:1.57.2] C:\Users\tramb\.gradle\caches\transforms-3\c9877c034014f4b9e2296d81426d964e\transformed\jetified-grpc-android-1.57.2\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\tramb\.gradle\caches\transforms-3\025fd3692ace3f7349c5a9f9557e7710\transformed\jetified-protolite-well-known-types-18.0.0\AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\tramb\.gradle\caches\transforms-3\23292729e38e43504796ade9d18050dc\transformed\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:17:1-24:12
+INJECTED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+INJECTED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+INJECTED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 	package
-		INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:1:1-45:12
-		INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\debug\AndroidManifest.xml
+		INJECTED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\main\AndroidManifest.xml:1:1-45:12
+		INJECTED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\debug\AndroidManifest.xml
 	android:versionName
-		INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:1:1-45:12
-		INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\debug\AndroidManifest.xml
+		INJECTED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\main\AndroidManifest.xml:1:1-45:12
+		INJECTED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\debug\AndroidManifest.xml
 	android:versionCode
-		INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:1:1-45:12
-		INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\debug\AndroidManifest.xml
+		INJECTED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\main\AndroidManifest.xml:1:1-45:12
+		INJECTED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\debug\AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:1:11-69
+		ADDED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\main\AndroidManifest.xml:1:11-69
 uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
-ADDED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:2:5-80
+ADDED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\main\AndroidManifest.xml:2:5-80
 	android:name
-		ADDED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:2:22-78
+		ADDED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\main\AndroidManifest.xml:2:22-78
 uses-permission#android.permission.SCHEDULE_EXACT_ALARM
-ADDED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:3:5-79
+ADDED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\main\AndroidManifest.xml:3:5-79
 	android:name
-		ADDED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:3:22-76
+		ADDED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\main\AndroidManifest.xml:3:22-76
 uses-permission#android.permission.USE_EXACT_ALARM
-ADDED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:4:5-74
+ADDED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\main\AndroidManifest.xml:4:5-74
 	android:name
-		ADDED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml:4:22-71
+		ADDED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\main\AndroidManifest.xml:4:22-71
 uses-sdk
-INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml
-INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml
-MERGED from [:firebase_auth] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
-MERGED from [:firebase_auth] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
-MERGED from [:firebase_storage] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
-MERGED from [:firebase_storage] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
-MERGED from [:cloud_firestore] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
-MERGED from [:cloud_firestore] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
-MERGED from [:firebase_core] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
-MERGED from [:firebase_core] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
-MERGED from [:flutter_keyboard_visibility] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\flutter_keyboard_visibility\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
-MERGED from [:flutter_keyboard_visibility] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\flutter_keyboard_visibility\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
-MERGED from [:flutter_local_notifications] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
-MERGED from [:flutter_local_notifications] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:21:5-23:64
-MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:21:5-23:64
-MERGED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:6:5-44
-MERGED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:6:5-44
-MERGED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:19:5-44
-MERGED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:19:5-44
-MERGED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\6813101a4e3db027f8f5b5e738cc9025\transformed\jetified-firebase-appcheck-17.1.2\AndroidManifest.xml:18:5-44
-MERGED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\6813101a4e3db027f8f5b5e738cc9025\transformed\jetified-firebase-appcheck-17.1.2\AndroidManifest.xml:18:5-44
-MERGED from [com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\8f2136bc0ef3483dde6c7a187281cc07\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\8f2136bc0ef3483dde6c7a187281cc07\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\f5aa2e10f33b9bd4a4679f70cae23246\transformed\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\f5aa2e10f33b9bd4a4679f70cae23246\transformed\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-common:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:19:5-44
-MERGED from [com.google.firebase:firebase-common:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:19:5-44
-MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\d95bf26adedec78c2515c1e0f37e57ba\transformed\jetified-recaptcha-18.4.0\AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\d95bf26adedec78c2515c1e0f37e57ba\transformed\jetified-recaptcha-18.4.0\AndroidManifest.xml:5:5-44
-MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b999d05729379b348abd2dada5d1bd76\transformed\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:19:5-21:41
-MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b999d05729379b348abd2dada5d1bd76\transformed\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:19:5-21:41
-MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\905370d3dab651637b8835e89c66cd73\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\905370d3dab651637b8835e89c66cd73\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\83444eeac11af859f08de7cde197cc11\transformed\multidex-2.0.0\AndroidManifest.xml:20:5-43
-MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\83444eeac11af859f08de7cde197cc11\transformed\multidex-2.0.0\AndroidManifest.xml:20:5-43
-MERGED from [androidx.media:media:1.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\a9ea0e6f36d1664403592cd55c9e54f6\transformed\media-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.media:media:1.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\a9ea0e6f36d1664403592cd55c9e54f6\transformed\media-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\6c329495638ec0ea0ce4a0719f17b432\transformed\jetified-play-services-auth-api-phone-17.4.0\AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\6c329495638ec0ea0ce4a0719f17b432\transformed\jetified-play-services-auth-api-phone-17.4.0\AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-database-collection:18.0.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\15815f4bf7bdb9ee88ef869be909fcdd\transformed\jetified-firebase-database-collection-18.0.1\AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.firebase:firebase-database-collection:18.0.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\15815f4bf7bdb9ee88ef869be909fcdd\transformed\jetified-firebase-database-collection-18.0.1\AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\697231b1bce03dc4bc113c0e4b4ce1f5\transformed\jetified-firebase-appcheck-interop-17.1.0\AndroidManifest.xml:18:5-44
-MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\697231b1bce03dc4bc113c0e4b4ce1f5\transformed\jetified-firebase-appcheck-interop-17.1.0\AndroidManifest.xml:18:5-44
-MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\19e1f3b8793d94c8974fa2945c736a9b\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:18:5-43
-MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\19e1f3b8793d94c8974fa2945c736a9b\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:18:5-43
-MERGED from [com.google.android.play:integrity:1.2.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\ec582f21c763e2c0f2f37f78d814b5e7\transformed\jetified-integrity-1.2.0\AndroidManifest.xml:4:5-44
-MERGED from [com.google.android.play:integrity:1.2.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\ec582f21c763e2c0f2f37f78d814b5e7\transformed\jetified-integrity-1.2.0\AndroidManifest.xml:4:5-44
-MERGED from [com.google.android.gms:play-services-tasks:18.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\3cc290559c7677786244db4663b1e427\transformed\jetified-play-services-tasks-18.1.0\AndroidManifest.xml:4:5-43
-MERGED from [com.google.android.gms:play-services-tasks:18.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\3cc290559c7677786244db4663b1e427\transformed\jetified-play-services-tasks-18.1.0\AndroidManifest.xml:4:5-43
-MERGED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\2d69b28b2c99bedfbc24d6b045de0635\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:18:5-43
-MERGED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\2d69b28b2c99bedfbc24d6b045de0635\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:18:5-43
-MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\da171f9e23de84604592d92c1511f86c\transformed\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\da171f9e23de84604592d92c1511f86c\transformed\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.browser:browser:1.4.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\4d76aadac07397abe3a7d63176bb21f6\transformed\browser-1.4.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.browser:browser:1.4.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\4d76aadac07397abe3a7d63176bb21f6\transformed\browser-1.4.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\a25ab92955628d86995c8095232aaa09\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\a25ab92955628d86995c8095232aaa09\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\0ef3addb9f612ff9ca72914042b6e418\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\0ef3addb9f612ff9ca72914042b6e418\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.activity:activity:1.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\db9704b5ba2f399b0ba5d0b0735afec4\transformed\jetified-activity-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.activity:activity:1.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\db9704b5ba2f399b0ba5d0b0735afec4\transformed\jetified-activity-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.customview:customview:1.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\e47695ac57789e10abd316f8151b7c67\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.customview:customview:1.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\e47695ac57789e10abd316f8151b7c67\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.core:core:1.6.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b265adeb376a3ac6007e3dd20039106a\transformed\core-1.6.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.core:core:1.6.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b265adeb376a3ac6007e3dd20039106a\transformed\core-1.6.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\a33dfe9b4f1b1376396bc2bce36075de\transformed\lifecycle-runtime-2.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\a33dfe9b4f1b1376396bc2bce36075de\transformed\lifecycle-runtime-2.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\f433937aab79e980dfed3f9f18df6dd3\transformed\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\f433937aab79e980dfed3f9f18df6dd3\transformed\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\6409fe2d8e2eb7c0b3e821d16175d1de\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\6409fe2d8e2eb7c0b3e821d16175d1de\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\d3ce3cfe5e3428b0558268cacb9cc21a\transformed\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\d3ce3cfe5e3428b0558268cacb9cc21a\transformed\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\728c6a961c63d12a7a6e16b736105c6c\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\728c6a961c63d12a7a6e16b736105c6c\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\d7c9e2de33d132d69552b2d08dc157ef\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\d7c9e2de33d132d69552b2d08dc157ef\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.firebase:firebase-components:17.1.5] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\33ca94451157706af9868a4abfa37ecf\transformed\jetified-firebase-components-17.1.5\AndroidManifest.xml:18:5-44
-MERGED from [com.google.firebase:firebase-components:17.1.5] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\33ca94451157706af9868a4abfa37ecf\transformed\jetified-firebase-components-17.1.5\AndroidManifest.xml:18:5-44
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\e5b61f5d94735c005eb0a9e6af99682d\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\e5b61f5d94735c005eb0a9e6af99682d\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\5129d09ad602f1a0fc33e672c79c796a\transformed\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\5129d09ad602f1a0fc33e672c79c796a\transformed\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\439ba954fd6d4c1ef49aa565963f6683\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\439ba954fd6d4c1ef49aa565963f6683\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\a3e87d4b1027e38c7342964193fc9f1f\transformed\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\a3e87d4b1027e38c7342964193fc9f1f\transformed\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
-MERGED from [io.grpc:grpc-android:1.57.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\c9877c034014f4b9e2296d81426d964e\transformed\jetified-grpc-android-1.57.2\AndroidManifest.xml:5:5-44
-MERGED from [io.grpc:grpc-android:1.57.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\c9877c034014f4b9e2296d81426d964e\transformed\jetified-grpc-android-1.57.2\AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\025fd3692ace3f7349c5a9f9557e7710\transformed\jetified-protolite-well-known-types-18.0.0\AndroidManifest.xml:7:5-9:41
-MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\025fd3692ace3f7349c5a9f9557e7710\transformed\jetified-protolite-well-known-types-18.0.0\AndroidManifest.xml:7:5-9:41
-MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\23292729e38e43504796ade9d18050dc\transformed\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\23292729e38e43504796ade9d18050dc\transformed\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:20:5-22:41
-INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\debug\AndroidManifest.xml
-INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\debug\AndroidManifest.xml
+INJECTED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\main\AndroidManifest.xml
+MERGED from [:firebase_auth] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:firebase_auth] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:firebase_storage] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:firebase_storage] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:cloud_firestore] C:\Users\tramb\MPflutter\Medi-Pal\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:cloud_firestore] C:\Users\tramb\MPflutter\Medi-Pal\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:firebase_core] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:firebase_core] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:flutter_keyboard_visibility] C:\Users\tramb\MPflutter\Medi-Pal\build\flutter_keyboard_visibility\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:flutter_keyboard_visibility] C:\Users\tramb\MPflutter\Medi-Pal\build\flutter_keyboard_visibility\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:flutter_local_notifications] C:\Users\tramb\MPflutter\Medi-Pal\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:flutter_local_notifications] C:\Users\tramb\MPflutter\Medi-Pal\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:21:5-23:64
+MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:21:5-23:64
+MERGED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\tramb\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:6:5-44
+MERGED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\tramb\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:6:5-44
+MERGED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\tramb\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:19:5-44
+MERGED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\tramb\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:19:5-44
+MERGED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\tramb\.gradle\caches\transforms-3\6813101a4e3db027f8f5b5e738cc9025\transformed\jetified-firebase-appcheck-17.1.2\AndroidManifest.xml:18:5-44
+MERGED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\tramb\.gradle\caches\transforms-3\6813101a4e3db027f8f5b5e738cc9025\transformed\jetified-firebase-appcheck-17.1.2\AndroidManifest.xml:18:5-44
+MERGED from [com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\tramb\.gradle\caches\transforms-3\8f2136bc0ef3483dde6c7a187281cc07\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\tramb\.gradle\caches\transforms-3\8f2136bc0ef3483dde6c7a187281cc07\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\tramb\.gradle\caches\transforms-3\f5aa2e10f33b9bd4a4679f70cae23246\transformed\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\tramb\.gradle\caches\transforms-3\f5aa2e10f33b9bd4a4679f70cae23246\transformed\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-common:20.4.2] C:\Users\tramb\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:19:5-44
+MERGED from [com.google.firebase:firebase-common:20.4.2] C:\Users\tramb\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:19:5-44
+MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] C:\Users\tramb\.gradle\caches\transforms-3\d95bf26adedec78c2515c1e0f37e57ba\transformed\jetified-recaptcha-18.4.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] C:\Users\tramb\.gradle\caches\transforms-3\d95bf26adedec78c2515c1e0f37e57ba\transformed\jetified-recaptcha-18.4.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\tramb\.gradle\caches\transforms-3\b999d05729379b348abd2dada5d1bd76\transformed\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:19:5-21:41
+MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\tramb\.gradle\caches\transforms-3\b999d05729379b348abd2dada5d1bd76\transformed\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:19:5-21:41
+MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\tramb\.gradle\caches\transforms-3\905370d3dab651637b8835e89c66cd73\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\tramb\.gradle\caches\transforms-3\905370d3dab651637b8835e89c66cd73\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\tramb\.gradle\caches\transforms-3\83444eeac11af859f08de7cde197cc11\transformed\multidex-2.0.0\AndroidManifest.xml:20:5-43
+MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\tramb\.gradle\caches\transforms-3\83444eeac11af859f08de7cde197cc11\transformed\multidex-2.0.0\AndroidManifest.xml:20:5-43
+MERGED from [androidx.media:media:1.1.0] C:\Users\tramb\.gradle\caches\transforms-3\a9ea0e6f36d1664403592cd55c9e54f6\transformed\media-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media:media:1.1.0] C:\Users\tramb\.gradle\caches\transforms-3\a9ea0e6f36d1664403592cd55c9e54f6\transformed\media-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] C:\Users\tramb\.gradle\caches\transforms-3\6c329495638ec0ea0ce4a0719f17b432\transformed\jetified-play-services-auth-api-phone-17.4.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] C:\Users\tramb\.gradle\caches\transforms-3\6c329495638ec0ea0ce4a0719f17b432\transformed\jetified-play-services-auth-api-phone-17.4.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-database-collection:18.0.1] C:\Users\tramb\.gradle\caches\transforms-3\15815f4bf7bdb9ee88ef869be909fcdd\transformed\jetified-firebase-database-collection-18.0.1\AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.firebase:firebase-database-collection:18.0.1] C:\Users\tramb\.gradle\caches\transforms-3\15815f4bf7bdb9ee88ef869be909fcdd\transformed\jetified-firebase-database-collection-18.0.1\AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] C:\Users\tramb\.gradle\caches\transforms-3\697231b1bce03dc4bc113c0e4b4ce1f5\transformed\jetified-firebase-appcheck-interop-17.1.0\AndroidManifest.xml:18:5-44
+MERGED from [com.google.firebase:firebase-appcheck-interop:17.1.0] C:\Users\tramb\.gradle\caches\transforms-3\697231b1bce03dc4bc113c0e4b4ce1f5\transformed\jetified-firebase-appcheck-interop-17.1.0\AndroidManifest.xml:18:5-44
+MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\tramb\.gradle\caches\transforms-3\19e1f3b8793d94c8974fa2945c736a9b\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:18:5-43
+MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\tramb\.gradle\caches\transforms-3\19e1f3b8793d94c8974fa2945c736a9b\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:18:5-43
+MERGED from [com.google.android.play:integrity:1.2.0] C:\Users\tramb\.gradle\caches\transforms-3\ec582f21c763e2c0f2f37f78d814b5e7\transformed\jetified-integrity-1.2.0\AndroidManifest.xml:4:5-44
+MERGED from [com.google.android.play:integrity:1.2.0] C:\Users\tramb\.gradle\caches\transforms-3\ec582f21c763e2c0f2f37f78d814b5e7\transformed\jetified-integrity-1.2.0\AndroidManifest.xml:4:5-44
+MERGED from [com.google.android.gms:play-services-tasks:18.1.0] C:\Users\tramb\.gradle\caches\transforms-3\3cc290559c7677786244db4663b1e427\transformed\jetified-play-services-tasks-18.1.0\AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-tasks:18.1.0] C:\Users\tramb\.gradle\caches\transforms-3\3cc290559c7677786244db4663b1e427\transformed\jetified-play-services-tasks-18.1.0\AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\tramb\.gradle\caches\transforms-3\2d69b28b2c99bedfbc24d6b045de0635\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:18:5-43
+MERGED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\tramb\.gradle\caches\transforms-3\2d69b28b2c99bedfbc24d6b045de0635\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:18:5-43
+MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\tramb\.gradle\caches\transforms-3\da171f9e23de84604592d92c1511f86c\transformed\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\tramb\.gradle\caches\transforms-3\da171f9e23de84604592d92c1511f86c\transformed\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.browser:browser:1.4.0] C:\Users\tramb\.gradle\caches\transforms-3\4d76aadac07397abe3a7d63176bb21f6\transformed\browser-1.4.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.browser:browser:1.4.0] C:\Users\tramb\.gradle\caches\transforms-3\4d76aadac07397abe3a7d63176bb21f6\transformed\browser-1.4.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\tramb\.gradle\caches\transforms-3\a25ab92955628d86995c8095232aaa09\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\tramb\.gradle\caches\transforms-3\a25ab92955628d86995c8095232aaa09\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\tramb\.gradle\caches\transforms-3\0ef3addb9f612ff9ca72914042b6e418\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\tramb\.gradle\caches\transforms-3\0ef3addb9f612ff9ca72914042b6e418\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\tramb\.gradle\caches\transforms-3\db9704b5ba2f399b0ba5d0b0735afec4\transformed\jetified-activity-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\tramb\.gradle\caches\transforms-3\db9704b5ba2f399b0ba5d0b0735afec4\transformed\jetified-activity-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\tramb\.gradle\caches\transforms-3\e47695ac57789e10abd316f8151b7c67\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\tramb\.gradle\caches\transforms-3\e47695ac57789e10abd316f8151b7c67\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.6.0] C:\Users\tramb\.gradle\caches\transforms-3\b265adeb376a3ac6007e3dd20039106a\transformed\core-1.6.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.6.0] C:\Users\tramb\.gradle\caches\transforms-3\b265adeb376a3ac6007e3dd20039106a\transformed\core-1.6.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\tramb\.gradle\caches\transforms-3\a33dfe9b4f1b1376396bc2bce36075de\transformed\lifecycle-runtime-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\tramb\.gradle\caches\transforms-3\a33dfe9b4f1b1376396bc2bce36075de\transformed\lifecycle-runtime-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\tramb\.gradle\caches\transforms-3\f433937aab79e980dfed3f9f18df6dd3\transformed\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\tramb\.gradle\caches\transforms-3\f433937aab79e980dfed3f9f18df6dd3\transformed\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\tramb\.gradle\caches\transforms-3\6409fe2d8e2eb7c0b3e821d16175d1de\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\tramb\.gradle\caches\transforms-3\6409fe2d8e2eb7c0b3e821d16175d1de\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\tramb\.gradle\caches\transforms-3\d3ce3cfe5e3428b0558268cacb9cc21a\transformed\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\tramb\.gradle\caches\transforms-3\d3ce3cfe5e3428b0558268cacb9cc21a\transformed\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\tramb\.gradle\caches\transforms-3\728c6a961c63d12a7a6e16b736105c6c\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\tramb\.gradle\caches\transforms-3\728c6a961c63d12a7a6e16b736105c6c\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\tramb\.gradle\caches\transforms-3\d7c9e2de33d132d69552b2d08dc157ef\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\tramb\.gradle\caches\transforms-3\d7c9e2de33d132d69552b2d08dc157ef\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-components:17.1.5] C:\Users\tramb\.gradle\caches\transforms-3\33ca94451157706af9868a4abfa37ecf\transformed\jetified-firebase-components-17.1.5\AndroidManifest.xml:18:5-44
+MERGED from [com.google.firebase:firebase-components:17.1.5] C:\Users\tramb\.gradle\caches\transforms-3\33ca94451157706af9868a4abfa37ecf\transformed\jetified-firebase-components-17.1.5\AndroidManifest.xml:18:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\tramb\.gradle\caches\transforms-3\e5b61f5d94735c005eb0a9e6af99682d\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\tramb\.gradle\caches\transforms-3\e5b61f5d94735c005eb0a9e6af99682d\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\tramb\.gradle\caches\transforms-3\5129d09ad602f1a0fc33e672c79c796a\transformed\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\tramb\.gradle\caches\transforms-3\5129d09ad602f1a0fc33e672c79c796a\transformed\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\tramb\.gradle\caches\transforms-3\439ba954fd6d4c1ef49aa565963f6683\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\tramb\.gradle\caches\transforms-3\439ba954fd6d4c1ef49aa565963f6683\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\tramb\.gradle\caches\transforms-3\a3e87d4b1027e38c7342964193fc9f1f\transformed\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\tramb\.gradle\caches\transforms-3\a3e87d4b1027e38c7342964193fc9f1f\transformed\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
+MERGED from [io.grpc:grpc-android:1.57.2] C:\Users\tramb\.gradle\caches\transforms-3\c9877c034014f4b9e2296d81426d964e\transformed\jetified-grpc-android-1.57.2\AndroidManifest.xml:5:5-44
+MERGED from [io.grpc:grpc-android:1.57.2] C:\Users\tramb\.gradle\caches\transforms-3\c9877c034014f4b9e2296d81426d964e\transformed\jetified-grpc-android-1.57.2\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\tramb\.gradle\caches\transforms-3\025fd3692ace3f7349c5a9f9557e7710\transformed\jetified-protolite-well-known-types-18.0.0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\tramb\.gradle\caches\transforms-3\025fd3692ace3f7349c5a9f9557e7710\transformed\jetified-protolite-well-known-types-18.0.0\AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\tramb\.gradle\caches\transforms-3\23292729e38e43504796ade9d18050dc\transformed\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\tramb\.gradle\caches\transforms-3\23292729e38e43504796ade9d18050dc\transformed\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:20:5-22:41
+INJECTED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\debug\AndroidManifest.xml
+INJECTED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\debug\AndroidManifest.xml
 	tools:overrideLibrary
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:23:9-61
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:23:9-61
 	android:targetSdkVersion
-		INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\debug\AndroidManifest.xml
+		INJECTED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\debug\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\debug\AndroidManifest.xml
+		INJECTED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\debug\AndroidManifest.xml
 uses-permission#android.permission.INTERNET
-ADDED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\debug\AndroidManifest.xml:6:5-66
-MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:25:5-67
-MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:25:5-67
-MERGED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:11:5-67
-MERGED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:11:5-67
-MERGED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:24:5-67
-MERGED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:24:5-67
-MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\d95bf26adedec78c2515c1e0f37e57ba\transformed\jetified-recaptcha-18.4.0\AndroidManifest.xml:7:5-67
-MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\d95bf26adedec78c2515c1e0f37e57ba\transformed\jetified-recaptcha-18.4.0\AndroidManifest.xml:7:5-67
+ADDED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\debug\AndroidManifest.xml:6:5-66
+MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:25:5-67
+MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:25:5-67
+MERGED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\tramb\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:11:5-67
+MERGED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\tramb\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:11:5-67
+MERGED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\tramb\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:24:5-67
+MERGED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\tramb\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:24:5-67
+MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] C:\Users\tramb\.gradle\caches\transforms-3\d95bf26adedec78c2515c1e0f37e57ba\transformed\jetified-recaptcha-18.4.0\AndroidManifest.xml:7:5-67
+MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] C:\Users\tramb\.gradle\caches\transforms-3\d95bf26adedec78c2515c1e0f37e57ba\transformed\jetified-recaptcha-18.4.0\AndroidManifest.xml:7:5-67
 	android:name
-		ADDED from C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\android\app\src\debug\AndroidManifest.xml:6:22-64
+		ADDED from C:\Users\tramb\MPflutter\Medi-Pal\android\app\src\debug\AndroidManifest.xml:6:22-64
 service#com.google.firebase.components.ComponentDiscoveryService
-ADDED from [:firebase_auth] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-14:19
-MERGED from [:firebase_storage] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-14:19
-MERGED from [:firebase_storage] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-14:19
-MERGED from [:cloud_firestore] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-14:19
-MERGED from [:cloud_firestore] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-14:19
-MERGED from [:firebase_core] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-14:19
-MERGED from [:firebase_core] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-14:19
-MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:66:9-72:19
-MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:66:9-72:19
-MERGED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:14:9-23:19
-MERGED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:14:9-23:19
-MERGED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:27:9-36:19
-MERGED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:27:9-36:19
-MERGED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\6813101a4e3db027f8f5b5e738cc9025\transformed\jetified-firebase-appcheck-17.1.2\AndroidManifest.xml:22:9-31:19
-MERGED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\6813101a4e3db027f8f5b5e738cc9025\transformed\jetified-firebase-appcheck-17.1.2\AndroidManifest.xml:22:9-31:19
-MERGED from [com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\8f2136bc0ef3483dde6c7a187281cc07\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:9:9-15:19
-MERGED from [com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\8f2136bc0ef3483dde6c7a187281cc07\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:9:9-15:19
-MERGED from [com.google.firebase:firebase-common:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:30:9-38:19
-MERGED from [com.google.firebase:firebase-common:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:30:9-38:19
+ADDED from [:firebase_auth] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-14:19
+MERGED from [:firebase_storage] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-14:19
+MERGED from [:firebase_storage] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-14:19
+MERGED from [:cloud_firestore] C:\Users\tramb\MPflutter\Medi-Pal\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-14:19
+MERGED from [:cloud_firestore] C:\Users\tramb\MPflutter\Medi-Pal\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-14:19
+MERGED from [:firebase_core] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-14:19
+MERGED from [:firebase_core] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-14:19
+MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:66:9-72:19
+MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:66:9-72:19
+MERGED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\tramb\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:14:9-23:19
+MERGED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\tramb\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:14:9-23:19
+MERGED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\tramb\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:27:9-36:19
+MERGED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\tramb\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:27:9-36:19
+MERGED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\tramb\.gradle\caches\transforms-3\6813101a4e3db027f8f5b5e738cc9025\transformed\jetified-firebase-appcheck-17.1.2\AndroidManifest.xml:22:9-31:19
+MERGED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\tramb\.gradle\caches\transforms-3\6813101a4e3db027f8f5b5e738cc9025\transformed\jetified-firebase-appcheck-17.1.2\AndroidManifest.xml:22:9-31:19
+MERGED from [com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\tramb\.gradle\caches\transforms-3\8f2136bc0ef3483dde6c7a187281cc07\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:9:9-15:19
+MERGED from [com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\tramb\.gradle\caches\transforms-3\8f2136bc0ef3483dde6c7a187281cc07\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:9:9-15:19
+MERGED from [com.google.firebase:firebase-common:20.4.2] C:\Users\tramb\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:30:9-38:19
+MERGED from [com.google.firebase:firebase-common:20.4.2] C:\Users\tramb\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:30:9-38:19
 	android:exported
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:68:13-37
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:68:13-37
 	tools:targetApi
-		ADDED from [com.google.firebase:firebase-common:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:34:13-32
+		ADDED from [com.google.firebase:firebase-common:20.4.2] C:\Users\tramb\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:34:13-32
 	android:directBootAware
-		ADDED from [com.google.firebase:firebase-common:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:32:13-43
+		ADDED from [com.google.firebase:firebase-common:20.4.2] C:\Users\tramb\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:32:13-43
 	android:name
-		ADDED from [:firebase_auth] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:10:18-89
+		ADDED from [:firebase_auth] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:10:18-89
 meta-data#com.google.firebase.components:io.flutter.plugins.firebase.auth.FlutterFirebaseAuthRegistrar
-ADDED from [:firebase_auth] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-13:85
+ADDED from [:firebase_auth] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-13:85
 	android:value
-		ADDED from [:firebase_auth] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:13:17-82
+		ADDED from [:firebase_auth] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:13:17-82
 	android:name
-		ADDED from [:firebase_auth] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:12:17-124
+		ADDED from [:firebase_auth] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:12:17-124
 meta-data#com.google.firebase.components:io.flutter.plugins.firebase.storage.FlutterFirebaseAppRegistrar
-ADDED from [:firebase_storage] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-13:85
+ADDED from [:firebase_storage] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-13:85
 	android:value
-		ADDED from [:firebase_storage] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:13:17-82
+		ADDED from [:firebase_storage] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:13:17-82
 	android:name
-		ADDED from [:firebase_storage] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:12:17-126
+		ADDED from [:firebase_storage] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_storage\intermediates\merged_manifest\debug\AndroidManifest.xml:12:17-126
 meta-data#com.google.firebase.components:io.flutter.plugins.firebase.firestore.FlutterFirebaseFirestoreRegistrar
-ADDED from [:cloud_firestore] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-13:85
+ADDED from [:cloud_firestore] C:\Users\tramb\MPflutter\Medi-Pal\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-13:85
 	android:value
-		ADDED from [:cloud_firestore] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:13:17-82
+		ADDED from [:cloud_firestore] C:\Users\tramb\MPflutter\Medi-Pal\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:13:17-82
 	android:name
-		ADDED from [:cloud_firestore] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:12:17-134
+		ADDED from [:cloud_firestore] C:\Users\tramb\MPflutter\Medi-Pal\build\cloud_firestore\intermediates\merged_manifest\debug\AndroidManifest.xml:12:17-134
 meta-data#com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar
-ADDED from [:firebase_core] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-13:85
+ADDED from [:firebase_core] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-13:85
 	android:value
-		ADDED from [:firebase_core] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:13:17-82
+		ADDED from [:firebase_core] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:13:17-82
 	android:name
-		ADDED from [:firebase_core] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:12:17-124
+		ADDED from [:firebase_core] C:\Users\tramb\MPflutter\Medi-Pal\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:12:17-124
 uses-permission#android.permission.VIBRATE
-ADDED from [:flutter_local_notifications] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-66
+ADDED from [:flutter_local_notifications] C:\Users\tramb\MPflutter\Medi-Pal\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-66
 	android:name
-		ADDED from [:flutter_local_notifications] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-63
+		ADDED from [:flutter_local_notifications] C:\Users\tramb\MPflutter\Medi-Pal\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-63
 uses-permission#android.permission.POST_NOTIFICATIONS
-ADDED from [:flutter_local_notifications] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:10:5-77
+ADDED from [:flutter_local_notifications] C:\Users\tramb\MPflutter\Medi-Pal\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:10:5-77
 	android:name
-		ADDED from [:flutter_local_notifications] C:\Users\Crystal Stellar\Desktop\Medi-Pal-main\Medi-Pal-main\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:10:22-74
+		ADDED from [:flutter_local_notifications] C:\Users\tramb\MPflutter\Medi-Pal\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:10:22-74
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:26:5-79
-MERGED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:10:5-79
-MERGED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:10:5-79
-MERGED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:23:5-79
-MERGED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:23:5-79
-MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\d95bf26adedec78c2515c1e0f37e57ba\transformed\jetified-recaptcha-18.4.0\AndroidManifest.xml:8:5-79
-MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\d95bf26adedec78c2515c1e0f37e57ba\transformed\jetified-recaptcha-18.4.0\AndroidManifest.xml:8:5-79
-MERGED from [io.grpc:grpc-android:1.57.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\c9877c034014f4b9e2296d81426d964e\transformed\jetified-grpc-android-1.57.2\AndroidManifest.xml:7:5-79
-MERGED from [io.grpc:grpc-android:1.57.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\c9877c034014f4b9e2296d81426d964e\transformed\jetified-grpc-android-1.57.2\AndroidManifest.xml:7:5-79
+ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:26:5-79
+MERGED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\tramb\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:10:5-79
+MERGED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\tramb\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:10:5-79
+MERGED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\tramb\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:23:5-79
+MERGED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\tramb\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:23:5-79
+MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] C:\Users\tramb\.gradle\caches\transforms-3\d95bf26adedec78c2515c1e0f37e57ba\transformed\jetified-recaptcha-18.4.0\AndroidManifest.xml:8:5-79
+MERGED from [com.google.android.recaptcha:recaptcha:18.4.0] C:\Users\tramb\.gradle\caches\transforms-3\d95bf26adedec78c2515c1e0f37e57ba\transformed\jetified-recaptcha-18.4.0\AndroidManifest.xml:8:5-79
+MERGED from [io.grpc:grpc-android:1.57.2] C:\Users\tramb\.gradle\caches\transforms-3\c9877c034014f4b9e2296d81426d964e\transformed\jetified-grpc-android-1.57.2\AndroidManifest.xml:7:5-79
+MERGED from [io.grpc:grpc-android:1.57.2] C:\Users\tramb\.gradle\caches\transforms-3\c9877c034014f4b9e2296d81426d964e\transformed\jetified-grpc-android-1.57.2\AndroidManifest.xml:7:5-79
 	android:name
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:26:22-76
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:26:22-76
 activity#com.google.firebase.auth.internal.GenericIdpActivity
-ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:29:9-46:20
+ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:29:9-46:20
 	android:excludeFromRecents
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:31:13-46
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:31:13-46
 	android:launchMode
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:33:13-44
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:33:13-44
 	android:exported
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:32:13-36
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:32:13-36
 	android:theme
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:34:13-72
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:34:13-72
 	android:name
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:30:13-80
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:30:13-80
 intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:firebase.auth+data:path:/+data:scheme:genericidp
-ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:35:13-45:29
+ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:35:13-45:29
 action#android.intent.action.VIEW
-ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:36:17-69
+ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:36:17-69
 	android:name
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:36:25-66
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:36:25-66
 category#android.intent.category.DEFAULT
-ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:38:17-76
+ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:38:17-76
 	android:name
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:38:27-73
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:38:27-73
 category#android.intent.category.BROWSABLE
-ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:39:17-78
+ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:39:17-78
 	android:name
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:39:27-75
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:39:27-75
 data
-ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:41:17-44:51
+ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:41:17-44:51
 	android:path
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:43:21-37
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:43:21-37
 	android:host
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:42:21-49
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:42:21-49
 	android:scheme
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:44:21-48
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:44:21-48
 activity#com.google.firebase.auth.internal.RecaptchaActivity
-ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:47:9-64:20
+ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:47:9-64:20
 	android:excludeFromRecents
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:49:13-46
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:49:13-46
 	android:launchMode
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:51:13-44
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:51:13-44
 	android:exported
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:50:13-36
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:50:13-36
 	android:theme
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:52:13-72
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:52:13-72
 	android:name
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:48:13-79
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:48:13-79
 intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:firebase.auth+data:path:/+data:scheme:recaptcha
-ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:53:13-63:29
+ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:53:13-63:29
 meta-data#com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar
-ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:69:13-71:85
+ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:69:13-71:85
 	android:value
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:71:17-82
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:71:17-82
 	android:name
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:70:17-109
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\tramb\.gradle\caches\transforms-3\7773f36f52a3f5a5d7db01984674d493\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:70:17-109
 meta-data#com.google.firebase.components:com.google.firebase.firestore.FirebaseFirestoreKtxRegistrar
-ADDED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:17:13-19:85
+ADDED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\tramb\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:17:13-19:85
 	android:value
-		ADDED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:19:17-82
+		ADDED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\tramb\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:19:17-82
 	android:name
-		ADDED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:18:17-122
+		ADDED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\tramb\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:18:17-122
 meta-data#com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar
-ADDED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:20:13-22:85
+ADDED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\tramb\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:20:13-22:85
 	android:value
-		ADDED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:22:17-82
+		ADDED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\tramb\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:22:17-82
 	android:name
-		ADDED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:21:17-111
+		ADDED from [com.google.firebase:firebase-firestore:24.10.3] C:\Users\tramb\.gradle\caches\transforms-3\ce0da8993967e5abe73f67c3aabee205\transformed\jetified-firebase-firestore-24.10.3\AndroidManifest.xml:21:17-111
 meta-data#com.google.firebase.components:com.google.firebase.storage.FirebaseStorageKtxRegistrar
-ADDED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:30:13-32:85
+ADDED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\tramb\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:30:13-32:85
 	android:value
-		ADDED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:32:17-82
+		ADDED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\tramb\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:32:17-82
 	android:name
-		ADDED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:31:17-118
+		ADDED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\tramb\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:31:17-118
 meta-data#com.google.firebase.components:com.google.firebase.storage.StorageRegistrar
-ADDED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:33:13-35:85
+ADDED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\tramb\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:33:13-35:85
 	android:value
-		ADDED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:35:17-82
+		ADDED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\tramb\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:35:17-82
 	android:name
-		ADDED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:34:17-107
+		ADDED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\tramb\.gradle\caches\transforms-3\b8ac128ec59eeff6f1a8c2d9c5aa44f2\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:34:17-107
 meta-data#com.google.firebase.components:com.google.firebase.appcheck.FirebaseAppCheckKtxRegistrar
-ADDED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\6813101a4e3db027f8f5b5e738cc9025\transformed\jetified-firebase-appcheck-17.1.2\AndroidManifest.xml:25:13-27:85
+ADDED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\tramb\.gradle\caches\transforms-3\6813101a4e3db027f8f5b5e738cc9025\transformed\jetified-firebase-appcheck-17.1.2\AndroidManifest.xml:25:13-27:85
 	android:value
-		ADDED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\6813101a4e3db027f8f5b5e738cc9025\transformed\jetified-firebase-appcheck-17.1.2\AndroidManifest.xml:27:17-82
+		ADDED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\tramb\.gradle\caches\transforms-3\6813101a4e3db027f8f5b5e738cc9025\transformed\jetified-firebase-appcheck-17.1.2\AndroidManifest.xml:27:17-82
 	android:name
-		ADDED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\6813101a4e3db027f8f5b5e738cc9025\transformed\jetified-firebase-appcheck-17.1.2\AndroidManifest.xml:26:17-120
+		ADDED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\tramb\.gradle\caches\transforms-3\6813101a4e3db027f8f5b5e738cc9025\transformed\jetified-firebase-appcheck-17.1.2\AndroidManifest.xml:26:17-120
 meta-data#com.google.firebase.components:com.google.firebase.appcheck.FirebaseAppCheckRegistrar
-ADDED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\6813101a4e3db027f8f5b5e738cc9025\transformed\jetified-firebase-appcheck-17.1.2\AndroidManifest.xml:28:13-30:85
+ADDED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\tramb\.gradle\caches\transforms-3\6813101a4e3db027f8f5b5e738cc9025\transformed\jetified-firebase-appcheck-17.1.2\AndroidManifest.xml:28:13-30:85
 	android:value
-		ADDED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\6813101a4e3db027f8f5b5e738cc9025\transformed\jetified-firebase-appcheck-17.1.2\AndroidManifest.xml:30:17-82
+		ADDED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\tramb\.gradle\caches\transforms-3\6813101a4e3db027f8f5b5e738cc9025\transformed\jetified-firebase-appcheck-17.1.2\AndroidManifest.xml:30:17-82
 	android:name
-		ADDED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\6813101a4e3db027f8f5b5e738cc9025\transformed\jetified-firebase-appcheck-17.1.2\AndroidManifest.xml:29:17-117
+		ADDED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\tramb\.gradle\caches\transforms-3\6813101a4e3db027f8f5b5e738cc9025\transformed\jetified-firebase-appcheck-17.1.2\AndroidManifest.xml:29:17-117
 meta-data#com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar
-ADDED from [com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\8f2136bc0ef3483dde6c7a187281cc07\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:12:13-14:85
+ADDED from [com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\tramb\.gradle\caches\transforms-3\8f2136bc0ef3483dde6c7a187281cc07\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:12:13-14:85
 	android:value
-		ADDED from [com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\8f2136bc0ef3483dde6c7a187281cc07\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:14:17-82
+		ADDED from [com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\tramb\.gradle\caches\transforms-3\8f2136bc0ef3483dde6c7a187281cc07\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:14:17-82
 	android:name
-		ADDED from [com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\8f2136bc0ef3483dde6c7a187281cc07\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:13:17-116
+		ADDED from [com.google.firebase:firebase-common-ktx:20.4.2] C:\Users\tramb\.gradle\caches\transforms-3\8f2136bc0ef3483dde6c7a187281cc07\transformed\jetified-firebase-common-ktx-20.4.2\AndroidManifest.xml:13:17-116
 provider#com.google.firebase.provider.FirebaseInitProvider
-ADDED from [com.google.firebase:firebase-common:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:23:9-28:39
+ADDED from [com.google.firebase:firebase-common:20.4.2] C:\Users\tramb\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:23:9-28:39
 	android:authorities
-		ADDED from [com.google.firebase:firebase-common:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:25:13-72
+		ADDED from [com.google.firebase:firebase-common:20.4.2] C:\Users\tramb\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:25:13-72
 	android:exported
-		ADDED from [com.google.firebase:firebase-common:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:27:13-37
+		ADDED from [com.google.firebase:firebase-common:20.4.2] C:\Users\tramb\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:27:13-37
 	android:directBootAware
-		ADDED from [com.google.firebase:firebase-common:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:26:13-43
+		ADDED from [com.google.firebase:firebase-common:20.4.2] C:\Users\tramb\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:26:13-43
 	android:initOrder
-		ADDED from [com.google.firebase:firebase-common:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:28:13-36
+		ADDED from [com.google.firebase:firebase-common:20.4.2] C:\Users\tramb\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:28:13-36
 	android:name
-		ADDED from [com.google.firebase:firebase-common:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:24:13-77
+		ADDED from [com.google.firebase:firebase-common:20.4.2] C:\Users\tramb\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:24:13-77
 meta-data#com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar
-ADDED from [com.google.firebase:firebase-common:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:35:13-37:85
+ADDED from [com.google.firebase:firebase-common:20.4.2] C:\Users\tramb\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:35:13-37:85
 	android:value
-		ADDED from [com.google.firebase:firebase-common:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:37:17-82
+		ADDED from [com.google.firebase:firebase-common:20.4.2] C:\Users\tramb\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:37:17-82
 	android:name
-		ADDED from [com.google.firebase:firebase-common:20.4.2] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:36:17-109
+		ADDED from [com.google.firebase:firebase-common:20.4.2] C:\Users\tramb\.gradle\caches\transforms-3\308e0496f10b715b143079bb29a8610e\transformed\jetified-firebase-common-20.4.2\AndroidManifest.xml:36:17-109
 uses-permission#com.google.android.providers.gsf.permission.READ_GSERVICES
-ADDED from [com.google.android.recaptcha:recaptcha:18.4.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\d95bf26adedec78c2515c1e0f37e57ba\transformed\jetified-recaptcha-18.4.0\AndroidManifest.xml:9:5-98
+ADDED from [com.google.android.recaptcha:recaptcha:18.4.0] C:\Users\tramb\.gradle\caches\transforms-3\d95bf26adedec78c2515c1e0f37e57ba\transformed\jetified-recaptcha-18.4.0\AndroidManifest.xml:9:5-98
 	android:name
-		ADDED from [com.google.android.recaptcha:recaptcha:18.4.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\d95bf26adedec78c2515c1e0f37e57ba\transformed\jetified-recaptcha-18.4.0\AndroidManifest.xml:9:22-95
+		ADDED from [com.google.android.recaptcha:recaptcha:18.4.0] C:\Users\tramb\.gradle\caches\transforms-3\d95bf26adedec78c2515c1e0f37e57ba\transformed\jetified-recaptcha-18.4.0\AndroidManifest.xml:9:22-95
 uses-library#androidx.window.extensions
-ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\905370d3dab651637b8835e89c66cd73\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
+ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\tramb\.gradle\caches\transforms-3\905370d3dab651637b8835e89c66cd73\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
 	android:required
-		ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\905370d3dab651637b8835e89c66cd73\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
+		ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\tramb\.gradle\caches\transforms-3\905370d3dab651637b8835e89c66cd73\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
 	android:name
-		ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\905370d3dab651637b8835e89c66cd73\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
+		ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\tramb\.gradle\caches\transforms-3\905370d3dab651637b8835e89c66cd73\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
 uses-library#androidx.window.sidecar
-ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\905370d3dab651637b8835e89c66cd73\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
+ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\tramb\.gradle\caches\transforms-3\905370d3dab651637b8835e89c66cd73\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
 	android:required
-		ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\905370d3dab651637b8835e89c66cd73\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
+		ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\tramb\.gradle\caches\transforms-3\905370d3dab651637b8835e89c66cd73\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
 	android:name
-		ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\905370d3dab651637b8835e89c66cd73\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
+		ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\tramb\.gradle\caches\transforms-3\905370d3dab651637b8835e89c66cd73\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
 activity#com.google.android.gms.common.api.GoogleApiActivity
-ADDED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\19e1f3b8793d94c8974fa2945c736a9b\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:20:9-22:45
+ADDED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\tramb\.gradle\caches\transforms-3\19e1f3b8793d94c8974fa2945c736a9b\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:20:9-22:45
 	android:exported
-		ADDED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\19e1f3b8793d94c8974fa2945c736a9b\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:22:19-43
+		ADDED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\tramb\.gradle\caches\transforms-3\19e1f3b8793d94c8974fa2945c736a9b\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:22:19-43
 	android:theme
-		ADDED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\19e1f3b8793d94c8974fa2945c736a9b\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:21:19-78
+		ADDED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\tramb\.gradle\caches\transforms-3\19e1f3b8793d94c8974fa2945c736a9b\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:21:19-78
 	android:name
-		ADDED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\19e1f3b8793d94c8974fa2945c736a9b\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:20:19-85
+		ADDED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\tramb\.gradle\caches\transforms-3\19e1f3b8793d94c8974fa2945c736a9b\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:20:19-85
 meta-data#com.google.android.gms.version
-ADDED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\2d69b28b2c99bedfbc24d6b045de0635\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:21:9-23:69
+ADDED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\tramb\.gradle\caches\transforms-3\2d69b28b2c99bedfbc24d6b045de0635\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:21:9-23:69
 	android:value
-		ADDED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\2d69b28b2c99bedfbc24d6b045de0635\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:23:13-66
+		ADDED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\tramb\.gradle\caches\transforms-3\2d69b28b2c99bedfbc24d6b045de0635\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:23:13-66
 	android:name
-		ADDED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\Crystal Stellar\.gradle\caches\transforms-3\2d69b28b2c99bedfbc24d6b045de0635\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:22:13-58
+		ADDED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\tramb\.gradle\caches\transforms-3\2d69b28b2c99bedfbc24d6b045de0635\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:22:13-58

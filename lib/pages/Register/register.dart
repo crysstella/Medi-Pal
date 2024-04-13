@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:unicons/unicons.dart';
 import 'package:user_repository/user_repository.dart';
@@ -30,6 +29,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
 	// bool containsNumber = false;
 	// bool containsSpecialChar = false;
 	// bool contains8Length = false;
+
+  // late AuthenticationBloc authBloc;
+  // late LogInBloc loginBloc;
+
+  // @override
+  // void initState() {
+  //   authBloc = BlocProvider.of<AuthenticationBloc>(context);
+  //   loginBloc = BlocProvider.of<LogInBloc>(context);
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -216,13 +225,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
 												setState(() {
 													passwordToggle = !passwordToggle;
 													if(passwordToggle) {
-														Icon(UniconsLine.eye);
+														const Icon(UniconsLine.eye);
                           } else {
-                            Icon(UniconsLine.eye_slash);
+                            const Icon(UniconsLine.eye_slash);
 													}
 												});
 											},
-											icon: Icon(UniconsLine.eye),
+											icon: const Icon(UniconsLine.eye),
 										),
 										validator: (val) {
 											if(val!.isEmpty) {

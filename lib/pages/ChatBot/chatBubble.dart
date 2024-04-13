@@ -6,11 +6,11 @@ class ChatBubble extends StatelessWidget {
   //final Icon botIcon;
 
   const ChatBubble({
-    Key? key,
+    super.key,
     required this.message,
     required this.isUser,
     //required this.botIcon,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

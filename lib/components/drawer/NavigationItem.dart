@@ -6,7 +6,7 @@ import '../../pages/Home/home.dart';
 import '../../pages/Notification/notification.dart';
 import '../../pages/Profile/profile.dart';
 import '../../pages/Schedule/med_schedule.dart';
-import '../../pages/Search/foodSearch.dart';
+import '../../pages/Search/searchScreen.dart';
 import '../../pages/Setting/setting.dart';
 
 
@@ -20,41 +20,42 @@ class NavigationItem {
   static List<NavigationItem> get items => [
         // 0
         NavigationItem(
-            page: Home(), icon: Icon(UniconsLine.home), title: 'Home'),
+            page: const Home(), icon: const Icon(UniconsLine.home), 
+            title: 'Home'),
         // 1
         NavigationItem(
-            page: FoodSearch(),
-            icon: Icon(UniconsLine.search),
+            page: const SearchScreen(),
+            icon: const Icon(UniconsLine.search),
             title: 'Food Search'),
         // 2
         NavigationItem(
-            page: Notifications(),
-            icon: Icon(UniconsLine.bell),
+            page: const Notifications(),
+            icon: const Icon(UniconsLine.bell),
             title: 'Notifications'),
         // 3
         NavigationItem(
-            page: Profile(),
-            icon: Icon(UniconsLine.user_circle),
+            page: const Profile(),
+            icon: const Icon(UniconsLine.user_circle),
             title: 'Profile'),
         // 4
         NavigationItem(
-            page: MedicationSchedule(),
-            icon: Icon(UniconsLine.schedule),
+            page: const MedicationSchedule(),
+            icon: const Icon(UniconsLine.schedule),
             title: 'Schedules'),
         // 5
         NavigationItem(
-            page: ChatBot(),
-            icon: Icon(UniconsLine.comment_alt),
+            page: const ChatBot(),
+            icon: const Icon(UniconsLine.comment_alt),
             title: 'Medi-Bot'),
         // 6
         NavigationItem(
-            page: Favorite(),
-            icon: Icon(UniconsLine.heart),
+            page: const Favorite(),
+            icon: const Icon(UniconsLine.heart),
             title: 'Favorites'),
         // 7
         NavigationItem(
-            page: SettingsScreen(),
-            icon: Icon(UniconsLine.setting),
+            page: const SettingsScreen(),
+            icon: const Icon(UniconsLine.setting),
             title: 'Settings'),
       ];
 }
