@@ -4,7 +4,17 @@
             "outputFile": "com.example.medipal.app-mergeDebugResources-14:/values-en-rXC/values-en-rXC.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\tramb\\.gradle\\caches\\transforms-3\\b265adeb376a3ac6007e3dd20039106a\\transformed\\core-1.6.0\\res\\values-en-rXC\\values-en-rXC.xml",
+                    "source": "C:\\Users\\vinji\\.gradle\\caches\\transforms-3\\4d76aadac07397abe3a7d63176bb21f6\\transformed\\browser-1.4.0\\res\\values-en-rXC\\values-en-rXC.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,255,454,665",
+                        "endColumns": "199,198,210,201",
+                        "endOffsets": "250,449,660,862"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\vinji\\.gradle\\caches\\transforms-3\\b265adeb376a3ac6007e3dd20039106a\\transformed\\core-1.6.0\\res\\values-en-rXC\\values-en-rXC.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -18,16 +28,6 @@
                         "startOffsets": "867",
                         "endColumns": "203",
                         "endOffsets": "1066"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\tramb\\.gradle\\caches\\transforms-3\\4d76aadac07397abe3a7d63176bb21f6\\transformed\\browser-1.4.0\\res\\values-en-rXC\\values-en-rXC.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,255,454,665",
-                        "endColumns": "199,198,210,201",
-                        "endOffsets": "250,449,660,862"
                     }
                 }
             ]

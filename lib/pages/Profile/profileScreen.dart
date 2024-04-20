@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+ final String userEmail;
+
+  const ProfileScreen({Key? key, required this.userEmail}) : super(key: key);
 
 
   Future<DocumentSnapshot<Map<String, dynamic>>> _displayProfile() async {
     var collection = FirebaseFirestore.instance.collection("users");
-    var document = await collection.doc("a@gmail.com").get();
+    var document = await collection.doc(userEmail).get();
     return document;
   }
 

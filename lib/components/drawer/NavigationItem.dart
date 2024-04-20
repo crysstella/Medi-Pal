@@ -10,6 +10,7 @@ import '../../pages/Search/search.dart';
 import '../../pages/Setting/setting.dart';
 
 
+
 class NavigationItem {
   final Widget page;
   final String title;
@@ -34,7 +35,7 @@ class NavigationItem {
             title: 'Notifications'),
         // 3
         NavigationItem(
-            page: const Profile(),
+            page: const Profile(email: ""),
             icon: const Icon(UniconsLine.user_circle),
             title: 'Profile'),
         // 4

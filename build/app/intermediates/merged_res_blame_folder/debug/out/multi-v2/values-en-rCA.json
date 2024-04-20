@@ -4,7 +4,7 @@
             "outputFile": "com.example.medipal.app-mergeDebugResources-14:/values-en-rCA/values-en-rCA.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\tramb\\.gradle\\caches\\transforms-3\\4d76aadac07397abe3a7d63176bb21f6\\transformed\\browser-1.4.0\\res\\values-en-rCA\\values-en-rCA.xml",
+                    "source": "C:\\Users\\vinji\\.gradle\\caches\\transforms-3\\4d76aadac07397abe3a7d63176bb21f6\\transformed\\browser-1.4.0\\res\\values-en-rCA\\values-en-rCA.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\tramb\\.gradle\\caches\\transforms-3\\b265adeb376a3ac6007e3dd20039106a\\transformed\\core-1.6.0\\res\\values-en-rCA\\values-en-rCA.xml",
+                    "source": "C:\\Users\\vinji\\.gradle\\caches\\transforms-3\\b265adeb376a3ac6007e3dd20039106a\\transformed\\core-1.6.0\\res\\values-en-rCA\\values-en-rCA.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

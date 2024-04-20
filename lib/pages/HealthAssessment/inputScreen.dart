@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'diseaseInfo.dart';
 
 class InputScreen extends StatefulWidget {
-  final String userEmail = "a@gmail.com";
+  final String userEmail;
 
-  const InputScreen({super.key});
+  const InputScreen({Key? key, required this.userEmail}) : super(key: key);
   @override
   //initializes the state for InputScreenState
   _InputScreenState createState() => _InputScreenState();
