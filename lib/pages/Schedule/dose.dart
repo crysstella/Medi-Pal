@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:unicons/unicons.dart';
 
+<<<<<<< HEAD
 class MedicineFormHelper {
   static List<DoseForm> forms = [
     DoseForm(name: "Tablet", icon: UniconsLine.tablets),
@@ -18,6 +19,8 @@ class MedicineFormHelper {
   }
 }
 
+=======
+>>>>>>> 9be9239 (adding dose feature, handle tap notification in startApp.dart.)
 class DoseForm {
   final String name;
   final IconData icon;
@@ -40,6 +43,15 @@ class _DoseFormSelectorState extends State<DoseFormSelector> {
   int? selectedIndex;
   bool isExpanded = false;
 
+<<<<<<< HEAD
+=======
+  List<DoseForm> forms = [
+    DoseForm(name: "Tablet", icon: UniconsLine.tablets),
+    DoseForm(name: "Capsule", icon: UniconsLine.capsule),
+    // Add more forms as needed
+  ];
+
+>>>>>>> 9be9239 (adding dose feature, handle tap notification in startApp.dart.)
   void handleDoseFormChanged(String doseForm){
     widget.onDoseFormChanged(doseForm);
   }
@@ -55,14 +67,22 @@ class _DoseFormSelectorState extends State<DoseFormSelector> {
       scrollDirection: Axis.horizontal,
       reverse: true,
       child: Row(
+<<<<<<< HEAD
         children: List<Widget>.generate(MedicineFormHelper.forms.length, (index) {
+=======
+        children: List<Widget>.generate(forms.length, (index) {
+>>>>>>> 9be9239 (adding dose feature, handle tap notification in startApp.dart.)
           return InkWell(
               borderRadius: BorderRadius.circular(12.0),
               onTap: () {
                 setState(() {
                   selectedIndex = index;
                 });
+<<<<<<< HEAD
                 String selectedDoseForm = MedicineFormHelper.forms[index].name;
+=======
+                String selectedDoseForm = forms[index].name;
+>>>>>>> 9be9239 (adding dose feature, handle tap notification in startApp.dart.)
                 handleDoseFormChanged(selectedDoseForm);
                 widget.doseFormNotifier.value = selectedDoseForm;
               },
@@ -81,7 +101,11 @@ class _DoseFormSelectorState extends State<DoseFormSelector> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
+<<<<<<< HEAD
                       Icon(MedicineFormHelper.forms[index].icon,
+=======
+                      Icon(forms[index].icon,
+>>>>>>> 9be9239 (adding dose feature, handle tap notification in startApp.dart.)
                           size: 40,
                           color: selectedIndex == index
                               ? Theme.of(context).primaryColor
@@ -89,7 +113,11 @@ class _DoseFormSelectorState extends State<DoseFormSelector> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
+<<<<<<< HEAD
                           MedicineFormHelper.forms[index].name,
+=======
+                          forms[index].name,
+>>>>>>> 9be9239 (adding dose feature, handle tap notification in startApp.dart.)
                           style: TextStyle(
                             color: selectedIndex == index
                                 ? Theme.of(context).primaryColor
