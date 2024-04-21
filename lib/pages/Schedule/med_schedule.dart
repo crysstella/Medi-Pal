@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:intl/intl.dart';
+import 'package:medipal/pages/Schedule/dose.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:unicons/unicons.dart';
 import 'package:timezone/data/latest.dart' as tz;
@@ -30,6 +31,9 @@ class _MedicationScheduleState extends State<MedicationSchedule>
   bool _isExpanded = false;
   TimeOfDay timeSelected = TimeOfDay.now();
   late ValueNotifier<TimeOfDay> timeNotifier;
+
+  // Dose
+  String currentDoseForm = 'Select Form';
 
   // Store the events created
   static Map<DateTime, List<Event>> events = {};
@@ -135,7 +139,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
       floatingActionButton: FloatingActionButton(
           onPressed: () {
             showDialog(
-                barrierDismissible: false,
+                barrierDismissible: true,
                 context: context,
                 builder: (context) {
                   return AlertDialog(
@@ -183,6 +187,12 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                               hideOnEmpty: true,
                             ),
                             const Spacer(),
+                            DoseFormSelector(
+                              doseFormNotifier: ValueNotifier(currentDoseForm),
+                              onDoseFormChanged: (doseForm){
+                                currentDoseForm = doseForm;
+                              },
+                            ),
                             ExpansionTile(
                                 tilePadding: EdgeInsets.zero,
                                 title: const Text(
@@ -223,24 +233,33 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                             onPressed: () {
                               // Store the context before the async operation
                               final localContext = context;
-
                               if (inputValid()) {
                                 Event newEvent = Event(
-                                  medicine: medicineController.text,
-                                  date: _selectedDay!,
-                                  time: timeNotifier.value
-                                );
+                                    medicine: medicineController.text,
+                                    dose: currentDoseForm,
+                                    date: _selectedDay!,
+                                    time: timeNotifier.value);
 
                                 // Add event to local list
                                 addEventsForDate(newEvent);
 
-                                LocalNotifications.scheduleNotification(event: newEvent);
-
+                                LocalNotifications.scheduleNotification(
+                                    event: newEvent);
                               } else {
                                 // Clear fields
                                 medicineController.clear();
+                                // Clear dose form
+                                setState(() {
+                                  currentDoseForm = 'Select Form';
+                                });
+
                                 return;
                               }
+
+                              // Clear dose form
+                              setState(() {
+                                currentDoseForm = 'Select Form';
+                              });
 
                               // Clear fields
                               medicineController.clear();
@@ -250,7 +269,6 @@ class _MedicationScheduleState extends State<MedicationSchedule>
 
                               // Close the dialog
                               Navigator.of(localContext).pop();
-
                             },
                             child: const Text("Add"))
                       ]);
@@ -283,8 +301,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                     child: Container(
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Theme.of(context)
-                            .primaryColor,
+                        color: Theme.of(context).primaryColor,
                       ),
                       width: 6.0,
                       height: 6.0,
@@ -300,7 +317,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                   color: Theme.of(context).primaryColor,
                 ),
               );
-            },selectedBuilder: (context, date, events) {
+            }, selectedBuilder: (context, date, events) {
               if (!isSameDay(date, today)) {
                 return Container(
                     margin: const EdgeInsets.all(4.0),
@@ -405,11 +422,36 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                         return Container(
                             margin: const EdgeInsets.symmetric(
                                 horizontal: 12, vertical: 4),
-                            decoration: BoxDecoration(
+                            /*decoration: BoxDecoration(
                               border: Border.all(color: Colors.black26),
                               borderRadius: BorderRadius.circular(7),
-                            ),
-                            child: ListTile(
+                            ),*/
+                            child: Card(
+                              margin: const EdgeInsets.all(5.0),
+                              child: ListTile(
+                                onTap: () =>  print('dose = ${value[index].dose}'),
+                                leading: Icon(UniconsLine.prescription_bottle,
+                                    size: 30.0),
+                                title: Text(
+                                  '${value[index].getMedicine()}',
+                                  /*'${DateFormat('MM.dd.yy').format(value[index].getDateTime())}\n'
+                                      '${value[index].getTime(context)}',*/
+                                  style: const TextStyle(
+                                    fontSize: 16.0,
+                                    height:
+                                        1.5, // Adjust line spacing to preference
+                                  ),
+                                ),
+                                trailing: Text(
+                                  '${value[index].getTime(context)}',
+                                  style: const TextStyle(
+                                    fontSize:
+                                        14.0, // Adjust line spacing to preference
+                                  ),
+                                ),
+                              ),
+                            )
+                            /*child: ListTile(
                               onTap: () => print(value.length),
                               title: Text(
                                 '${value[index].getMedicine()}\n'
@@ -420,7 +462,8 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                                       1.5, // Adjust line spacing to preference
                                 ),
                               ),
-                            ));
+                            )*/
+                            );
                       });
                 }),
           )

@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medipal/pages/Notification/notification.dart';
 import 'package:unicons/unicons.dart';
 import 'package:medipal/components/drawer/NavigationItem.dart';
 
@@ -30,25 +31,17 @@ class StartAppState extends State<StartApp> {
   @override
   void initState(){
     super.initState();
-    listenToNotification();
+    LocalNotifications.indexUpdateController.stream.listen((newIndex) {
+      setState(() {
+        print('NEW INDEX = $newIndex');
+        _onItemTappedBottom(newIndex);
+        print('CURRENT INDEX = $currentIndex');
 
-  }
-
-  // Listen to any notification clicked or not
-  listenToNotification() {
-    LocalNotifications.onClickNotification.stream.listen((String event) {
-      // Event _event = Event.deserialize(event);
-      _handleTapNotification();
-
+      });
     });
+
   }
 
-  // Handle on tap notification by setting current state
-  void _handleTapNotification(){
-    setState(() {
-      currentIndex = 2; // Index of notification page
-    });
-  }
   // Set the index of the bottom bar
   void _onItemTappedBottom(int index) {
     setState(() {
@@ -69,11 +62,6 @@ class StartAppState extends State<StartApp> {
     });
   }
 
-  void handleTapNotification(){
-    setState(() {
-      currentIndex = 3;
-    });
-  }
   // Header (profile feature) of the side bar
   Widget barHeader(BuildContext context) => IconButton(
         icon: const Icon(UniconsLine.user_circle, size: 50),
@@ -108,7 +96,7 @@ class StartAppState extends State<StartApp> {
     return NavigationItem.items[index].page;
   }
 
-  // This is how our app bars look like and the pages will be routed within this scaffold.
+  // This is how app bars look like and the pages will be routed within this scaffold.
   @override
   Widget build(BuildContext context) {
     final safeArea =

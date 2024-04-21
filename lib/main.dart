@@ -7,7 +7,7 @@ import 'package:user_repository/user_repository.dart';
 import 'firebase_options.dart';
 import 'app.dart';
 
-void main() async{
+Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await LocalNotifications.init();
   await Firebase.initializeApp(
