@@ -1,0 +1,1 @@
+ C:\\Users\\vinji\\Documents\\GitHub\\Medi-Pal\\.dart_tool\\flutter_build\\e0b6c5639ccbb737804b226e26263fd8\\native_assets.yaml: 
