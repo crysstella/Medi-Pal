@@ -17,8 +17,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final nameController = TextEditingController();
 	final emailController = TextEditingController();
   final birthdayController = TextEditingController();
-  final heightController = TextEditingController();
-  final weightController = TextEditingController();
+  // final heightController = TextEditingController();
+  // final weightController = TextEditingController();
 	final passwordController = TextEditingController();
 
   bool passwordToggle = true;

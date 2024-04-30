@@ -48,6 +48,8 @@ dependencies:
 
   user_repository:
     path: packages/user_repository
+  search_repository:
+    path: packages/search_repository
   meta: ^1.11.0
   flutter_typeahead: ^5.2.0
   timezone: ^0.9.2

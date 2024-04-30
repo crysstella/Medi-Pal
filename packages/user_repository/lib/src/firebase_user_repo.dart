@@ -9,9 +9,8 @@ import 'package:user_repository/src/user_repo.dart';
 
 class FirebaseUserRepository implements UserRepository {
 
-  FirebaseUserRepository({
-    FirebaseAuth? firebaseAuth
-    }) : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
+  FirebaseUserRepository({ FirebaseAuth? firebaseAuth}) 
+  : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
 
   final FirebaseAuth _firebaseAuth;
   final usersCollection = FirebaseFirestore.instance.collection('registered users');
@@ -20,8 +19,8 @@ class FirebaseUserRepository implements UserRepository {
   @override
   Stream<User?> get user {
     return _firebaseAuth.authStateChanges().map((firebaseUser) {
-		  final user = firebaseUser;
-		  return user;
+		  final currentUser = firebaseUser;
+		  return currentUser;
 	  });
   }
 
@@ -88,6 +87,28 @@ class FirebaseUserRepository implements UserRepository {
 			rethrow;
     }
   }
+  // @override
+  // Future<void> updateUserData(MyUserModel user, MealModel meal) async {
+  //   final userDocRef =
+  //       _firebaseFirestore.collection('favouritemeals').doc(user);
+
+  //   return _firebaseFirestore.runTransaction((transaction) async {
+  //     final snapshot = await transaction.get(userDocRef);
+
+  //     if (snapshot.exists) {
+  //       final currentFavoriteMeals = List.from(snapshot.get('meals') ?? []);
+  //       if (!currentFavoriteMeals.contains(meal.id)) {
+  //         currentFavoriteMeals.add(meal.id);
+  //       }
+
+  //       transaction.update(userDocRef, {'meals': currentFavoriteMeals});
+  //     } else {
+  //       transaction.set(userDocRef, {
+  //         'meals': [meal.id]
+  //       });
+  //     }
+  //   });
+  // }
   //implement getMyUser: get user id and doc and return my user from entity using val from map 
   @override
   Future<MyUserModel> getMyUser(String myUserEmail) async {

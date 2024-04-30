@@ -102,37 +102,3 @@ class MyApp extends StatelessWidget{
     );
   }
 }
-
-
-
-// class MyAppView extends StatelessWidget{
-//   @override
-//   _MyAppView State createState() => _MyAppView State();
-//   NavigatorState get _navigator => _navigatorKey.currentState!;
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       navigatorKey: _navigatorKey,
-//       builder: (context, child) {
-//         return BlocListener<AuthenticationBloc, AuthenticationState>(
-//           listener: (context, state) {
-//             switch (state.status) {
-//               case AuthenticationStatus.authenticated:
-//                 _navigator.pushAndRemoveUntil<void>(
-//                     StartApp.route(), (route) => false);
-//                 break;
-//               case AuthenticationStatus.unauthenticated:
-//                 _navigator.pushAndRemoveUntil<void>(
-//                     LogInScreen.route(), (route) => false);
-//                 break;
-//               default:
-//                 break;
-//             }
-//           },
-//           child: child,
-//         );
-//       },
-//       onGenerateRoute: (_) => LaunchScreen.route(),
-//     );
-//   }
-// }

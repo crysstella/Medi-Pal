@@ -65,8 +65,8 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   late final StreamSubscription<User?> _userSubscription;
 
   AuthenticationBloc({
-	  required UserRepository myUserRepository
-	}) : userRepository = myUserRepository,       //access default state
+	  required UserRepository myUserRepository}) 
+    : userRepository = myUserRepository,       //access default state
 		  super(const AuthenticationState.unknown()) {
 		    _userSubscription = userRepository.user.listen((authUser) {
 			    add(AuthenticationUserChanged(authUser));   //trigger new event every time user getter changes

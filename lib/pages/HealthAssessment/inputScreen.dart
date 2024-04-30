@@ -22,7 +22,7 @@ class _InputScreenState extends State<InputScreen> {
   void _saveDisease() {
     //if input is not null
     if (_inputValue.isNotEmpty) {
-      //add thhe users input to firestore with a timestamp
+      //add the users input to firestore with a timestamp
       //userInput is the collection name
       _firestore.collection("users").add({
         //set inputValue to be saved in userInput collection

@@ -6,7 +6,7 @@ import '../../pages/Home/home.dart';
 import '../../pages/Notification/notification.dart';
 import '../../pages/Profile/profile.dart';
 import '../../pages/Schedule/med_schedule.dart';
-import '../../pages/Search/searchScreen.dart';
+import '../../pages/Search/search.dart';
 import '../../pages/Setting/setting.dart';
 
 
@@ -24,7 +24,7 @@ class NavigationItem {
             title: 'Home'),
         // 1
         NavigationItem(
-            page: const SearchScreen(),
+            page: SearchPage(),
             icon: const Icon(UniconsLine.search),
             title: 'Food Search'),
         // 2

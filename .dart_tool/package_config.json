@@ -428,6 +428,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "search_repository",
+      "rootUri": "../packages/search_repository",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
       "name": "simple_gesture_detector",
       "rootUri": "file:///C:/Users/tramb/AppData/Local/Pub/Cache/hosted/pub.dev/simple_gesture_detector-0.2.1",
       "packageUri": "lib/",
@@ -548,7 +554,7 @@
       "languageVersion": "3.3"
     }
   ],
-  "generated": "2024-04-10T10:23:12.348743Z",
+  "generated": "2024-04-16T13:53:52.982872Z",
   "generator": "pub",
   "generatorVersion": "3.3.0"
 }
