@@ -1,1 +1,0 @@
- C:\\Users\\Crystal\ Stellar\\Desktop\\Medi-Pal-main\\Medi-Pal-main\\.dart_tool\\flutter_build\\bd726d65371346e5b44901021808491b\\native_assets.yaml: 

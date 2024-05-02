@@ -29,12 +29,6 @@ class _LogInScreenState extends State<LogInScreen> {
     setState(() {
       logInRequired = false;
     });
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => Profile(email: emailController.text),
-      ),
-    );
   } else if (state is LogInProcess) {
     setState(() {
       logInRequired = true;
