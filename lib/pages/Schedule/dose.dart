@@ -1,6 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:unicons/unicons.dart';
 
+class MedicineFormHelper {
+  static List<DoseForm> forms = [
+    DoseForm(name: "Tablet", icon: UniconsLine.tablets),
+    DoseForm(name: "Capsule", icon: UniconsLine.capsule),
+  ];
+
+  static IconData getIconByDose(String name) {
+    for (var form in forms) {
+      if (form.name.toLowerCase() == name.toLowerCase()) {
+        return form.icon;  // Return IconData directly
+      }
+    }
+    // Return a default icon if no match is found
+    return UniconsLine.prescription_bottle; // Example default icon
+  }
+}
+
 class DoseForm {
   final String name;
   final IconData icon;
@@ -23,12 +40,6 @@ class _DoseFormSelectorState extends State<DoseFormSelector> {
   int? selectedIndex;
   bool isExpanded = false;
 
-  List<DoseForm> forms = [
-    DoseForm(name: "Tablet", icon: UniconsLine.tablets),
-    DoseForm(name: "Capsule", icon: UniconsLine.capsule),
-    // Add more forms as needed
-  ];
-
   void handleDoseFormChanged(String doseForm){
     widget.onDoseFormChanged(doseForm);
   }
@@ -44,14 +55,14 @@ class _DoseFormSelectorState extends State<DoseFormSelector> {
       scrollDirection: Axis.horizontal,
       reverse: true,
       child: Row(
-        children: List<Widget>.generate(forms.length, (index) {
+        children: List<Widget>.generate(MedicineFormHelper.forms.length, (index) {
           return InkWell(
               borderRadius: BorderRadius.circular(12.0),
               onTap: () {
                 setState(() {
                   selectedIndex = index;
                 });
-                String selectedDoseForm = forms[index].name;
+                String selectedDoseForm = MedicineFormHelper.forms[index].name;
                 handleDoseFormChanged(selectedDoseForm);
                 widget.doseFormNotifier.value = selectedDoseForm;
               },
@@ -70,7 +81,7 @@ class _DoseFormSelectorState extends State<DoseFormSelector> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Icon(forms[index].icon,
+                      Icon(MedicineFormHelper.forms[index].icon,
                           size: 40,
                           color: selectedIndex == index
                               ? Theme.of(context).primaryColor
@@ -78,7 +89,7 @@ class _DoseFormSelectorState extends State<DoseFormSelector> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          forms[index].name,
+                          MedicineFormHelper.forms[index].name,
                           style: TextStyle(
                             color: selectedIndex == index
                                 ? Theme.of(context).primaryColor
