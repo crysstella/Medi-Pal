@@ -4,13 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:medipal/components/navigation_service/navigationService.dart';
 import 'package:medipal/pages/Start/startApp.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 import '../Schedule/event.dart';
 import 'notification.dart';
-import 'notification_details.dart';
 
 /*final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
@@ -42,6 +40,8 @@ class LocalNotifications {
       StreamController<int>.broadcast();
   static StreamController<String> notificationStreamController =
       StreamController<String>.broadcast();
+  static Stream<String> get notificationStream => notificationStreamController.stream;
+  static final ValueNotifier<List<Event>> eventsNotifier = ValueNotifier<List<Event>>([]);
 
   //static final BehaviorSubject<String?> onNotificationStream =
   // BehaviorSubject<String?>();
@@ -67,12 +67,18 @@ class LocalNotifications {
     indexUpdateController.close();
   }
 
+  static void addEvent(String eventData) {
+    Event newEvent = Event.deserialize(eventData);
+    eventsNotifier.value = List.from(eventsNotifier.value)..add(newEvent);
+  }
+
   // Handle tap foreground notification
   static Future<void> tapNotificationForeGround(
       NotificationResponse notificationResponse) async {
     if (notificationResponse.payload != null) {
       String eventPayLoad = notificationResponse.payload!;
       notificationStreamController.add(eventPayLoad);
+      //addEvent(notificationResponse.payload!);
       print('FOREGROUND');
       indexUpdateController.add(2);
 
@@ -80,7 +86,7 @@ class LocalNotifications {
       Event _event = Event.deserialize(eventPayLoad);
       NotificationsState.events.add(_event);
 
-     /* // Check if StartApp is already the current screen
+      /* // Check if StartApp is already the current screen
       if (navigationService.navigatorKey.currentState?.context.widget is! Notifications) {
         navigationService.navigatorKey.currentState
             ?.push(MaterialPageRoute(builder: (_) => Notifications()));      }*/
