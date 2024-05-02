@@ -21,7 +21,7 @@ class MedicationSchedule extends StatefulWidget {
 
 class _MedicationScheduleState extends State<MedicationSchedule>
     with SingleTickerProviderStateMixin {
-  DataService medService = DataService();
+  final DataService medService = DataService();
   DateTime today = DateTime.now();
   DateTime? _selectedDay;
   DateTime _focusedDay = DateTime.now();
@@ -34,11 +34,15 @@ class _MedicationScheduleState extends State<MedicationSchedule>
 
   // Dose
   String currentDoseForm = 'Select Form';
+  late ValueNotifier<String?> doseError;
 
   // Store the events created
   static Map<DateTime, List<Event>> events = {};
   TextEditingController medicineController = TextEditingController();
   late ValueNotifier<List<Event>> _selectedEvents;
+  late ValueNotifier<String?> error;
+  late ValueNotifier<String?> errorTimeNotifier;
+  final formNameKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -46,6 +50,9 @@ class _MedicationScheduleState extends State<MedicationSchedule>
     _selectedDay = _focusedDay;
     _selectedEvents = ValueNotifier(getEventsForDay(_selectedDay!));
     timeNotifier = ValueNotifier(timeSelected);
+    error = ValueNotifier(null);
+    errorTimeNotifier = ValueNotifier(null);
+    doseError = ValueNotifier(null);
     tz.initializeTimeZones();
   }
 
@@ -89,13 +96,43 @@ class _MedicationScheduleState extends State<MedicationSchedule>
     return events[getNormalizedDate(date)] ?? [];
   }
 
-  bool inputValid() {
+  String? validateName() {
     if (medicineController.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('Invalid input!'), duration: Duration(seconds: 2)));
-      return false;
+      setState(() {
+        error.value = 'Invalid medicine name.';
+      });
+    } else {
+      setState(() {
+        error.value = null;
+      });
     }
-    return true;
+    return error.value;
+  }
+
+  void validateTime(DateTime time) {
+    if (time.isBefore(DateTime.now())) {
+      setState(() {
+        errorTimeNotifier.value = 'Selected time cannot be in the past.';
+      });
+    } else {
+      setState(() {
+        errorTimeNotifier.value = null;
+        timeNotifier.value = TimeOfDay.fromDateTime(time);
+        timeSelected = timeNotifier.value;
+      });
+    }
+  }
+
+  void validateDose(String dose) {
+    if (currentDoseForm != 'Select Form') {
+      setState(() {
+        doseError.value = null;
+      });
+    } else {
+      setState(() {
+        doseError.value = 'Please select dose.';
+      });
+    }
   }
 
   void addEventsForDate(Event newEvent) {
@@ -110,21 +147,19 @@ class _MedicationScheduleState extends State<MedicationSchedule>
 
   TimePickerSpinner showTimePicker(BuildContext context) {
     return TimePickerSpinner(
-      alignment: Alignment.center,
-      is24HourMode: false,
-      normalTextStyle:
-          const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-      highlightedTextStyle:
-          TextStyle(fontSize: 25, color: Theme.of(context).primaryColor),
-      spacing: 18,
-      itemHeight: 60,
-      itemWidth: 55,
-      isForce2Digits: true,
-      onTimeChange: (time) {
-        timeNotifier.value = TimeOfDay.fromDateTime(time);
-        timeSelected = timeNotifier.value;
-      },
-    );
+        alignment: Alignment.center,
+        is24HourMode: false,
+        normalTextStyle:
+            const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+        highlightedTextStyle:
+            TextStyle(fontSize: 25, color: Theme.of(context).primaryColor),
+        spacing: 18,
+        itemHeight: 60,
+        itemWidth: 55,
+        isForce2Digits: true,
+        onTimeChange: (time) {
+          validateTime(time);
+        });
   }
 
   Future<List<String>> medNames() async {
@@ -163,16 +198,24 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                                   return <String>[];
                                 }
                               },
-                              builder: (context, controller, focusNode) =>
-                                  TextField(
+                              builder: (context, controller, focusNode) => Form(
+                                  key: formNameKey,
+                                  child: TextFormField(
                                       controller: medicineController,
+                                      onChanged: (value) {
+                                        formNameKey.currentState?.validate();
+                                      },
                                       focusNode: focusNode,
-                                      autofocus: true,
-                                      decoration: const InputDecoration(
+                                      autofocus: false,
+                                      decoration: InputDecoration(
                                           hintText: 'Medicine',
-                                          hintStyle: TextStyle(
+                                          hintStyle: const TextStyle(
                                               fontSize: 16,
-                                              color: Colors.black87))),
+                                              color: Colors.black87),
+                                          errorText: error.value),
+                                      validator: (value) {
+                                        return validateName();
+                                      })),
                               onSelected: (medName) {
                                 medicineController.text = medName.trim();
                                 medicineController.selection =
@@ -189,8 +232,20 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                             const Spacer(),
                             DoseFormSelector(
                               doseFormNotifier: ValueNotifier(currentDoseForm),
-                              onDoseFormChanged: (doseForm){
+                              onDoseFormChanged: (doseForm) {
                                 currentDoseForm = doseForm;
+                                validateDose(currentDoseForm);
+                              },
+                            ),
+                            ValueListenableBuilder<String?>(
+                              valueListenable: doseError,
+                              builder: (context, value, child) {
+                                print(doseError.value);
+                                return doseError.value != null
+                                    ? Text('${doseError.value}',
+                                        style: const TextStyle(
+                                            fontSize: 14, color: Colors.red))
+                                    : const SizedBox();
                               },
                             ),
                             ExpansionTile(
@@ -217,7 +272,19 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                                     );
                                   },
                                 ),
-                                children: <Widget>[showTimePicker(context)]),
+                                children: <Widget>[
+                                  showTimePicker(context),
+                                ]),
+                            ValueListenableBuilder<String?>(
+                              valueListenable: errorTimeNotifier,
+                              builder: (context, value, child) {
+                                return errorTimeNotifier.value != null
+                                    ? Text('${errorTimeNotifier.value}',
+                                        style: const TextStyle(
+                                            fontSize: 14, color: Colors.red))
+                                    : const SizedBox();
+                              },
+                            ),
                           ],
                         ),
                       ),
@@ -226,6 +293,10 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                             onPressed: () {
                               medicineController.clear();
                               timeNotifier.value = TimeOfDay.now();
+                              error.value = null;
+                              errorTimeNotifier.value = null;
+                              doseError.value = null;
+                              currentDoseForm = 'Select Form';
                               Navigator.pop(context);
                             },
                             child: const Text('Cancel')),
@@ -233,7 +304,9 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                             onPressed: () {
                               // Store the context before the async operation
                               final localContext = context;
-                              if (inputValid()) {
+                              if (formNameKey.currentState!.validate() &&
+                                  errorTimeNotifier.value == null &&
+                                  doseError.value == null) {
                                 Event newEvent = Event(
                                     medicine: medicineController.text,
                                     dose: currentDoseForm,
@@ -243,23 +316,19 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                                 // Add event to local list
                                 addEventsForDate(newEvent);
 
+                                // Schedule reminder to notify
                                 LocalNotifications.scheduleNotification(
                                     event: newEvent);
                               } else {
+                                // Validate dose.
+                                validateDose(currentDoseForm);
                                 // Clear fields
                                 medicineController.clear();
-                                // Clear dose form
-                                setState(() {
-                                  currentDoseForm = 'Select Form';
-                                });
 
                                 return;
                               }
-
                               // Clear dose form
-                              setState(() {
                                 currentDoseForm = 'Select Form';
-                              });
 
                               // Clear fields
                               medicineController.clear();
@@ -422,15 +491,13 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                         return Container(
                             margin: const EdgeInsets.symmetric(
                                 horizontal: 12, vertical: 4),
-                            /*decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black26),
-                              borderRadius: BorderRadius.circular(7),
-                            ),*/
                             child: Card(
                               margin: const EdgeInsets.all(5.0),
                               child: ListTile(
-                                onTap: () =>  print('dose = ${value[index].dose}'),
-                                leading: Icon(UniconsLine.prescription_bottle,
+                                onTap: () =>
+                                    print('dose = ${value[index].dose}'),
+                                leading: Icon(
+                                    MedicineFormHelper.getIconByDose(value[index].dose),
                                     size: 30.0),
                                 title: Text(
                                   '${value[index].getMedicine()}',
@@ -451,18 +518,6 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                                 ),
                               ),
                             )
-                            /*child: ListTile(
-                              onTap: () => print(value.length),
-                              title: Text(
-                                '${value[index].getMedicine()}\n'
-                                '${DateFormat('MM.dd.yy').format(value[index].getDateTime())}\n'
-                                '${value[index].getTime(context)}',
-                                style: TextStyle(
-                                  height:
-                                      1.5, // Adjust line spacing to preference
-                                ),
-                              ),
-                            )*/
                             );
                       });
                 }),
