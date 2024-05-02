@@ -15,7 +15,7 @@ class ChatBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Chat bubble color based on if the user is the sender or not
-    final color = isUser ? const Color(0XFF857DB1) : Colors.grey[300];
+    final color = isUser ? const Color(0XFF857DB1) : Color(0XFFEBE5EB);
 
     // Alignment based on if the user is the sender or not
     final axisAlign = isUser ? MainAxisAlignment.end : MainAxisAlignment.start;
@@ -49,7 +49,7 @@ class ChatBubble extends StatelessWidget {
             ),
             child: Text(
               message,
-              style: TextStyle(color: isUser ? Colors.white : Colors.black87),
+              style: TextStyle(color: isUser ? Colors.white : Color(0XFF513F53)),
               textAlign: TextAlign.left,
             ),
           ),
