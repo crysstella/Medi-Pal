@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:unicons/unicons.dart';
-import '../../components/navigation_service/navigationService.dart';
 import '../Schedule/event.dart';
 import 'localNotification.dart';
-import 'notification_details.dart';
 
 class Notifications extends StatefulWidget {
   const Notifications({super.key});

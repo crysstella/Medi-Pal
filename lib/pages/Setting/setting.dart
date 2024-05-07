@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:unicons/unicons.dart';
 import '../../blocs/log_in_bloc/log_in_bloc.dart';
+import 'widgets/about_widget.dart';
+import 'widgets/guide_widget.dart';
+import 'widgets/privacy_widget.dart';
 
 
 class SettingsScreen extends StatelessWidget {
@@ -21,103 +24,119 @@ class SettingsScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "SETTINGS",
+                        "APP SETTINGS",
                         style: const TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 40,
-                          height: 40 / 32,
-                        ).copyWith(color: Theme.of(context).colorScheme.onPrimaryContainer),
+                          fontWeight: FontWeight.w500,
+                          fontSize: 20,
+                        ).copyWith(color: Theme.of(context).colorScheme.tertiary),
                       ),
-                      const SizedBox(height: 14),
-                      GestureDetector(
-                        // onTap: () {
-                        //  nav to Notification
-                        // },
-                        child: Row(
+                      const SizedBox(height: 2),
+
+                     //notifications 
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                      TextButton(
+                        onPressed: () {
+                          //;
+                        },
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Row(
+                            Row(
                               children: [
                                 Icon(UniconsLine.bell),
                                 Text(
-                                  " Notifications",
+                                  "Notifications",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                  ),
+                                )                                
+                              ],                              
+                            ),
+                          ],
+                        ),
+
+                      ),
+                      SizedBox(
+                              height: 4,
+                              child: Switch(
+                                value: true,
+                                onChanged: null,
+                                activeTrackColor: const Color(0x9EA0A1FA),
+                                //thumbColor:
+                                //MaterialStateProperty.all(Colors.white),
+                              ),
+                            )
+                      ]
+                  ),
+                 const SizedBox(height: 2),
+
+
+                 //theme
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                      TextButton(
+                        onPressed: () {
+                          //;
+                        },
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(UniconsLine.sun),
+                                //Icon(UniconsLine.moon_eclipse),
+                                Text(
+                                  "Theme",
                                   style: TextStyle(
                                     fontSize: 18,
                                   ),
                                 )
                               ],
                             ),
-                            SizedBox(
-                              height: 6,
-                              child: Switch(
-                                value: true,
-                                onChanged: null,
-                                activeTrackColor: const Color(0x9EA0A1FA),
-                                thumbColor:
-                                MaterialStateProperty.all(Colors.white),
-                              ),
-                            )
                           ],
                         ),
+
+                      ), 
+                      Text(
+                       "Light Mode",
+                       style: const TextStyle(
+                         fontSize: 14,
+                       ).copyWith(color: const Color(0x9EA0A1FA)),
                       ),
-                      const SizedBox(height: 12),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Row(
-                            children: [
-                              Icon(UniconsLine.sun),
-                              Text(
-                                " Theme",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                ),
-                              )
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                "Light Mode",
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                ).copyWith(color: const Color(0x9EA0A1FA)),
-                              ),
-                            ],
-                          ),
-                        ],
+                    ]
+                  ),
+                  const SizedBox(height: 2),
+
+
+                      //logout
+                      TextButton(
+                        onPressed: () {
+                          context.read<LogInBloc>().add(const LogOutRequired());
+                        },
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(UniconsLine.exit),
+                                Text(
+                                  "Log Out",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+
                       ),
-                      const SizedBox(height: 2),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Row(
-                            children: [
-                              Icon(UniconsLine.exit),
-                              Text(
-                                " Log Out",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              IconButton(
-                                  onPressed: () {
-                                    context.read<LogInBloc>().add(const LogOutRequired());
-                                  },
-                                  icon: const Icon(
-                                    UniconsLine.arrow_circle_right,
-                                    color: Color(0x9EA0A1FA),
-                                  )
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 2),
+                      const SizedBox(height: 30),
+
+
                       Text(
                         "SUPPORT",
                         style: const TextStyle(
@@ -125,11 +144,29 @@ class SettingsScreen extends StatelessWidget {
                           fontSize: 20,
                         ).copyWith(color: Theme.of(context).colorScheme.tertiary),
                       ),
-                      const SizedBox(height: 10),
-                      GestureDetector(
-                        // onTap: () {
-                        //   nav to about info [cubit]?
-                        // },
+                      const SizedBox(height: 2),
+
+                      //about
+                      TextButton(
+                        //style: Color(value),
+                        onPressed: () => showDialog<String>(
+                          context: context,
+                          builder: (BuildContext context) => Dialog(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                const AboutPage(),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text('Close'),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -137,7 +174,7 @@ class SettingsScreen extends StatelessWidget {
                               children: [
                                 Icon(UniconsLine.info_circle),
                                 Text(
-                                  " About",
+                                  "About",
                                   style: TextStyle(
                                     fontSize: 18,
                                   ),
@@ -147,11 +184,28 @@ class SettingsScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 12),
-                      GestureDetector(
-                        // onTap: () {
-                        //   nav to privacy policy [cubit]?
-                        // },
+
+
+                      //privacy policy
+                      TextButton(
+                        onPressed: () => showDialog<String>(
+                          context: context,
+                          builder: (BuildContext context) => Dialog.fullscreen(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                const PrivacyPage(),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text('Close'),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -159,7 +213,7 @@ class SettingsScreen extends StatelessWidget {
                               children: [
                                 Icon(UniconsLine.clipboard_notes),
                                 Text(
-                                  " Privacy Policy",
+                                  "Privacy Policy",
                                   style: TextStyle(
                                     fontSize: 18,
                                   ),
@@ -169,11 +223,28 @@ class SettingsScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 12),
-                      GestureDetector(
-                        // onTap: () {
-                        //   nav to app guide [cubit]?
-                        // },
+
+
+                      //app guide
+                      TextButton(
+                        onPressed: () => showDialog<String>(
+                          context: context,
+                          builder: (BuildContext context) => Dialog.fullscreen(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                const GuidePage(),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text('Close'),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -181,7 +252,7 @@ class SettingsScreen extends StatelessWidget {
                               children: [
                                 Icon(UniconsLine.directions),
                                 Text(
-                                  " App Guide",
+                                  "App Guide",
                                   style: TextStyle(
                                     fontSize: 18,
                                   ),
@@ -191,7 +262,9 @@ class SettingsScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 350),
+                   const SizedBox(height: 200),
+
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

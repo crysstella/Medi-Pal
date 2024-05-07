@@ -4,7 +4,7 @@
             "outputFile": "com.example.medipal.app-mergeDebugResources-14:/values-v24/values-v24.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\vinji\\.gradle\\caches\\transforms-3\\a9ea0e6f36d1664403592cd55c9e54f6\\transformed\\media-1.1.0\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\tramb\\.gradle\\caches\\transforms-3\\a9ea0e6f36d1664403592cd55c9e54f6\\transformed\\media-1.1.0\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

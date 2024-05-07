@@ -20,6 +20,7 @@ class _SearchDiseaseState extends State<SearchDisease> {
   bool _hasSearched = false;
   List<String> _searchResults = [];
 
+  //late List<Map<String, dynamic>> items;
 
   _initiateSearch() async {
     setState(() {

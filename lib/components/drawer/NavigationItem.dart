@@ -50,7 +50,7 @@ class NavigationItem {
             title: 'Medi-Bot'),
         // 6
         NavigationItem(
-            page: const Favorite(),
+            page: Favorite(),
             icon: const Icon(UniconsLine.heart),
             title: 'Favorites'),
         // 7

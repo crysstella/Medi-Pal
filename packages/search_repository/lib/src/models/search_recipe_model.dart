@@ -21,7 +21,7 @@ class SearchRecipeModel extends Equatable{
   //final List<bool>? takedingredients;
   final List<String> ingredients;
 
-  SearchRecipeModel({
+  const SearchRecipeModel({
     required this.results,
     required this.title,
     this.image,
@@ -67,7 +67,7 @@ class Result extends Equatable{
   final String? url;
   final List<String>? ingredients;
 
-  Result({
+  const Result({
     required this.title,
     this.image,
     required this.kcal,
