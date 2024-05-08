@@ -89,7 +89,11 @@ class _MedicationScheduleState extends State<MedicationSchedule>
 
   // Handle focus button to go back to today date.
   void toToday() {
-    daySelected(DateTime.now(), DateTime.now());
+    setState(() {
+      _selectedDay = DateTime.now();
+      _focusedDay = DateTime.now();
+    });
+    _selectedEvents.value = getEventsForDay(getNormalizedDate(_selectedDay!));
   }
 
   List<Event> getEventsForDay(DateTime date) {
