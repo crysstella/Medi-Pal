@@ -6,10 +6,8 @@ import 'package:medipal/pages/Schedule/dose.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:unicons/unicons.dart';
 import 'package:timezone/data/latest.dart' as tz;
-
 import '../../firebase/services.dart';
 import '../Notification/localNotification.dart';
-import '../Notification/notification_details.dart';
 import 'event.dart';
 
 class MedicationSchedule extends StatefulWidget {
@@ -43,6 +41,10 @@ class _MedicationScheduleState extends State<MedicationSchedule>
   late ValueNotifier<String?> error;
   late ValueNotifier<String?> errorTimeNotifier;
   final formNameKey = GlobalKey<FormState>();
+
+  // Listen to edit reminder
+  bool isEdit = false;
+  DateTime? editDate;
 
   @override
   void initState() {
@@ -85,11 +87,9 @@ class _MedicationScheduleState extends State<MedicationSchedule>
             : const Icon(UniconsLine.angle_down);
       });
 
+  // Handle focus button to go back to today date.
   void toToday() {
-    setState(() {
-      _focusedDay = DateTime.now();
-      _selectedDay = DateTime.now();
-    });
+    daySelected(DateTime.now(), DateTime.now());
   }
 
   List<Event> getEventsForDay(DateTime date) {
@@ -148,7 +148,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
   TimePickerSpinner showTimePicker(BuildContext context) {
     return TimePickerSpinner(
         alignment: Alignment.center,
-        is24HourMode: false,
+        is24HourMode: true,
         normalTextStyle:
             const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
         highlightedTextStyle:
@@ -157,14 +157,241 @@ class _MedicationScheduleState extends State<MedicationSchedule>
         itemHeight: 60,
         itemWidth: 55,
         isForce2Digits: true,
+        time: isEdit ? editDate : DateTime.now(),
         onTimeChange: (time) {
           validateTime(time);
         });
   }
 
+  // Get list of medicine names
   Future<List<String>> medNames() async {
     List<String> names = await medService.getMedicineNames();
     return names;
+  }
+
+  void addReminder(
+      BuildContext context, String title, String buttonSubmit, int index) {
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+              title: Text(title, style: TextStyle(fontSize: 18)),
+              content: SingleChildScrollView(
+                child: ListBody(
+                  children: <Widget>[
+                    TypeAheadField<String>(
+                      controller: medicineController,
+                      suggestionsCallback: (pattern) async {
+                        if (pattern.isNotEmpty) {
+                          List<String> names =
+                              await medService.getMedicineNames();
+                          return names
+                              .where((name) => name
+                                  .toLowerCase()
+                                  .contains(pattern.toLowerCase()))
+                              .toList();
+                        } else {
+                          return <String>[];
+                        }
+                      },
+                      builder: (context, controller, focusNode) => Form(
+                          key: formNameKey,
+                          child: TextFormField(
+                              controller: medicineController,
+                              onChanged: (value) {
+                                formNameKey.currentState?.validate();
+                              },
+                              onTapOutside: (event) {
+                                FocusManager.instance.primaryFocus?.unfocus();
+                              },
+                              focusNode: focusNode,
+                              autofocus: false,
+                              decoration: InputDecoration(
+                                  hintText: 'Medicine',
+                                  hintStyle: const TextStyle(
+                                      fontSize: 16, color: Colors.black87),
+                                  errorText: error.value),
+                              validator: (value) {
+                                return validateName();
+                              })),
+                      onSelected: (medName) {
+                        medicineController.text = medName.trim();
+                        medicineController.selection =
+                            TextSelection.fromPosition(
+                          TextPosition(offset: medicineController.text.length),
+                        );
+                      },
+                      itemBuilder: (context, medName) {
+                        return ListTile(title: Text(medName));
+                      },
+                      hideOnEmpty: true,
+                    ),
+                    const Spacer(),
+                    DoseFormSelector(
+                      doseFormNotifier: ValueNotifier(currentDoseForm),
+                      onDoseFormChanged: (doseForm) {
+                        currentDoseForm = doseForm;
+                        validateDose(currentDoseForm);
+                      },
+                    ),
+                    ValueListenableBuilder<String?>(
+                      valueListenable: doseError,
+                      builder: (context, value, child) {
+                        print(doseError.value);
+                        return doseError.value != null
+                            ? Text('${doseError.value}',
+                                style: TextStyle(
+                                    fontSize: 12, color: Colors.red[800]))
+                            : const SizedBox();
+                      },
+                    ),
+                    ExpansionTile(
+                        tilePadding: EdgeInsets.zero,
+                        title: const Text(
+                          'Time',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black87,
+                              fontWeight: FontWeight.w500),
+                        ),
+                        onExpansionChanged: (bool expanded) {
+                          setState(() {
+                            _isExpanded = expanded;
+                          });
+                        },
+                        trailing: ValueListenableBuilder<TimeOfDay>(
+                          valueListenable: timeNotifier,
+                          builder: (context, value, child) {
+                            return Text(
+                              value.format(context),
+                              style: const TextStyle(fontSize: 16),
+                            );
+                          },
+                        ),
+                        children: <Widget>[
+                          showTimePicker(context),
+                        ]),
+                    ValueListenableBuilder<String?>(
+                      valueListenable: errorTimeNotifier,
+                      builder: (context, value, child) {
+                        return errorTimeNotifier.value != null
+                            ? Text('${errorTimeNotifier.value}',
+                                style: TextStyle(
+                                    fontSize: 12, color: Colors.red[800]))
+                            : const SizedBox();
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      medicineController.clear();
+                      timeNotifier.value = TimeOfDay.now();
+                      error.value = null;
+                      errorTimeNotifier.value = null;
+                      doseError.value = null;
+                      currentDoseForm = 'Select Form';
+                      isEdit = false;
+                      Navigator.pop(context);
+                    },
+                    child: const Text('Cancel')),
+                ElevatedButton(
+                    onPressed: () {
+                      // Store the context before the async operation
+                      final localContext = context;
+                      if (formNameKey.currentState!.validate() &&
+                          errorTimeNotifier.value == null &&
+                          doseError.value == null) {
+                        Event newEvent = Event(
+                            medicine: medicineController.text,
+                            dose: currentDoseForm,
+                            date: DateTime(
+                                _selectedDay!.year,
+                                _selectedDay!.month,
+                                _selectedDay!.day,
+                                timeNotifier.value.hour,
+                                timeNotifier.value.minute),
+                            time: TimeOfDay(
+                                hour: timeNotifier.value.hour,
+                                minute: timeNotifier.value.minute));
+
+                        print('new event added = ${newEvent.serialize()}');
+                        if (buttonSubmit == 'Save') {
+                          // Update current event
+                          updateReminder(context, index, newEvent);
+                        } else {
+                          // Add event to local list
+                          addEventsForDate(newEvent);
+
+                          // Schedule reminder to notify
+                          LocalNotifications.scheduleNotification(
+                              event: newEvent);
+                        }
+                      } else {
+                        // Validate dose.
+                        validateDose(currentDoseForm);
+                        // Clear fields
+                        medicineController.clear();
+
+                        return;
+                      }
+                      // Reset the time notifier
+                      timeNotifier.value = TimeOfDay.now();
+
+                      // Clear dose form
+                      currentDoseForm = 'Select Form';
+
+                      // Clear fields
+                      medicineController.clear();
+                      // Get events in a day to display
+                      _selectedEvents.value = getEventsForDay(_selectedDay!);
+
+                      // Close the dialog
+                      Navigator.of(localContext).pop();
+                    },
+                    child: Text(buttonSubmit))
+              ]);
+        });
+  }
+
+  // Edit Reminder
+  void editReminder(BuildContext context, int index, Event event) {
+    setState(() {
+      editDate = event.date;
+      print('edit date = ${event.date}');
+      medicineController.text = event.medicine;
+      timeNotifier.value = event.time;
+      print('event time = ${timeNotifier.value}');
+      currentDoseForm = event.dose;
+      isEdit = true;
+    });
+
+    addReminder(context, 'Edit Reminder', 'Save', index);
+  }
+
+  // Update reminder in a specific date.
+  void updateReminder(BuildContext context, int index, Event event) {
+    setState(() {
+      events[getNormalizedDate(event.date)]?[index] = event;
+      isEdit = false;
+    });
+    print('LENGTH = ${events[getNormalizedDate(event.date)]?.length}');
+    print('LENGTH LIST = ${events.length}');
+  }
+
+  // Delete the reminder
+  void deleteRedminer(BuildContext context, DateTime date, Event event) {
+    setState(() {
+      events[date]?.remove(event);
+      // Check if there's no event in a day, remove the date out of the map.
+      if (events[date]?.length == 0) {
+        events.remove(date);
+      }
+    });
   }
 
   @override
@@ -173,175 +400,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
       body: content(),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
-            showDialog(
-                barrierDismissible: true,
-                context: context,
-                builder: (context) {
-                  return AlertDialog(
-                      title: const Text('New Reminder',
-                          style: TextStyle(fontSize: 18)),
-                      content: SingleChildScrollView(
-                        child: ListBody(
-                          children: <Widget>[
-                            TypeAheadField<String>(
-                              controller: medicineController,
-                              suggestionsCallback: (pattern) async {
-                                if (pattern.isNotEmpty) {
-                                  List<String> names =
-                                      await medService.getMedicineNames();
-                                  return names
-                                      .where((name) => name
-                                          .toLowerCase()
-                                          .contains(pattern.toLowerCase()))
-                                      .toList();
-                                } else {
-                                  return <String>[];
-                                }
-                              },
-                              builder: (context, controller, focusNode) => Form(
-                                  key: formNameKey,
-                                  child: TextFormField(
-                                      controller: medicineController,
-                                      onChanged: (value) {
-                                        formNameKey.currentState?.validate();
-                                      },
-                                      focusNode: focusNode,
-                                      autofocus: false,
-                                      decoration: InputDecoration(
-                                          hintText: 'Medicine',
-                                          hintStyle: const TextStyle(
-                                              fontSize: 16,
-                                              color: Colors.black87),
-                                          errorText: error.value),
-                                      validator: (value) {
-                                        return validateName();
-                                      })),
-                              onSelected: (medName) {
-                                medicineController.text = medName.trim();
-                                medicineController.selection =
-                                    TextSelection.fromPosition(
-                                  TextPosition(
-                                      offset: medicineController.text.length),
-                                );
-                              },
-                              itemBuilder: (context, medName) {
-                                return ListTile(title: Text(medName));
-                              },
-                              hideOnEmpty: true,
-                            ),
-                            const Spacer(),
-                            DoseFormSelector(
-                              doseFormNotifier: ValueNotifier(currentDoseForm),
-                              onDoseFormChanged: (doseForm) {
-                                currentDoseForm = doseForm;
-                                validateDose(currentDoseForm);
-                              },
-                            ),
-                            ValueListenableBuilder<String?>(
-                              valueListenable: doseError,
-                              builder: (context, value, child) {
-                                print(doseError.value);
-                                return doseError.value != null
-                                    ? Text('${doseError.value}',
-                                        style: const TextStyle(
-                                            fontSize: 14, color: Colors.red))
-                                    : const SizedBox();
-                              },
-                            ),
-                            ExpansionTile(
-                                tilePadding: EdgeInsets.zero,
-                                title: const Text(
-                                  'Time',
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.black87,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                onExpansionChanged: (bool expanded) {
-                                  setState(() {
-                                    _isExpanded = expanded;
-                                  });
-                                },
-                                trailing: ValueListenableBuilder<TimeOfDay>(
-                                  valueListenable: timeNotifier,
-                                  builder: (context, value, child) {
-                                    return Text(
-                                      value.format(context),
-                                      style: const TextStyle(fontSize: 16),
-                                    );
-                                  },
-                                ),
-                                children: <Widget>[
-                                  showTimePicker(context),
-                                ]),
-                            ValueListenableBuilder<String?>(
-                              valueListenable: errorTimeNotifier,
-                              builder: (context, value, child) {
-                                return errorTimeNotifier.value != null
-                                    ? Text('${errorTimeNotifier.value}',
-                                        style: const TextStyle(
-                                            fontSize: 14, color: Colors.red))
-                                    : const SizedBox();
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                      actions: [
-                        TextButton(
-                            onPressed: () {
-                              medicineController.clear();
-                              timeNotifier.value = TimeOfDay.now();
-                              error.value = null;
-                              errorTimeNotifier.value = null;
-                              doseError.value = null;
-                              currentDoseForm = 'Select Form';
-                              Navigator.pop(context);
-                            },
-                            child: const Text('Cancel')),
-                        ElevatedButton(
-                            onPressed: () {
-                              // Store the context before the async operation
-                              final localContext = context;
-                              if (formNameKey.currentState!.validate() &&
-                                  errorTimeNotifier.value == null &&
-                                  doseError.value == null) {
-                                Event newEvent = Event(
-                                    medicine: medicineController.text,
-                                    dose: currentDoseForm,
-                                    date: _selectedDay!,
-                                    time: timeNotifier.value);
-
-                                // Add event to local list
-                                addEventsForDate(newEvent);
-
-                                // Schedule reminder to notify
-                                LocalNotifications.scheduleNotification(
-                                    event: newEvent);
-                              } else {
-                                // Validate dose.
-                                validateDose(currentDoseForm);
-                                // Clear fields
-                                medicineController.clear();
-
-                                return;
-                              }
-                              // Clear dose form
-                                currentDoseForm = 'Select Form';
-
-                              // Clear fields
-                              medicineController.clear();
-                              // Get events in a day to display
-                              _selectedEvents.value =
-                                  getEventsForDay(_selectedDay!);
-
-                              // Close the dialog
-                              Navigator.of(localContext).pop();
-                            },
-                            child: const Text("Add"))
-                      ]);
-                });
+            addReminder(context, 'New Reminder', 'Add', -1);
           },
           child: const Icon(UniconsLine.plus)),
     );
@@ -436,12 +495,12 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                         icon: const Icon(UniconsLine.focus),
                         onPressed: toToday,
                       ),
-                      IconButton(
+                      /* IconButton(
                         icon: const Icon(UniconsLine.edit),
                         onPressed: () {
                           print('Edit button tapped');
                         },
-                      ),
+                      ),*/
                     ],
                   ),
                 ],
@@ -488,37 +547,112 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                   return ListView.builder(
                       itemCount: value.length,
                       itemBuilder: (context, index) {
-                        return Container(
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 4),
-                            child: Card(
-                              margin: const EdgeInsets.all(5.0),
-                              child: ListTile(
-                                onTap: () =>
-                                    print('dose = ${value[index].dose}'),
-                                leading: Icon(
-                                    MedicineFormHelper.getIconByDose(value[index].dose),
-                                    size: 30.0),
-                                title: Text(
-                                  '${value[index].getMedicine()}',
-                                  /*'${DateFormat('MM.dd.yy').format(value[index].getDateTime())}\n'
-                                      '${value[index].getTime(context)}',*/
-                                  style: const TextStyle(
-                                    fontSize: 16.0,
-                                    height:
-                                        1.5, // Adjust line spacing to preference
+                        String id = value[index].getID();
+                        DateTime date = getNormalizedDate(value[index].date);
+                        return Dismissible(
+                            key: Key(id),
+                            confirmDismiss: (direction) async {
+                              // Show confirmation dialog
+                              return await showDialog<bool>(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: const Text('Confirm Delete',
+                                            style: TextStyle(fontSize: 18.0)),
+                                        content: RichText(
+                                          text: TextSpan(
+                                            style: const TextStyle(
+                                                color: Colors
+                                                    .black), // Default text style
+                                            children: [
+                                              const TextSpan(
+                                                  text:
+                                                      "Are you sure you want to delete the reminder for "),
+                                              TextSpan(
+                                                text: value[index].medicine,
+                                                style: const TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                              const TextSpan(text: "?"),
+                                            ],
+                                          ),
+                                        ),
+                                        actions: <Widget>[
+                                          ElevatedButton(
+                                            onPressed: () =>
+                                                Navigator.of(context)
+                                                    .pop(false),
+                                            child: const Text('Cancel'),
+                                          ),
+                                          TextButton(
+                                            onPressed: () =>
+                                                Navigator.of(context).pop(true),
+                                            child: const Text('Delete'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  ) ??
+                                  false; // Return false if the user cancels
+                            },
+                            onDismissed: (direction) {
+                              Event removeEvent = value[index];
+                              deleteRedminer(context, date, removeEvent);
+
+                              // Cancel the reminder in notification
+                              LocalNotifications.cancel(
+                                  removeEvent.getID().hashCode);
+
+                              // Show deleted message
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                content: Text(
+                                    'Deleted ${removeEvent.medicine} reminder.'),
+                                duration: const Duration(seconds: 2),
+                              ));
+
+                              // Test if the reminder is removed.
+                              print(
+                                  'SELECTED EVENT = ${_selectedEvents.value.length}');
+                              print(
+                                  'EVENT AFTER DELETE IN A DAY = ${events[date]?.length}');
+                              print(
+                                  'EVENTS LIST AFTER DELETE = ${events.length}');
+                            },
+                            background: Card(color: Colors.red[100]),
+                            child: Container(
+                                margin: const EdgeInsets.symmetric(
+                                    horizontal: 12, vertical: 4),
+                                child: Card(
+                                  margin: const EdgeInsets.all(5.0),
+                                  child: ListTile(
+                                    onTap: () {
+                                      editReminder(
+                                          context, index, value[index]);
+                                      print('dose = ${value[index].dose}');
+                                    },
+                                    leading: Icon(
+                                        MedicineFormHelper.getIconByDose(
+                                            value[index].dose),
+                                        size: 30.0),
+                                    title: Text(
+                                      '${value[index].getMedicine()}',
+                                      style: const TextStyle(
+                                        fontSize: 16.0,
+                                        height:
+                                            1.5, // Adjust line spacing to preference
+                                      ),
+                                    ),
+                                    trailing: Text(
+                                      '${value[index].getTime(context)}',
+                                      style: const TextStyle(
+                                        fontSize:
+                                            14.0, // Adjust line spacing to preference
+                                      ),
+                                    ),
                                   ),
-                                ),
-                                trailing: Text(
-                                  '${value[index].getTime(context)}',
-                                  style: const TextStyle(
-                                    fontSize:
-                                        14.0, // Adjust line spacing to preference
-                                  ),
-                                ),
-                              ),
-                            )
-                            );
+                                )));
                       });
                 }),
           )

@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:medipal/pages/Notification/notification.dart';
 import 'package:unicons/unicons.dart';
 import 'package:medipal/components/drawer/NavigationItem.dart';
-
 import '../../blocs/log_in_bloc/log_in_bloc.dart';
 import '../Notification/localNotification.dart';
 
@@ -94,9 +94,9 @@ class StartAppState extends State<StartApp> {
     return NavigationItem.items[index].page;
   }
 
-  // This is how app bars look like and the pages will be routed within this scaffold.
   @override
   Widget build(BuildContext context) {
+    //NotiController notiController = Get.put(NotiController());
     final safeArea =
         EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top);
     return Scaffold(
@@ -129,7 +129,8 @@ class StartAppState extends State<StartApp> {
           actions: [
             IconButton(
                 onPressed: () {
-                  context.read<LogInBloc>().add(const LogOutRequired());
+                  //notiController.requestForPermission();
+                  //context.read<LogInBloc>().add(const LogOutRequired());
                 },
                 icon: Icon(
                   UniconsLine.x,

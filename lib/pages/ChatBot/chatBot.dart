@@ -24,8 +24,8 @@ class _ChatBotState extends State<ChatBot> {
   final FocusNode _focusNode = FocusNode();
   bool isValid = false; // Check the input is valid
 
-  final List<String> messages = [];
-  final List<bool> isUser = [false];
+  static List<String> messages = [];
+  static List<bool> isUser = [false];
   /*final List<String> topic = [
     'Diseases Information',
     'Food Recommended',
@@ -36,16 +36,27 @@ class _ChatBotState extends State<ChatBot> {
   static List<String> topics = ['Foods Avoided', 'Foods Recommended'];
   static List<String> diseases = [];
   static List<String> diseasesLowerCase = [];
+  final String _continue = 'Continue';
+  final String _more = 'Another topics';
+
   bool showTopics = true;
   bool showDisease = false;
   String current_topic = '';
+  double opactiy = 0.0;
 
   @override
   void initState() {
     super.initState();
     _focusNode.addListener(_handleFocusChange);
     loadDiseases();
-    messages.insert(0, welcome);
+    if (messages.length < 1){
+      messages.insert(0, welcome);}
+    else{
+      print('MESSAGES INITIAL LENGTH = ${messages.length}');
+      print('IS USER LENGTH = ${isUser.length}');
+    }
+
+    opactiy = 1.0;
   }
 
   void loadDiseases() async {
@@ -65,16 +76,25 @@ class _ChatBotState extends State<ChatBot> {
     }
   }
 
-  void onSubmitted(String text) {
-    setState(() {
-      messages.insert(0, welcome);
-    });
-  }
-
-  void addMessage(String message, bool userMessage) {
+  void addMessage(String message, bool userMessage) async {
+    await Future.delayed(Duration(milliseconds: 800));
     setState(() {
       messages.add(message);
       isUser.add(userMessage);
+      print('MESSAGES = $messages');
+    });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      scrollToBottom();
+    });
+  }
+
+  void addBotMessage(String message, bool userMessage) async {
+    await Future.delayed(Duration(seconds: 2));
+    setState(() {
+      messages.add(message);
+      isUser.add(userMessage);
+      print('MESSAGES = $messages');
+
     });
     WidgetsBinding.instance.addPostFrameCallback((_) {
       scrollToBottom();
@@ -97,18 +117,31 @@ class _ChatBotState extends State<ChatBot> {
       print('DISEASE ADVICE = $diseaseAdvice');
       if (current_topic == 'Foods Avoided') {
         var avoids = diseaseAdvice.avoidances;
-        int rand = randomIndex(avoids.length);
-        message = avoids[rand];
+        if (avoids.length < 1) {
+          message = "This information isn't updated yet.";
+        } else {
+          int rand = randomIndex(avoids.length);
+          message = avoids[rand];
+        }
       } else if (current_topic == 'Foods Recommended') {
         var recommends = diseaseAdvice.recommendations;
-        int rand = randomIndex(recommends.length);
-        message = recommends[rand];
+        if (recommends.length < 1) {
+          message = "This information isn't updated yet.";
+        } else {
+          int rand = randomIndex(recommends.length);
+          message = recommends[rand];
+        }
       }
-      addMessage(message, false); // Bot response
+      addBotMessage(message, false); // Bot Response
     } catch (e) {
       print(e);
-      addMessage('Failed to fetch data', false);
-    } finally {}
+      addBotMessage('Failed to fetch data', false); // Bot cant fetch the data
+    } finally {
+      showTopics = true;
+      setState(() {
+        opactiy = 1.0;
+      });
+    }
   }
 
   // Manage the chat view to scroll to the latest chat bubble.
@@ -117,7 +150,7 @@ class _ChatBotState extends State<ChatBot> {
       scrollController.animateTo(
         scrollController.position.maxScrollExtent,
         curve: Curves.easeOut,
-        duration: const Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 500),
       );
     }
   }
@@ -198,12 +231,12 @@ class _ChatBotState extends State<ChatBot> {
                             child: child,
                             color: Color(0xFFEEEAFD));
                       },
+                      hideKeyboardOnDrag: true,
                       focusNode: _focusNode,
                       direction: VerticalDirection.up,
                       autoFlipDirection: true,
                       controller: typeController,
                       suggestionsCallback: (pattern) {
-                        //List<String> names = await medService.getDiseaseName();
                         if (pattern.isNotEmpty) {
                           return diseases
                               .where((disease) => disease
@@ -238,8 +271,8 @@ class _ChatBotState extends State<ChatBot> {
                                     .clear(); // Clear text field after sending
                                 handleDiseaseSelection(transformText(text));
                               }
-                              _focusNode
-                                  .requestFocus(); // keep the focus on text field.
+                              _focusNode.requestFocus();
+                              // keep the focus on text field.
                             },
                           ), // Adds vertical constraints
                         ),
@@ -254,8 +287,8 @@ class _ChatBotState extends State<ChatBot> {
                             typeController
                                 .clear(); // Clear text field after sending
                           }
-                          _focusNode
-                              .requestFocus(); // keep the focus on text field.
+                          /* _focusNode
+                              .requestFocus(); */ // keep the focus on text field.
                         },
                       ),
                       onSelected: (diseaseName) {
@@ -292,50 +325,39 @@ class _ChatBotState extends State<ChatBot> {
                   ),
                 ),
                 if (showTopics)
-                  Column(
-                    children: topics.map((topic) {
-                      bool isLast = topics.last == topic;
-                      return Padding(
-                        padding: EdgeInsets.symmetric() +
-                            EdgeInsets.only(bottom: isLast ? 10.0 : 0),
-                        child: ActionChip(
-                          label: Text(topic),
-                          onPressed: () {
-                            print("Selected topic: $topic");
-                            addMessage(
-                                topic, true); // User sends topic as a message
-                            addMessage('Which disease you want to know?',
-                                false); // Bot responds
-                            setState(() {
-                              current_topic = topic;
-                              showTopics = false;
-                              showDisease = true;
-                            });
-                          },
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
+                  AnimatedOpacity(
+                    opacity: opactiy,
+                    duration: Duration(seconds: 1),
+                    child: Column(
+                      children: topics.map((topic) {
+                        bool isLast = topics.last == topic;
+                        return Padding(
+                          padding: EdgeInsets.symmetric() +
+                              EdgeInsets.only(bottom: isLast ? 10.0 : 0),
+                          child: ActionChip(
+                            label: Text(topic),
+                            onPressed: () {
+                              print("Selected topic: $topic");
+                              addMessage(
+                                  topic, true); // User sends topic as a message
+                              addBotMessage('Which disease you want to know?',
+                                  false); // Bot responds
+
+                              setState(() {
+                                current_topic = topic;
+                                showTopics = false;
+                                opactiy:
+                                0.0;
+                              });
+                            },
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
                           ),
-                        ),
-                      );
-                    }).toList(),
-                  ),
-                /* if (showDisease)
-                  Column(
-                    children: diseases.map((disease) {
-                      bool isLast = diseases.last == disease;
-                      return Padding(
-                        padding: EdgeInsets.symmetric() +
-                            EdgeInsets.only(bottom: isLast ? 10.0 : 0),
-                        child: ActionChip(
-                          label: Text(disease),
-                          onPressed: () => handleDiseaseSelection(disease),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                        ),
-                      );
-                    }).toList(),
-                  ),*/
+                        );
+                      }).toList(),
+                    ),
+                  )
               ]),
             )));
   }

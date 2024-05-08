@@ -1,23 +1,26 @@
 import 'dart:convert';
-
+import 'package:uuid/uuid.dart';
 import 'package:flutter/material.dart';
 
 class Event{
+  String id;
   final String medicine;
   final String dose;
   final DateTime date;
   final TimeOfDay time;
 
   //final int dose;
-  Event({required this.medicine,
+  Event({
+    required this.medicine,
     required this.dose,
     required this.date,
-    required this.time
-  });
+    required this.time,
+    String? id,
+  }) : id = id ?? Uuid().v4();
 
-  String getMedicine(){
-    return medicine;
-  }
+  String getID() => id;
+
+  String getMedicine() => medicine;
 
   String getTime(context){
     return time.format(context);
@@ -35,6 +38,7 @@ class Event{
 
   // Convert an Event object into a Map object
   Map<String, dynamic> toJson() => {
+    'id': id,
     'medicine': medicine,
     'dose': dose,
     'date': date.toIso8601String(), // Convert DateTime to String
@@ -48,6 +52,7 @@ class Event{
   factory Event.deserialize(String source) {
     Map<String, dynamic> data = jsonDecode(source);
     return Event(
+      id: data['id'],
       medicine: data['medicine'],
       date: DateTime.parse(data['date']),
       dose: data['dose'],

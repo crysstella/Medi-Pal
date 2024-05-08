@@ -1,39 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:medipal/firebase/services.dart';
 
 class MedicineInfoScreen extends StatelessWidget {
-  final String medicineTypeID;
-  final String medicineBrandID;
-
-  const MedicineInfoScreen({super.key, 
-    this.medicineTypeID = "ZUFJnzKbBHVcIoSNASDr",
-    this.medicineBrandID = "ckRw2atQibDjcQb1ik7z",
-  });
-
-  //gets info from medicineType in fb collection
-  Future<Map<String, dynamic>> _getAllMedicineTypes(String medicineTypeID) async {
-    var collection = FirebaseFirestore.instance.collection("Medicine Types");
-    var document = await collection.doc(medicineTypeID).get();
-
-    if (document.exists) {
-      return document.data()!;
-    } else {
-      throw Exception("Document not found");
-    }
-  }
-
-  //gets info from medicine Brand in fb collection
-  Future<Map<String, dynamic>> _getMedicineBrandInfo(
-      String medicineBrandID, String medicineBrand) async {
-    var collection = FirebaseFirestore.instance.collection("Medicine Brands");
-    var document = await collection.doc(medicineBrandID).get();
-
-    if (document.exists) {
-      return document.data()!;
-    } else {
-      throw Exception("Document not found");
-    }
-  }
+  final DataService medService = DataService();
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +12,7 @@ class MedicineInfoScreen extends StatelessWidget {
       ),
       body: Center(
         child: FutureBuilder<Map<String, dynamic>>(
-          future: _getAllMedicineTypes(medicineTypeID),
+          future: medService.getAllMedicineTypes(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const CircularProgressIndicator();
@@ -52,31 +21,27 @@ class MedicineInfoScreen extends StatelessWidget {
             } else if (snapshot.data == null || snapshot.data!.isEmpty) {
               return const Text("No data available for any medicines");
             } else {
-              //set medicine to data
               var medicines = snapshot.data!;
-              //set medicinetypes and sorts the array
-              var medicineTypeArr = medicines.keys.toList()..sort();
+              var medicineTypes = medicines.keys.toList()..sort();
               return ListView.builder(
-                itemCount: medicineTypeArr.length,
+                itemCount: medicineTypes.length,
                 itemBuilder: (context, index) {
-                  //get each medicine type form firebase
-                  var medicineType = medicineTypeArr[index];
-                  //get each value of medicine brand from medicineNamme
-                  var medicineBrand = medicines[medicineType];
+                  var medicineName = medicineTypes[index];
+                  var medicineBrand = medicines[medicineName];
 
                   // Check if 'medicineBrand' is actually a List
                   if (medicineBrand is! List) {
-                    medicineBrand = ["Invalid data format for $medicineType"];
+                    medicineBrand = ["Invalid data format for $medicineName"];
                   }
 
                   return ExpansionTile(
                     title: Text(
-                      medicineType,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
+                      medicineName,
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     children: List<Widget>.from(medicineBrand.map((item) {
                       return FutureBuilder<Map<String, dynamic>>(
-                        future: _getMedicineBrandInfo(medicineBrandID, item),
+                        future: medService.getMedicineBrandInfo(),
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
@@ -88,10 +53,7 @@ class MedicineInfoScreen extends StatelessWidget {
                             var array = brandInfo[item] as List?;
                             if (array != null) {
                               return ListTile(
-                                title: Text(
-                                  "•" + item,
-                                  style: const TextStyle(fontSize: 16), 
-                                ),
+                                title: Text(item),
                                 onTap: () {
                                   // Navigate to MedicineBrandScreen
                                   Navigator.push(
@@ -99,7 +61,8 @@ class MedicineInfoScreen extends StatelessWidget {
                                     MaterialPageRoute(
                                       builder: (context) => MedicineBrandScreen(
                                         brandName: item,
-                                        brandInfo: array.cast<String>(),
+                                        brandInfo: array.cast<
+                                            String>(), // Cast to List<String>
                                       ),
                                     ),
                                   );
@@ -123,12 +86,11 @@ class MedicineInfoScreen extends StatelessWidget {
   }
 }
 
-
 class MedicineBrandScreen extends StatelessWidget {
   final String brandName;
   final List<String> brandInfo;
 
-  const MedicineBrandScreen({super.key, required this.brandName, required this.brandInfo});
+  MedicineBrandScreen({required this.brandName, required this.brandInfo});
 
   @override
   Widget build(BuildContext context) {
@@ -140,7 +102,7 @@ class MedicineBrandScreen extends StatelessWidget {
         itemCount: brandInfo.length,
         itemBuilder: (context, index) {
           return ListTile(
-            title: Text("•${brandInfo[index]}"),
+            title: Text(brandInfo[index]),
           );
         },
       ),
