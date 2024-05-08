@@ -4,6 +4,7 @@ import 'package:unicons/unicons.dart';
 import '../../blocs/log_in_bloc/log_in_bloc.dart';
 import '../../components/my_text_field.dart';
 import '../../components/strings.dart';
+import '../../sharedPref.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({Key? key,}) : super(key: key);
@@ -28,6 +29,7 @@ class _LogInScreenState extends State<LogInScreen> {
     setState(() {
       logInRequired = false;
     });
+    saveEmail(emailController.text);
   } else if (state is LogInProcess) {
     setState(() {
       logInRequired = true;
