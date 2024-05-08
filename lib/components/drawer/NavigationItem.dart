@@ -7,7 +7,7 @@ import '../../pages/Home/home.dart';
 import '../../pages/Notification/notification.dart';
 import '../../pages/Profile/profile.dart';
 import '../../pages/Schedule/med_schedule.dart';
-import '../../pages/Search/foodSearch.dart';
+import '../../pages/Search/search.dart';
 import '../../pages/Setting/setting.dart';
 
 // Navigation Item or Routing Pages list contains all the pages in the navigation bars.
@@ -24,7 +24,7 @@ class NavigationItem {
             page: Home(), icon: Icon(UniconsLine.home), title: 'Home'),
         // 1
         NavigationItem(
-            page: FoodSearch(),
+            page: SearchPage(),
             icon: Icon(UniconsLine.search),
             title: 'Food Search'),
         // 2
