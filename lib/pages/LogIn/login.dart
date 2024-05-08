@@ -4,7 +4,6 @@ import 'package:unicons/unicons.dart';
 import '../../blocs/log_in_bloc/log_in_bloc.dart';
 import '../../components/my_text_field.dart';
 import '../../components/strings.dart';
-import '../Profile/profile.dart'; 
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({Key? key,}) : super(key: key);
