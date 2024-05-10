@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:meta/meta.dart';
 import 'package:unicons/unicons.dart';
 import '../../firebase/services.dart';
 import '../../shared_preferences.dart';
@@ -24,12 +23,14 @@ class _DiseaseSearchState extends State<DiseaseSearch> {
   List<String> diseases = [];
   String errorMessage = '';
   String userInput = '';
+  bool isSearchPressed = false;
 
   @override
   void initState() {
     super.initState();
     loadDiseases();
     errorMessage = ' ';
+    isSearchPressed = false;
   }
 
   // Compare two string ignore case sensitivity
@@ -89,11 +90,13 @@ class _DiseaseSearchState extends State<DiseaseSearch> {
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      const Icon(
-                        UniconsLine.exclamation_triangle,
-                        size: 50,
-                        color: Colors.red,
-                      ),
+                      isSearchPressed
+                          ? const Icon(
+                              UniconsLine.exclamation_triangle,
+                              size: 50,
+                              color: Colors.red,
+                            )
+                          : const SizedBox(),
                       const SizedBox(
                         height: 10,
                       ),
@@ -187,6 +190,9 @@ class _DiseaseSearchState extends State<DiseaseSearch> {
                             FocusScope.of(context).unfocus();
                             String disease =
                                 _searchEditingController.text.trim();
+                            setState(() {
+                              isSearchPressed = true;
+                            });
                             if (disease.isNotEmpty) {
                               print('TYPE: ${disease}');
                               print('BEFORE CALL HANDLE INPUT DISEASE');
@@ -206,6 +212,9 @@ class _DiseaseSearchState extends State<DiseaseSearch> {
                     onSubmitted: (disease) {
                       FocusScope.of(context).unfocus();
                       String disease = _searchEditingController.text.trim();
+                      setState(() {
+                        isSearchPressed = true;
+                      });
                       if (disease.isNotEmpty) {
                         print('TYPE: ${disease}');
                         setState(() {
@@ -255,7 +264,7 @@ class _DiseaseSearchState extends State<DiseaseSearch> {
         ),
       ),
       const SizedBox(height: 10),
-      Row(
+      isSearchPressed ? Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text('Show results:'),
@@ -276,7 +285,7 @@ class _DiseaseSearchState extends State<DiseaseSearch> {
             ),
           )),
         ],
-      ),
+      ): const SizedBox(),
       const SizedBox(height: 5),
       _isLoading
           ? Padding(
