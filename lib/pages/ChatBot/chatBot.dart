@@ -48,6 +48,9 @@ class _ChatBotState extends State<ChatBot> {
   void initState() {
     super.initState();
     _focusNode.addListener(_handleFocusChange);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      scrollToBottom();
+    });
     loadDiseases();
     if (messages.length < 1){
       messages.insert(0, welcome);}

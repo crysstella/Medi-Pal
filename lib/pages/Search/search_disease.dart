@@ -1,3 +1,5 @@
+/*
+import 'package:medipal/firebase/services.dart';
 import 'package:unicons/unicons.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -16,25 +18,32 @@ import 'package:flutter/material.dart';
 class _SearchDiseaseState extends State<SearchDisease> {
    
   TextEditingController _searchEditingController = TextEditingController();
+  DataService foodService = DataService();
   bool _isLoading = false;
   bool _hasSearched = false;
   List<String> _searchResults = [];
 
   //late List<Map<String, dynamic>> items;
 
-  _initiateSearch() async {
-    setState(() {
+  void _initiateSearch() async {
+    */
+/*setState(() {
       _isLoading = true;
       _hasSearched = true;
-    });
+    });*//*
+
 
     if(_searchEditingController.text.isNotEmpty){
-      DocumentSnapshot snapshot = await FirebaseFirestore.instance
+      print(_searchEditingController.text);
+      */
+/*DocumentSnapshot snapshot = await FirebaseFirestore.instance
         .collection('Food Database')
         .doc('2O1FKL6tcyXKC8v3GPIS')
-        .get();
+        .get();*//*
 
-      if (snapshot.exists) {
+
+      */
+/*if (snapshot.exists) {
         Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
         String diseaseName = _searchEditingController.text.toLowerCase();
 
@@ -49,7 +58,25 @@ class _SearchDiseaseState extends State<SearchDisease> {
             _isLoading = false;
           });
         } 
-      }
+      }*//*
+
+
+      List<dynamic> foods = await foodService.getFoodsByDisease(_searchEditingController.text);
+      setState(() {
+        _searchResults = foods.cast<String>();
+        if (_searchResults.isNotEmpty) {
+          print(_searchResults);
+          setState(() {
+            _isLoading = false;
+          });
+        }else{
+          setState(() {
+            _searchResults = [];
+            _isLoading = false;
+          });
+        }
+      });
+
     }
   }
 
@@ -142,4 +169,4 @@ class _SearchDiseaseState extends State<SearchDisease> {
       ),
     );
   }
-}
+}*/

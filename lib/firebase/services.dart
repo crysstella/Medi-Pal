@@ -23,7 +23,46 @@ class DataService {
   // Set the default document id
   final foodCollection = 'Food Database';
   final foodID = '2O1FKL6tcyXKC8v3GPIS';
+
   // userDisease get
+
+  // Get diseases list in Food Database
+  Future<List<String>> getDiseasesInFoodDatabase() async {
+    var collection = firestore.collection(foodCollection);
+    var document = await collection.doc(foodID).get();
+
+    if (document.exists) {
+      Map<String, dynamic> data = document.data()!;
+      if (data.isNotEmpty) {
+        return List<String>.from(data.keys);
+      } else {
+        throw Exception("Document not found");
+      }
+    }else{
+      throw Exception("Document not found");
+    }
+  }
+// Get foods by disease name
+  Future<List<String>> getFoodsByDisease(String disease) async{
+    print('DISEASE FOOD');
+    var collection = firestore.collection(foodCollection);
+    var document = await collection.doc(foodID).get();
+
+    if (document.exists) {
+      print('DOCUMENT EXISTS');
+      Map<String, dynamic> data = document.data()!;
+      if (data.containsKey(disease)) {
+        print('DISEASE EXISTS: ${disease}');
+        print('FOODS LIST EXISTS!!!!!!!');
+        print(List<String>.from(data[disease]));
+        return List<String>.from(data[disease]);
+      } else {
+        throw Exception("Disease key not found in the document");
+      }
+    } else {
+      throw Exception("Document not found");
+    }
+  }
 
   /// Read all medicine type
   Future<Map<String, dynamic>> getAllMedicineTypes() async {
@@ -142,7 +181,7 @@ class DataService {
         diseaseName.add(key);
       });
     }
-    print('Disease nam: $diseaseName');
+    print('Disease name: $diseaseName');
     return diseaseName;
   }
 }

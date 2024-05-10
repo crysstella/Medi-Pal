@@ -4,40 +4,39 @@ import 'search_recipe.dart';
 import 'search_disease.dart';
 import 'a_diseaseSearch.dart';
 
-
- class SearchPage extends StatefulWidget {
-
+class SearchPage extends StatefulWidget {
   @override
   _SearchPageState createState() => _SearchPageState();
 }
 
 class _SearchPageState extends State<SearchPage> {
+  static List<Tab> myTabs = <Tab>[
+    Tab(text: 'Recipes'),
+    Tab(text: 'Diseases'),
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(  
-      length: 2,  
-      child: Scaffold(
-        appBar: AppBar(  
-          backgroundColor:  Color(0x9EA0A1FA),
-          title: const Text('Search'), 
-          elevation: 0.0, 
-          bottom: const TabBar(
-            tabs: [  
-              Tab(text: "Recipes"),  
-              Tab(text: "Diseases")
-            ],  
-          ),  
-        ),  
-        body: TabBarView(  
-          children: [  
-            SearchRecipe(),  
-            //SearchDisease(),
-            //SearchFood(),
-            DiseaseSearch(),
-          ],  
-        ),  
-      ),
-    );
+    return DefaultTabController(
+        length: myTabs.length,
+        child: Scaffold(
+            appBar: AppBar(
+              backgroundColor: const Color(0xFFc6c6ff),
+              title: TabBar(
+                tabs: myTabs,
+                unselectedLabelColor: Colors.grey,
+              ),
+            ),
+            body: const TabBarView(children: [SearchRecipe(), DiseaseSearch()])));
   }
 }

@@ -93,17 +93,17 @@ class _SearchRecipeState extends State<SearchRecipe> {
       child: Column(
         children: [
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
-            color: const Color(0x9EA0A1FA),
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
+            color: const Color(0xFFEEEAFD),
             child: Row(
               children: [
                 Expanded(
                   child: TextField(
                     controller: _searchEditingController,
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Theme.of(context).primaryColor,
                     ),
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: "Search for recipes...",
                       hintStyle: TextStyle(
                         color: Colors.grey,
@@ -121,7 +121,7 @@ class _SearchRecipeState extends State<SearchRecipe> {
                     height: 40,
                       width: 40,
                       decoration: BoxDecoration(
-                        color: const Color(0x9EA0A1FA),
+                        color: Theme.of(context).primaryColor,
                         borderRadius: BorderRadius.circular(40)
                       ),
                       child: const Icon(UniconsLine.search, color: Colors.white)
