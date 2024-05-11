@@ -1,4 +1,5 @@
 import 'package:bloc_notification/bloc_notification.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
@@ -126,16 +127,25 @@ class _MedicationScheduleState extends State<MedicationSchedule>
   }
 
   void validateTime(DateTime time) {
-    if (time.isBefore(DateTime.now().add(Duration(minutes: 1)))) {
-      setState(() {
-        errorTimeNotifier.value = 'Selected time cannot be in the past or too close to now.';
-      });
-    } else {
+    if (_selectedDay!.isAfter(time)) {
       setState(() {
         errorTimeNotifier.value = null;
         timeNotifier.value = TimeOfDay.fromDateTime(time);
         timeSelected = timeNotifier.value;
       });
+    } else {
+      if (time.isBefore(DateTime.now().add(Duration(minutes: 1)))) {
+        setState(() {
+          errorTimeNotifier.value =
+              'Selected time cannot be in the past or too close to now.';
+        });
+      } else {
+        setState(() {
+          errorTimeNotifier.value = null;
+          timeNotifier.value = TimeOfDay.fromDateTime(time);
+          timeSelected = timeNotifier.value;
+        });
+      }
     }
   }
 
@@ -423,13 +433,8 @@ class _MedicationScheduleState extends State<MedicationSchedule>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: content(),
-      floatingActionButton: FloatingActionButton(
-          mini: true,
-          onPressed: () {
-            addReminder(context, 'New Reminder', 'Add', -1);
-          },
-          child: const Icon(UniconsLine.plus)),
     );
   }
 
@@ -530,17 +535,17 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                             onPressed: formatChanged,
                             icon: _buttonDropDown,
                           ),
-                          const Spacer(),
                           IconButton(
                             icon: const Icon(UniconsLine.focus),
                             onPressed: toToday,
                           ),
-                          /* IconButton(
-                        icon: const Icon(UniconsLine.edit),
-                        onPressed: () {
-                          print('Edit button tapped');
-                        },
-                      ),*/
+                          const Spacer(),
+                          FloatingActionButton.small(
+                              onPressed: () {
+                                addReminder(context, 'New Reminder', 'Add', -1);
+                              },
+                              child: const Icon(UniconsLine.plus)),
+                          const SizedBox(width: 10)
                         ],
                       ),
                     ],
@@ -592,6 +597,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                                 getNormalizedDate(value[index].date);
                             return Dismissible(
                                 key: Key(id),
+                                direction: DismissDirection.endToStart,
                                 confirmDismiss: (direction) async {
                                   // Show confirmation dialog
                                   return await showDialog<bool>(
@@ -705,7 +711,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                                     )));
                           });
                     }),
-              )
+              ),
             ]));
   }
 }
