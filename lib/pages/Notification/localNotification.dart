@@ -1,74 +1,93 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:medipal/components/navigation_service/navigationService.dart';
-import 'package:medipal/pages/Start/startApp.dart';
-import 'package:rxdart/rxdart.dart';
+import 'package:medipal/blocs/notification_bloc/notification_bloc.dart';
+import 'package:notification_repository/notification_repository.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
-
-import '../Schedule/event.dart';
-import 'notification.dart';
-import 'notification_details.dart';
-
-/*final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
-final StreamController<ReceivedNotification> didReceiveLocalNotificationStream =
-    StreamController<ReceivedNotification>.broadcast();
-final StreamController<String?> selectNotificationStream =
-    StreamController<String?>.broadcast();
-
-class ReceivedNotification {
-  ReceivedNotification({
-    required this.id,
-    required this.title,
-    required this.body,
-    required this.payload,
-  });
-  final int id;
-  final String? title;
-  final String? body;
-  final String? payload;
-}
-
-String? selectedNotificationPayload;*/
 
 class LocalNotifications {
   static final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
-  //static final onClickNotification = BehaviorSubject<String>();
+  /*//static final onClickNotification = BehaviorSubject<String>();
   static StreamController<int> indexUpdateController =
       StreamController<int>.broadcast();
   static StreamController<String> notificationStreamController =
       StreamController<String>.broadcast();
-
-  //static final BehaviorSubject<String?> onNotificationStream =
-  // BehaviorSubject<String?>();
+  final StreamController<ReceivedNotification>
+      didReceiveLocalNotificationStream =
+      StreamController<ReceivedNotification>.broadcast();
+  final StreamController<String?> selectNotificationStream =
+      StreamController<String?>.broadcast();*/
 
   // initialize the local notification
-  static Future<void> init() async {
+  static void init(BuildContext context) async {
     tz.initializeTimeZones();
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings('@drawable/ic_noti');
+    final InitializationSettings initializationSettings =
+        InitializationSettings(android: initializationSettingsAndroid);
+
+    await flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        // foreground
+        onDidReceiveNotificationResponse: (NotificationResponse response) {
+      // Extract details and add the event to the bloc
+      final details = extractEventDetails(response.payload);
+      print('INIT LOCAL NOTIFICATION = ${details}');
+      BlocProvider.of<NotificationBloc>(context)
+          .add(ReceiveNotificationEvent(details));
+    },
+     );
     /*final DarwinInitializationSettings initializationSettingsDarwin =
         DarwinInitializationSettings(
-            onDidReceiveLocalNotification: _onDidReceiveLocalNotification*/ /*(id, title, body, payload) => null*/ /*);*/
-    final InitializationSettings initializationSettings =
+      requestAlertPermission: false,
+      requestBadgePermission: false,
+      requestSoundPermission: false,
+      onDidReceiveLocalNotification:
+          (int id, String? title, String? body, String? payload) async {
+        didReceiveLocalNotificationStream.add(
+          ReceivedNotification(
+            id: id,
+            title: title,
+            body: body,
+            payload: payload,
+          ),
+        );
+      },
+    );*/
+
+    /*final InitializationSettings initializationSettings =
         InitializationSettings(
       android: initializationSettingsAndroid,
-    );
-    await flutterLocalNotificationsPlugin.initialize(initializationSettings,
-        onDidReceiveNotificationResponse: tapNotificationForeGround,
-        onDidReceiveBackgroundNotificationResponse: tapNotificationBackGround);
+    );*/
+    /*await flutterLocalNotificationsPlugin.initialize(
+      initializationSettings,
+      onDidReceiveNotificationResponse:
+          (NotificationResponse notificationResponse) {
+        selectNotificationStream.add(notificationResponse.payload);
+      },
+      onDidReceiveBackgroundNotificationResponse: tapNotificationBackGround,
+    );*/
+    /*onDidReceiveNotificationResponse: tapNotificationForeGround,
+        onDidReceiveBackgroundNotificationResponse: tapNotificationBackGround);*/
   }
 
-  static void dispose() {
-    indexUpdateController.close();
+  static Event extractEventDetails(String? payload) {
+    if (payload == null || payload.isEmpty) {
+      throw Exception("Payload is null or empty");
+    }
+    // Deserialize the payload
+    return Event.deserialize(payload);
   }
+
+  /* static void dispose() {
+    indexUpdateController.close();
+  }*/
 
   // Handle tap foreground notification
-  static Future<void> tapNotificationForeGround(
+  /*static Future<void> tapNotificationForeGround(
       NotificationResponse notificationResponse) async {
     if (notificationResponse.payload != null) {
       String eventPayLoad = notificationResponse.payload!;
@@ -78,25 +97,24 @@ class LocalNotifications {
 
       // Update events in notification page
       Event _event = Event.deserialize(eventPayLoad);
-      NotificationsState.events.add(_event);
-
-     /* // Check if StartApp is already the current screen
-      if (navigationService.navigatorKey.currentState?.context.widget is! Notifications) {
-        navigationService.navigatorKey.currentState
-            ?.push(MaterialPageRoute(builder: (_) => Notifications()));      }*/
-
+      notifiedEvents.value = List.from(notifiedEvents.value)..add(_event);
+      //NotificationsState.events.add(_event);
     }
-  }
+  }*/
 
   // Handle tap background notification
-  static void tapNotificationBackGround(
-      NotificationResponse notificationResponse) async {
-    notificationStreamController.add(notificationResponse.payload!);
+  /* void tapNotificationBackGround(NotificationResponse notificationResponse) {
+    if (notificationResponse.input?.isNotEmpty ?? false) {
+      // ignore: avoid_print
+      print(
+          'notification action tapped with input: ${notificationResponse.input}');
+    }
+    */ /*notificationStreamController.add(notificationResponse.payload!);
     if (notificationResponse.payload != null) {
       navigationService.navigatorKey.currentState
           ?.push(MaterialPageRoute(builder: (_) => StartApp()));
-    }
-  }
+    }*/ /*
+  }*/
 
   static notificationDetails() async {
     return const NotificationDetails(
@@ -111,17 +129,12 @@ class LocalNotifications {
     required Event event,
   }) async =>
       await flutterLocalNotificationsPlugin.zonedSchedule(
-        event.hashCode,
+        event.getHash(),
         event.medicine,
         'Time to take ${event.medicine}.',
         tz.TZDateTime.from(
-            DateTime(
-              event.date.year,
-              event.date.month,
-              event.date.day,
-              event.time.hour,
-              event.time.minute,
-            ),
+            DateTime(event.date.year, event.date.month, event.date.day,
+                event.time.hour, event.time.minute, event.date.second),
             tz.local),
         await notificationDetails(),
         payload: event.serialize(),
@@ -130,7 +143,15 @@ class LocalNotifications {
       );
 
   // Close a specific channel notification
-  static Future cancel(int id) async {
-    await flutterLocalNotificationsPlugin.cancel(id);
+  static Future<void> cancel(int id) async {
+    print('EVENT ID = ${id}');
+    // Show unpresented/scheduled notifications
+    final List<PendingNotificationRequest> pendingNotificationRequests =
+    await flutterLocalNotificationsPlugin.pendingNotificationRequests();
+    for (var _pendingRequest in pendingNotificationRequests) {
+      if (_pendingRequest.id == id){
+        flutterLocalNotificationsPlugin.cancel(_pendingRequest.id);
+      }
+    }
   }
 }
