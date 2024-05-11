@@ -16,4 +16,4 @@ Future<void> main() async{
 
   Bloc.observer = MainBlocObserver();
   runApp(MyApp(FirebaseUserRepository(),));
-}
+} 

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:unicons/unicons.dart';
 import '../../blocs/log_in_bloc/log_in_bloc.dart';
+
+import '../../blocs/theme_cubit/theme_cubit.dart';
 import 'widgets/about_widget.dart';
 import 'widgets/guide_widget.dart';
 import 'widgets/privacy_widget.dart';
@@ -12,6 +15,9 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -77,17 +83,17 @@ class SettingsScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                      TextButton(
-                        onPressed: () {
-                          //;
-                        },
+                         TextButton(
+                          onPressed: () {
+                            context.read<ThemeCubit>().toggleTheme(!isDarkMode);
+                          },
+
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Row(
                               children: [
-                                Icon(UniconsLine.sun),
-                                //Icon(UniconsLine.moon_eclipse),
+                                Icon(UniconsLine.lightbulb),
                                 Text(
                                   "Theme",
                                   style: TextStyle(
@@ -99,15 +105,35 @@ class SettingsScreen extends StatelessWidget {
                           ],
                         ),
 
-                      ), 
-                      Text(
-                       "Light Mode",
-                       style: const TextStyle(
-                         fontSize: 14,
-                       ).copyWith(color: const Color(0x9EA0A1FA)),
                       ),
-                    ]
+
+                      TextButton(
+                        onPressed: () {
+                            context.read<ThemeCubit>().toggleTheme(!isDarkMode);
+                          },
+
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(UniconsLine.sun),
+                                Icon(UniconsLine.moon_eclipse),
+                                
+                              ],
+                            ),
+                          ],
+                        ),
+
+                      ),
+
+
+                      ],
+                   
+                    
                   ),
+
+
                   const SizedBox(height: 2),
 
 

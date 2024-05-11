@@ -1,185 +1,300 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:unicons/unicons.dart';
+import '../../firebase/services.dart';
 import '../../shared_preferences.dart';
 
 class DiseaseSearch extends StatefulWidget {
-  final String foodID;
-
-  DiseaseSearch({
-    Key? key,
-    this.foodID = "2O1FKL6tcyXKC8v3GPIS",
-  }) : super(key: key);
+  const DiseaseSearch({super.key});
 
   @override
   State<DiseaseSearch> createState() => _DiseaseSearchState();
 }
 
 class _DiseaseSearchState extends State<DiseaseSearch> {
-  String? _userDisease;
+  DataService foodService = DataService();
   //List<String> favoriteFoods = [];
   //String? _selectedFood;
 
-  TextEditingController _searchEditingController = TextEditingController();
+  final TextEditingController _searchEditingController =
+      TextEditingController();
   bool _isLoading = false;
-  bool _hasSearched = false;
   List<String> _searchResults = [];
-
-  // Future<QuerySnapshot>? foodDocList;
-  // String diseaseText = '';
+  List<String> diseases = [];
+  String errorMessage = '';
+  String userInput = '';
+  bool isSearchPressed = false;
 
   @override
   void initState() {
     super.initState();
+    loadDiseases();
+    errorMessage = ' ';
+    isSearchPressed = false;
   }
 
-  // initSearchDisease (String textEntered) async{
-  //   foodDocList = FirebaseFirestore.instance
-  //       .collection('Food Database')
-  //       //.doc('2O1FKL6tcyXKC8v3GPIS')
-  //       .where("foodID", isGreaterThanOrEqualTo: textEntered)
-  //       .get();
-  //   setState(() {   
-  //   _isLoading = true;
-  //   _hasSearched = true;
-  //   foodDocList;
-  //   });
+  // Compare two string ignore case sensitivity
+  bool equalsIgnoreCase(String? string1, String? string2) {
+    return string1?.toLowerCase() == string2?.toLowerCase();
+  }
 
-  // }
+  // Check if disease in diseases list
+  bool isInListIgnoreCase(String disease, List<String> list) {
+    // Convert the value to lowercase
+    String lowerDisease = disease.toLowerCase();
 
-  Future<void> _searchFoods(String diseaseName) async {
-    try {
-      final snapshot = await FirebaseFirestore.instance
-          .collection('Food Database')
-          .doc(widget.foodID)
-          .get();
+    // Use any() method to check if the list contains the value, ignoring case
+    return list.any((item) => item.toLowerCase() == lowerDisease);
+  }
 
-      if (snapshot.exists) {
-        final data = snapshot.data();
-        if (data != null) {
-          final diseaseData = data[diseaseName];
-          if (diseaseData != null && diseaseData is List) {
-            setState(() {
-              _searchResults = List<String>.from(diseaseData);
-            });
-            return; // Exit the function since search is successful
-          }
-        }
-      }
+  // Get diseases list from foodDatabase
+  void loadDiseases() async {
+    List<dynamic> loadedDiseases =
+        await foodService.getDiseasesInFoodDatabase();
+    setState(() {
+      // Get diseases suggestion from database
+      diseases = loadedDiseases.cast<String>();
+      print('Diseases = ${diseases}');
+    });
+  }
 
-      // If no data found for the query, reset search results
+  void showInvalidMessage(BuildContext context) {
+    setState(() {
+      _searchResults = [];
+      errorMessage = "Error Loading...";
+    });
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      backgroundColor: Theme.of(context).primaryColor,
+      content: const Text('Invalid input'),
+      duration: const Duration(seconds: 2),
+    ));
+  }
+
+  Widget buildSearchResults(List<String> searchResults) {
+    return (_searchResults.isNotEmpty)
+        ? Expanded(
+            child: ListView.builder(
+                // padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
+                itemCount: searchResults.length,
+                itemBuilder: (context, index) {
+                  print('THIS IS IN BUILD SEARCH RESULTS:');
+                  print(searchResults);
+                  return Card(
+                      child: ListTile(
+                    title: Text(searchResults[index]),
+                  ));
+                }))
+        : Expanded(
+            child: SizedBox(
+                height: double.infinity,
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      isSearchPressed
+                          ? const Icon(
+                              UniconsLine.exclamation_triangle,
+                              size: 50,
+                              color: Colors.red,
+                            )
+                          : const SizedBox(),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        errorMessage,
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                    ])));
+  }
+
+  Future<void> handleInputDisease(String disease) async {
+    print('HANDLE INPUT DISEASE');
+    _searchResults = [];
+
+    if (isInListIgnoreCase(disease, diseases)) {
       setState(() {
-        _searchResults = [];
+        _isLoading = true;
       });
-    } catch (error) {
-      print("Failed to search foods: $error");
+      try {
+        List<dynamic> foods = await foodService.getFoodsByDisease(disease);
+        if (foods.isNotEmpty) {
+          print('FOODS IS NOT EMPTY');
+          setState(() {
+            _isLoading = false;
+            _searchResults = foods.cast<String>();
+          });
+        }
+      } catch (e) {
+        print(e);
+      } finally {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    } else {
       setState(() {
-        _searchResults = [];
+        errorMessage = 'No results found for your input.';
+        _isLoading = false;
       });
     }
   }
 
-  //   _initiateSearch() async {
-
-  //   setState(() {
-  //     _isLoading = true;
-  //     _hasSearched = true;
-  //   });
-
-  //   if(_searchEditingController.text.isNotEmpty){
-  //     DocumentSnapshot snapshot = await FirebaseFirestore.instance
-  //       .collection('Food Database')
-  //       .doc('2O1FKL6tcyXKC8v3GPIS')
-  //       .get();
-
-  //     if (snapshot.exists) {
-  //       Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
-  //       String diseaseName = _searchEditingController.text.toLowerCase();
-
-  //       if (data.containsKey(diseaseName)) {
-  //         setState(() {
-  //           _searchResults = List<String>.from(data[diseaseName]);
-  //           _isLoading = false;
-  //         });
-  //       } else {
-  //         setState(() {
-  //           _searchResults = [];
-  //           _isLoading = false;
-  //         });
-  //       } 
-  //     }
-  //   }
-  // }
-
-  Widget buildSearchResults(List<String> searchResults) {
-  if (searchResults.isEmpty) {
-    return Center(
-      child: Text('No results available...'),
-    );
-  } else {
-    return ListView.builder(
-      itemCount: searchResults.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          title: Text(searchResults[index]),
-        );
-      },
-    );
-  }
-}
-
-
-   @override
-   Widget build(BuildContext context) {
-     return Container(
-      child: Column(
-        children: [
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
-            color: const Color(0x9EA0A1FA),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: <Widget>[
+      Container(
+        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
+        decoration: const BoxDecoration(
+          color: Color(0xFFEEEAFD),
+        ),
+        child: Expanded(
+          child: TypeAheadField<String>(
+              controller: _searchEditingController,
+              constraints: const BoxConstraints(maxHeight: 300),
+              suggestionsCallback: (pattern) {
+                if (pattern.isNotEmpty) {
+                  return diseases
+                      .where((disease) =>
+                          disease.toLowerCase().contains(pattern.toLowerCase()))
+                      .toList();
+                } else {
+                  setState(() {
+                    _isLoading = false;
+                  });
+                  return <String>[];
+                }
+              },
+              builder: (context, controller, focusNode) => TextField(
+                    focusNode: focusNode,
                     controller: _searchEditingController,
-                    // onChanged: (textEntered){
-                    //   setState(() {
-                    //     diseaseText = textEntered;
-                    //   });
-                    //   initSearchDisease(textEntered);
-                    // },
+                    onChanged: (textEntered) {
+                      setState(() {
+                        errorMessage = ' ';
+                        userInput = textEntered;
+                      });
+                    },
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Theme.of(context).primaryColor,
                     ),
                     decoration: InputDecoration(
                       hintText: "Search diseases for food recommendations...",
-                      hintStyle: TextStyle(
+                      hintStyle: const TextStyle(
                         color: Colors.grey,
                         fontSize: 14,
                       ),
                       border: InputBorder.none,
                       suffixIcon: IconButton(
-                        icon: const Icon(UniconsLine.search, color: Colors.white),
-                        onPressed: () {
-                          //Provider.of(context, listen: false);
-                          _searchFoods(_searchEditingController.text.trim());
-                        }
-                       
-                          //initSearchDisease(diseaseText);
-                      ),
+                          icon: Icon(UniconsLine.search,
+                              color: Theme.of(context).primaryColor),
+                          onPressed: () {
+                            FocusScope.of(context).unfocus();
+                            String disease =
+                                _searchEditingController.text.trim();
+                            setState(() {
+                              isSearchPressed = true;
+                            });
+                            if (disease.isNotEmpty) {
+                              print('TYPE: ${disease}');
+                              print('BEFORE CALL HANDLE INPUT DISEASE');
+                              setState(() {
+                                userInput = disease;
+                              });
+                              handleInputDisease(disease);
+                              _searchEditingController.clear();
+                            } else {
+                              setState(() {
+                                userInput = '';
+                              });
+                              showInvalidMessage(context);
+                            }
+                          }),
                     ),
+                    onSubmitted: (disease) {
+                      FocusScope.of(context).unfocus();
+                      String disease = _searchEditingController.text.trim();
+                      setState(() {
+                        isSearchPressed = true;
+                      });
+                      if (disease.isNotEmpty) {
+                        print('TYPE: ${disease}');
+                        setState(() {
+                          userInput = disease;
+                        });
+                        handleInputDisease(disease);
+                        _searchEditingController.clear();
+                      } else {
+                        setState(() {
+                          userInput = '';
+                        });
+                        showInvalidMessage(context);
+                      }
+                    },
                   ),
-                ),
-
-              ],
-            ),
-          ),
-          _isLoading ? Padding(
-            padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
-            child: Center(child: CircularProgressIndicator()),
-          ) : buildSearchResults(_searchResults),
-        ]
+              onSelected: (diseaseName) {
+                _searchEditingController.text = diseaseName.trim();
+                _searchEditingController.selection = TextSelection.fromPosition(
+                  TextPosition(offset: _searchEditingController.text.length),
+                );
+              },
+              itemBuilder: (context, diseaseName) {
+                return ListTile(
+                    title: Text(
+                  diseaseName,
+                  softWrap: true,
+                  style: const TextStyle(
+                    fontSize: 15,
+                  ),
+                ));
+              },
+              hideOnEmpty: false,
+              emptyBuilder: (context) {
+                if (_searchEditingController.text.isNotEmpty) {
+                  return Container(
+                      padding: EdgeInsets.all(10),
+                      child: const Text(
+                        'No Items Found!',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w300,
+                          fontSize: 15,
+                        ),
+                      ));
+                }
+                return const SizedBox();
+              }),
+        ),
       ),
-    );
+      const SizedBox(height: 10),
+      isSearchPressed ? Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text('Show results:'),
+          const SizedBox(
+            width: 10,
+          ),
+          InkWell(
+              child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            alignment: Alignment.centerLeft,
+            decoration: BoxDecoration(
+              color: const Color(0xFFEEEAFD),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            height: 35,
+            child: Text(
+              userInput,
+            ),
+          )),
+        ],
+      ): const SizedBox(),
+      const SizedBox(height: 5),
+      _isLoading
+          ? Padding(
+              padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
+              child: Center(
+                  child: Icon(UniconsLine.spinner_alt,
+                      color: Theme.of(context).primaryColor, size: 30.0)),
+            )
+          : buildSearchResults(_searchResults),
+    ]);
   }
 }

@@ -21,41 +21,41 @@ class NavigationItem {
   static List<NavigationItem> get items => [
         // 0
         NavigationItem(
-            page: Home(), icon: Icon(UniconsLine.home), title: 'Home'),
+            page: Home(), icon: Icon(UniconsLine.home), title: 'HOME'),
         // 1
         NavigationItem(
             page: SearchPage(),
             icon: Icon(UniconsLine.search),
-            title: 'Food Search'),
+            title: 'FOOD SEARCH'),
         // 2
         NavigationItem(
             page: Notifications(),
             icon: Icon(UniconsLine.bell),
-            title: 'Notifications'),
+            title: 'NOTIFICATIONS'),
         // 3
         NavigationItem(
             page: Profile(),
             icon: Icon(UniconsLine.user_circle),
-            title: 'Profile'),
+            title: 'PROFILE'),
         // 4
         NavigationItem(
             page: MedicationSchedule(),
             icon: Icon(UniconsLine.schedule),
-            title: 'Medication Schedule'),
+            title: 'MEDICATION SCHEDULE'),
         // 5
         NavigationItem(
             page: ChatBot(),
             icon: Icon(UniconsLine.comment_alt),
-            title: 'Chat bot'),
+            title: 'CHATBOT'),
         // 6
         NavigationItem(
             page: Favorite(),
             icon: Icon(UniconsLine.heart),
-            title: 'Favorites'),
+            title: 'FAVORITES'),
         // 7
         NavigationItem(
             page: SettingsScreen(),
             icon: Icon(UniconsLine.setting),
-            title: 'Setting'),
+            title: 'SETTINGS'),
       ];
 }

@@ -13,7 +13,7 @@ class FirebaseUserRepository implements UserRepository {
   : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
 
   final FirebaseAuth _firebaseAuth;
-  final usersCollection = FirebaseFirestore.instance.collection('registered users');
+  final usersCollection = FirebaseFirestore.instance.collection('users');
 
   //stream of [MyUser] emits the current user when the authentication state changes
   @override
@@ -56,6 +56,7 @@ class FirebaseUserRepository implements UserRepository {
 		  rethrow;
     }
   }
+
   //implement log out
   @override
   Future<void> logOut() async {
@@ -66,6 +67,7 @@ class FirebaseUserRepository implements UserRepository {
 			rethrow;
     }
   }
+  
   //implement reset password
   @override
   Future<void> resetPassword(String email) async {
@@ -87,6 +89,7 @@ class FirebaseUserRepository implements UserRepository {
 			rethrow;
     }
   }
+  
   // @override
   // Future<void> updateUserData(MyUserModel user, MealModel meal) async {
   //   final userDocRef =
@@ -109,6 +112,7 @@ class FirebaseUserRepository implements UserRepository {
   //     }
   //   });
   // }
+
   //implement getMyUser: get user id and doc and return my user from entity using val from map 
   @override
   Future<MyUserModel> getMyUser(String myUserEmail) async {

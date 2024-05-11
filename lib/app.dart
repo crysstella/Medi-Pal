@@ -4,6 +4,9 @@ import 'package:medipal/app_view.dart';
 import 'blocs/authentication_bloc/authentication_bloc.dart';
 import 'package:user_repository/user_repository.dart';
 
+import 'blocs/theme_cubit/theme_cubit.dart';
+
+
 // class MyApp extends StatefulWidget {
 //   final ChangeThemeBloc changeThemeBloc;
 //   final UserRepository _userRepository;
@@ -96,9 +99,15 @@ class MyApp extends StatelessWidget{
 					create: (_) => AuthenticationBloc(  //create provider 
 						myUserRepository: userRepository
 					)
-				)
-			], 
-			child: const MyAppView()
+				) 
+			],
+      child: BlocProvider(
+        create: (_) => ThemeCubit()..setInitialTheme(),
+        
+        child: const MyAppView(),
+      ), 
+        
     );
   }
 }
+

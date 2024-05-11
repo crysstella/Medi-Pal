@@ -1,35 +1,68 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../sharedPref.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Favorite extends StatefulWidget {
-  // Initialize the strings for userDisease and foodId to call the database
-  final String userDisease;
   final String foodID;
+  late Future<String?> email;
+  String? userEmail;
 
-  const Favorite({
-    super.key,
-    //set the disease to diabetes for now
-    this.userDisease = "Diabetes",
-    // Set the default document id
+  Favorite({
+    Key? key,
+    this.userEmail,
     this.foodID = "2O1FKL6tcyXKC8v3GPIS",
-  });
+  }) : super(key: key);
 
   @override
   State<Favorite> createState() => _FavoriteState();
 }
 
 class _FavoriteState extends State<Favorite> {
-  //create empty array
+  late String _userDisease;
   List<String> favoriteFoods = [];
-  //called in dropdown Menu
   String? _selectedFood;
 
-  //get document and information from Firebase
+  @override
+  void initState() {
+    super.initState();
+    _fetchEmailAndDisease();
+    _loadFavoriteFoods(); // Load favorite foods when widget initializes
+  }
+
+  Future<void> _fetchEmailAndDisease() async {
+    try {
+      final email = await getEmail();
+      setState(() {
+        widget.userEmail = email;
+      });
+      final disease = await _getUserDisease(widget.userEmail);
+      setState(() {
+        _userDisease = disease;
+      });
+    } catch (error) {
+      print("Failed to fetch email and disease: $error");
+    }
+  }
+
+  Future<void> _loadFavoriteFoods() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final savedFoods = prefs.getStringList('favoriteFoods');
+      if (savedFoods != null) {
+        setState(() {
+          favoriteFoods = savedFoods;
+        });
+      }
+    } catch (error) {
+      print("Failed to load favorite foods: $error");
+    }
+  }
+
   Future<Map<String, dynamic>> _getAllFoodInfo(String foodID) async {
     var collection = FirebaseFirestore.instance.collection("Food Database");
     var document = await collection.doc(foodID).get();
 
-    // if document is found and not null
     if (document.exists) {
       return document.data() as Map<String, dynamic>;
     } else {
@@ -37,96 +70,115 @@ class _FavoriteState extends State<Favorite> {
     }
   }
 
-  //save array to firestore favorite colllection
-  Future<void> _saveFavoriteFoodsToFirestore(List<String> foods) async {
-    try {
-      var collection = FirebaseFirestore.instance.collection("favorite");
-      //adds the food to where that disease is
-      var querySnapshot = await collection
-          .where("userDisease", isEqualTo: widget.userDisease)
-          .get();
+  Future<String> _getUserDisease(String? userEmail) async {
+    if (userEmail == null) {
+      throw Exception("User email is null");
+    }
 
-      if (querySnapshot.docs.isNotEmpty) {
-        // gets the first document in the list
-        var doc = querySnapshot.docs.first;
-        // updates the array with food in the document
-        await doc.reference.update({"favoriteFoods": foods});
+    var collection = FirebaseFirestore.instance.collection("users");
+    var document = await collection.doc(userEmail).get();
+
+    if (document.exists) {
+      String? userDisease = document.data()?['userDisease'] as String?;
+      return userDisease ?? '';
+    } else {
+      throw Exception("User data not found for $userEmail");
+    }
+  }
+
+ Future<void> _saveFavoriteFoodsToFirestore(List<String> foods) async {
+  try {
+    var collection = FirebaseFirestore.instance.collection("users");
+    // Check if userEmail is available
+    if (widget.userEmail != null) {
+      // Use userEmail as the document ID
+      var docRef = collection.doc(widget.userEmail);
+      // Fetch the document snapshot
+      var docSnapshot = await docRef.get();
+      
+      if (docSnapshot.exists) {
+        // If document exists, update favorite foods
+        await docRef.update({"favoriteFoods": foods});
       } else {
-        await collection.add({
-          "userDisease": widget.userDisease,
+        // If document doesn't exist, create it with userEmail as document ID
+        await docRef.set({
+          "userEmail": widget.userEmail,
           "favoriteFoods": foods,
           "timestamp": DateTime.now(),
         });
       }
-    } catch (error) {
-      print("Failed to save favorite foods: $error");
+    } else {
+      throw Exception("User email is null");
     }
-  }
 
-  @override
+    // Save favorite foods to SharedPreferences
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setStringList('favoriteFoods', foods);
+  } catch (error) {
+    print("Failed to save favorite foods: $error");
+  }
+}
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Favorites"),
+        title: Text("Favorites"),
       ),
-      //collects information from food database
       body: FutureBuilder<Map<String, dynamic>>(
         future: _getAllFoodInfo(widget.foodID),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
+            return Center(
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.hasData) {
             var foodData = snapshot.data!;
-            //find if the key of userDisease is in the food information database
-            if (!foodData.containsKey(widget.userDisease)) {
+            if (!foodData.containsKey(_userDisease)) {
               return Center(
-                child: Text("Data not available for ${widget.userDisease}"),
+                child: Text("Data not available for $_userDisease"),
               );
             }
 
-            //gets the array matching the diseases int the food information db
-            var foodInfo = foodData[widget.userDisease] as List<dynamic>;
+            var foodInfo = foodData[_userDisease] as List<dynamic>;
 
             return Column(
-              crossAxisAlignment: CrossAxisAlignment.start, // Added for alignment
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // text added for instruction
-                const Text(
+                Text(
                   "Please add your favorite food by using the dropdown menu below: ",
                   style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic, color: Colors.black),
                 ),
-                //button to click on the dropdown menu
                 DropdownButton<String>(
                   value: _selectedFood,
-                  //when clicked adds food to selectedFood
                   onChanged: (String? newValue) {
                     setState(() {
                       _selectedFood = newValue;
                     });
-                    if (_selectedFood != null && !favoriteFoods.contains(_selectedFood!)) {
-                      setState(() {
-                        //adds food to array
-                        favoriteFoods.add(_selectedFood!);
-                        //call the save function to add into database
-                        _saveFavoriteFoodsToFirestore(favoriteFoods);
-                      });
+                    if (_selectedFood != null) {
+                      if (favoriteFoods.contains(_selectedFood!)) {
+                        // If the selected food is already in favoriteFoods, remove it
+                        setState(() {
+                          favoriteFoods.remove(_selectedFood!);
+                        });
+                      } else {
+                        // Otherwise, add it to favoriteFoods
+                        setState(() {
+                          favoriteFoods.add(_selectedFood!);
+                        });
+                      }
+                      // Save the updated favoriteFoods list
+                      _saveFavoriteFoodsToFirestore(favoriteFoods);
                     }
                   },
-                  //create dropdown menu from foodInfo
                   items: foodInfo.map<DropdownMenuItem<String>>((dynamic food) {
                     return DropdownMenuItem<String>(
-                      //holds currently selected food
                       value: food.toString(),
-                      // display food text for dropdown
-                      child: Text("• $food"), // Added bullet point
+                      child: Text("• " + food.toString()),
                     );
-                    //convert the map to an array
                   }).toList(),
                 ),
-                const SizedBox(height: 20),
-                const Text(
+                SizedBox(height: 20),
+                Text(
                   "Your Favorite Foods:",
                   style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic, color: Colors.black),
                 ),
@@ -135,16 +187,16 @@ class _FavoriteState extends State<Favorite> {
                     itemCount: favoriteFoods.length,
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: const EdgeInsets.all(10), // Adjust padding as needed
+                        padding: EdgeInsets.all(10),
                         child: Container(
-                          padding: const EdgeInsets.all(10),
+                          padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            color: const Color.fromARGB(255, 238, 238, 238), // Customize the color as needed
+                            color: Color.fromARGB(255, 238, 238, 238),
                           ),
                           child: Text(
                             favoriteFoods[index],
-                            style: const TextStyle(fontSize: 16), // Adjust font size as needed
+                            style: TextStyle(fontSize: 16),
                           ),
                         ),
                       );
@@ -154,7 +206,7 @@ class _FavoriteState extends State<Favorite> {
               ],
             );
           } else {
-            return const Center(
+            return Center(
               child: Text("Error"),
             );
           }
