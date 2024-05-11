@@ -1,9 +1,11 @@
 import 'dart:convert';
-import 'package:uuid/uuid.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
-class Event{
-  String id;
+class Event extends Equatable{
+  final int hashCode;
+  final String id;
   final String medicine;
   final String dose;
   final DateTime date;
@@ -16,11 +18,15 @@ class Event{
     required this.date,
     required this.time,
     String? id,
-  }) : id = id ?? Uuid().v4();
+    int? hashCode
+  }) : id = id ?? Uuid().v4(),
+        this.hashCode = hashCode ?? Object.hash(medicine, dose, date, time);
 
   String getID() => id;
 
   String getMedicine() => medicine;
+
+  int getHash() => hashCode;
 
   String getTime(context){
     return time.format(context);
@@ -33,6 +39,7 @@ class Event{
       date.day,
       time.hour,
       time.minute,
+      date.second
     );
   }
 
@@ -61,6 +68,9 @@ class Event{
           minute: int.parse(data['time'].split(':')[1])),
     );
   }
+
+  @override
+  List<Object?> get props => [id, medicine, dose, date, time];
 
 
 }

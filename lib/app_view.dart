@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medipal/blocs/theme_cubit/theme_cubit.dart';
 import 'package:medipal/components/navigation_service/navigationService.dart';
+import 'package:medipal/pages/Notification/localNotification.dart';
 import 'package:medipal/pages/Start/launch.dart';
 import 'package:medipal/pages/Start/startApp.dart';
 import 'blocs/authentication_bloc/authentication_bloc.dart';
 import 'blocs/my_user_bloc/bloc/my_user_bloc.dart';
 import 'blocs/log_in_bloc/log_in_bloc.dart';
+import 'blocs/notification_bloc/notification_bloc.dart';
 
 import 'blocs/theme_cubit/theme_state.dart';
 
@@ -22,7 +24,7 @@ class MyAppView extends StatelessWidget{
       create: (context) => ThemeCubit(),
       child: BlocBuilder<ThemeCubit, ThemeState>(
         builder: (context, state) {
-  
+
 
       return MaterialApp(
 		  navigatorKey: navigationService.navigatorKey,
@@ -54,9 +56,10 @@ class MyAppView extends StatelessWidget{
 											myUserEmail: context.read<AuthenticationBloc>().state.user!.uid
 										)),
 									),
-
+									BlocProvider(
+										create: (context) => NotificationBloc()
+									),
 								],
-
 							child: const StartApp(),
 						);
 					} else {
@@ -65,14 +68,5 @@ class MyAppView extends StatelessWidget{
 				}
 			),
     );
-
-
-
-        }),
-    );
-
-
-
-
   }
 }

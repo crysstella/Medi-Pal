@@ -1,14 +1,17 @@
+import 'package:bloc_notification/bloc_notification.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:intl/intl.dart';
 import 'package:medipal/pages/Schedule/dose.dart';
+import 'package:notification_repository/notification_repository.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:unicons/unicons.dart';
 import 'package:timezone/data/latest.dart' as tz;
+import '../../blocs/notification_bloc/notification_bloc.dart';
 import '../../firebase/services.dart';
 import '../Notification/localNotification.dart';
-import 'event.dart';
 
 class MedicationSchedule extends StatefulWidget {
   const MedicationSchedule({super.key});
@@ -96,8 +99,17 @@ class _MedicationScheduleState extends State<MedicationSchedule>
     _selectedEvents.value = getEventsForDay(getNormalizedDate(_selectedDay!));
   }
 
+// Convert TimeOfDay to a comparable value (minutes from midnight)
+  int timeOfDayToMinutes(TimeOfDay time) {
+    return time.hour * 60 + time.minute;
+  }
+
   List<Event> getEventsForDay(DateTime date) {
-    return events[getNormalizedDate(date)] ?? [];
+    List<Event> dayEvents = events[getNormalizedDate(date)] ?? [];
+    dayEvents.sort((a, b) =>
+        timeOfDayToMinutes(a.time).compareTo(timeOfDayToMinutes(b.time)));
+
+    return dayEvents;
   }
 
   String? validateName() {
@@ -114,9 +126,9 @@ class _MedicationScheduleState extends State<MedicationSchedule>
   }
 
   void validateTime(DateTime time) {
-    if (time.isBefore(DateTime.now())) {
+    if (time.isBefore(DateTime.now().add(Duration(minutes: 1)))) {
       setState(() {
-        errorTimeNotifier.value = 'Selected time cannot be in the past.';
+        errorTimeNotifier.value = 'Selected time cannot be in the past or too close to now.';
       });
     } else {
       setState(() {
@@ -146,6 +158,18 @@ class _MedicationScheduleState extends State<MedicationSchedule>
     } else {
       //print(events[getNormalizedDate(date)]?.length);
       events[getNormalizedDate(newEvent.date)] = [newEvent];
+    }
+  }
+
+  void removeEventFromSchedule(Event targetEvent) {
+    // Iterate over each date and its associated events
+    for (DateTime date in events.keys) {
+      // Look for the event in the list of events for this date
+      events[date]?.removeWhere((event) => event.id == targetEvent.id);
+      // If no events are left for this date, also remove the date key
+      if (events[date]?.isEmpty ?? true) {
+        events.remove(date);
+      }
     }
   }
 
@@ -338,8 +362,6 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                       } else {
                         // Validate dose.
                         validateDose(currentDoseForm);
-                        // Clear fields
-                        medicineController.clear();
 
                         return;
                       }
@@ -403,6 +425,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
     return Scaffold(
       body: content(),
       floatingActionButton: FloatingActionButton(
+          mini: true,
           onPressed: () {
             addReminder(context, 'New Reminder', 'Add', -1);
           },
@@ -411,255 +434,278 @@ class _MedicationScheduleState extends State<MedicationSchedule>
   }
 
   Widget content() {
-    return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          TableCalendar(
-            formatAnimationDuration: const Duration(milliseconds: 275),
-            formatAnimationCurve: Curves.easeInOutSine,
-            locale: "en_US",
-            daysOfWeekHeight: 30,
-            headerStyle: const HeaderStyle(
-              formatButtonVisible: false,
-              leftChevronVisible: false,
-              rightChevronVisible: false,
-              headerMargin: EdgeInsets.only(left: 17),
-            ),
-            calendarBuilders:
-                CalendarBuilders(markerBuilder: (context, date, events) {
-              if (events.isNotEmpty) {
-                return Positioned(
-                    bottom: 1,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      width: 6.0,
-                      height: 6.0,
-                    ));
+    return BlocNotificationListener<NotificationBloc, NotificationState,
+            MyNotifications>(
+        notificationListener: (context, notification) {
+          if (notification is UpdateNotificationPageIndex) {
+            final state = BlocProvider.of<NotificationBloc>(context).state;
+            print('THIS IS BLOC FROM MED_SCHEDULE');
+            setState(() {
+              for (var event in state.events) {
+                removeEventFromSchedule(event);
               }
-            }, singleMarkerBuilder: (context, date, event) {
-              return Container(
-                alignment: Alignment.center,
-                height: 5.0,
-                width: 5.0,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Theme.of(context).primaryColor,
+            });
+          }
+        },
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              TableCalendar(
+                formatAnimationDuration: const Duration(milliseconds: 275),
+                formatAnimationCurve: Curves.easeInOutSine,
+                locale: "en_US",
+                daysOfWeekHeight: 30,
+                headerStyle: const HeaderStyle(
+                  formatButtonVisible: false,
+                  leftChevronVisible: false,
+                  rightChevronVisible: false,
+                  headerMargin: EdgeInsets.only(left: 17),
                 ),
-              );
-            }, selectedBuilder: (context, date, events) {
-              if (!isSameDay(date, today)) {
-                return Container(
-                    margin: const EdgeInsets.all(4.0),
+                calendarBuilders:
+                    CalendarBuilders(markerBuilder: (context, date, events) {
+                  if (events.isNotEmpty) {
+                    return Positioned(
+                        bottom: 1,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          width: 6.0,
+                          height: 6.0,
+                        ));
+                  }
+                }, singleMarkerBuilder: (context, date, event) {
+                  return Container(
                     alignment: Alignment.center,
+                    height: 5.0,
+                    width: 5.0,
                     decoration: BoxDecoration(
-                      border: Border.all(
-                          color: Theme.of(context).primaryColor,
-                          width: 2), // Custom color for the selected day
-                      shape: BoxShape
-                          .circle, // Circular shape for the selected day
+                      shape: BoxShape.circle,
+                      color: Theme.of(context).primaryColor,
                     ),
-                    child: Center(
-                      child: Text(
-                        date.day.toString(),
-                        style: const TextStyle(color: Colors.black),
-                      ),
-                    ));
-              }
-            }, headerTitleBuilder: (context, focusedDay) {
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    "${focusedDay.year}",
-                    style:
-                        const TextStyle(fontSize: 13.0, color: Colors.black45),
-                  ),
-                  Row(
+                  );
+                }, selectedBuilder: (context, date, events) {
+                  if (!isSameDay(date, today)) {
+                    return Container(
+                        margin: const EdgeInsets.all(4.0),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                              color: Theme.of(context).primaryColor,
+                              width: 2), // Custom color for the selected day
+                          shape: BoxShape
+                              .circle, // Circular shape for the selected day
+                        ),
+                        child: Center(
+                          child: Text(
+                            date.day.toString(),
+                            style: const TextStyle(color: Colors.black),
+                          ),
+                        ));
+                  }
+                }, headerTitleBuilder: (context, focusedDay) {
+                  return Column(
                     mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
                       Text(
-                        DateFormat.MMMM().format(focusedDay),
+                        "${focusedDay.year}",
                         style: const TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                            height: 0.0),
+                            fontSize: 13.0, color: Colors.black45),
                       ),
-                      IconButton(
-                        onPressed: formatChanged,
-                        icon: _buttonDropDown,
-                      ),
-                      const Spacer(),
-                      IconButton(
-                        icon: const Icon(UniconsLine.focus),
-                        onPressed: toToday,
-                      ),
-                      /* IconButton(
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            DateFormat.MMMM().format(focusedDay),
+                            style: const TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                                height: 0.0),
+                          ),
+                          IconButton(
+                            onPressed: formatChanged,
+                            icon: _buttonDropDown,
+                          ),
+                          const Spacer(),
+                          IconButton(
+                            icon: const Icon(UniconsLine.focus),
+                            onPressed: toToday,
+                          ),
+                          /* IconButton(
                         icon: const Icon(UniconsLine.edit),
                         onPressed: () {
                           print('Edit button tapped');
                         },
                       ),*/
+                        ],
+                      ),
                     ],
+                  );
+                }),
+                daysOfWeekStyle: const DaysOfWeekStyle(
+                    decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      color: Colors.black12, // The color of the border
+                      width: 1.0, // The width of the border
+                    ),
                   ),
-                ],
-              );
-            }),
-            daysOfWeekStyle: const DaysOfWeekStyle(
-                decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: Colors.black12, // The color of the border
-                  width: 1.0, // The width of the border
-                ),
+                )),
+                availableGestures: AvailableGestures.all,
+                availableCalendarFormats: const {
+                  CalendarFormat.month: 'Month',
+                  CalendarFormat.week: 'Week'
+                },
+                calendarFormat: _format,
+                onFormatChanged: (format) => (format) {
+                  if (_format != format) {
+                    setState(() {
+                      _format = format;
+                    });
+                  }
+                },
+                onPageChanged: (focusedDay) {
+                  _focusedDay = focusedDay;
+                },
+                rowHeight: 50,
+                focusedDay: _focusedDay,
+                firstDay: DateTime.utc(2000),
+                lastDay: DateTime.utc(2050),
+                selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+                onDaySelected: daySelected,
+                eventLoader: getEventsForDay,
               ),
-            )),
-            availableGestures: AvailableGestures.all,
-            availableCalendarFormats: const {
-              CalendarFormat.month: 'Month',
-              CalendarFormat.week: 'Week'
-            },
-            calendarFormat: _format,
-            onFormatChanged: (format) => (format) {
-              if (_format != format) {
-                setState(() {
-                  _format = format;
-                });
-              }
-            },
-            onPageChanged: (focusedDay) {
-              _focusedDay = focusedDay;
-            },
-            rowHeight: 50,
-            focusedDay: _focusedDay,
-            firstDay: DateTime.utc(2000),
-            lastDay: DateTime.utc(2050),
-            selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
-            onDaySelected: daySelected,
-            eventLoader: getEventsForDay,
-          ),
-          const SizedBox(height: 8.0),
-          Expanded(
-            child: ValueListenableBuilder(
-                valueListenable: _selectedEvents,
-                builder: (context, value, _) {
-                  return ListView.builder(
-                      itemCount: value.length,
-                      itemBuilder: (context, index) {
-                        String id = value[index].getID();
-                        DateTime date = getNormalizedDate(value[index].date);
-                        return Dismissible(
-                            key: Key(id),
-                            confirmDismiss: (direction) async {
-                              // Show confirmation dialog
-                              return await showDialog<bool>(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        title: const Text('Confirm Delete',
-                                            style: TextStyle(fontSize: 18.0)),
-                                        content: RichText(
-                                          text: TextSpan(
-                                            style: const TextStyle(
-                                                color: Colors
-                                                    .black), // Default text style
-                                            children: [
-                                              const TextSpan(
-                                                  text:
-                                                      "Are you sure you want to delete the reminder for "),
-                                              TextSpan(
-                                                text: value[index].medicine,
+              const SizedBox(height: 8.0),
+              Expanded(
+                child: ValueListenableBuilder(
+                    valueListenable: _selectedEvents,
+                    builder: (context, value, _) {
+                      return ListView.builder(
+                          itemCount: value.length,
+                          itemBuilder: (context, index) {
+                            String id = value[index].getID();
+                            DateTime date =
+                                getNormalizedDate(value[index].date);
+                            return Dismissible(
+                                key: Key(id),
+                                confirmDismiss: (direction) async {
+                                  // Show confirmation dialog
+                                  return await showDialog<bool>(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: const Text('Confirm Delete',
+                                                style:
+                                                    TextStyle(fontSize: 18.0)),
+                                            content: RichText(
+                                              text: TextSpan(
                                                 style: const TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                                                    color: Colors
+                                                        .black), // Default text style
+                                                children: [
+                                                  const TextSpan(
+                                                      text:
+                                                          "Are you sure you want to delete the reminder for "),
+                                                  TextSpan(
+                                                    text: value[index].medicine,
+                                                    style: const TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  const TextSpan(text: "?"),
+                                                ],
                                               ),
-                                              const TextSpan(text: "?"),
+                                            ),
+                                            actions: <Widget>[
+                                              ElevatedButton(
+                                                onPressed: () =>
+                                                    Navigator.of(context)
+                                                        .pop(false),
+                                                child: const Text('Cancel'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () =>
+                                                    Navigator.of(context)
+                                                        .pop(true),
+                                                child: const Text('Delete'),
+                                              ),
                                             ],
+                                          );
+                                        },
+                                      ) ??
+                                      false; // Return false if the user cancels
+                                },
+                                onDismissed: (direction) {
+                                  Event removeEvent = value[index];
+                                  deleteRedminer(context, date, removeEvent);
+
+                                  // Cancel the reminder in notification
+                                  LocalNotifications.cancel(
+                                      removeEvent.getHash());
+                                  // Show deleted message
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
+                                    backgroundColor:
+                                        Theme.of(context).primaryColor,
+                                    content: Text(
+                                        'Deleted ${removeEvent.medicine} reminder.'),
+                                    duration: const Duration(seconds: 2),
+                                  ));
+
+                                  // Test if the reminder is removed.
+                                  print(
+                                      'SELECTED EVENT = ${_selectedEvents.value.length}');
+                                  print(
+                                      'EVENT AFTER DELETE IN A DAY = ${events[date]?.length}');
+                                  print(
+                                      'EVENTS LIST AFTER DELETE = ${events.length}');
+                                },
+                                background: Card(
+                                    color: Colors.red[100],
+                                    child: const Icon(UniconsLine.trash_alt,
+                                        color: Colors.white, size: 35)),
+                                dismissThresholds: const {
+                                  DismissDirection.endToStart: 0.1
+                                },
+                                child: Container(
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 12, vertical: 4),
+                                    child: Card(
+                                      margin: const EdgeInsets.all(5.0),
+                                      child: ListTile(
+                                        onTap: () {
+                                          editReminder(
+                                              context, index, value[index]);
+                                          print('dose = ${value[index].dose}');
+                                        },
+                                        leading: Icon(
+                                            MedicineFormHelper.getIconByDose(
+                                                value[index].dose),
+                                            size: 30.0),
+                                        title: Text(
+                                          '${value[index].getMedicine()}',
+                                          style: const TextStyle(
+                                            fontSize: 16.0,
+                                            height:
+                                                1.5, // Adjust line spacing to preference
                                           ),
                                         ),
-                                        actions: <Widget>[
-                                          ElevatedButton(
-                                            onPressed: () =>
-                                                Navigator.of(context)
-                                                    .pop(false),
-                                            child: const Text('Cancel'),
+                                        trailing: Text(
+                                          '${value[index].getTime(context)}',
+                                          style: const TextStyle(
+                                            fontSize:
+                                                14.0, // Adjust line spacing to preference
                                           ),
-                                          TextButton(
-                                            onPressed: () =>
-                                                Navigator.of(context).pop(true),
-                                            child: const Text('Delete'),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  ) ??
-                                  false; // Return false if the user cancels
-                            },
-                            onDismissed: (direction) {
-                              Event removeEvent = value[index];
-                              deleteRedminer(context, date, removeEvent);
-
-                              // Cancel the reminder in notification
-                              LocalNotifications.cancel(
-                                  removeEvent.getID().hashCode);
-
-                              // Show deleted message
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(SnackBar(
-                                content: Text(
-                                    'Deleted ${removeEvent.medicine} reminder.'),
-                                duration: const Duration(seconds: 2),
-                              ));
-
-                              // Test if the reminder is removed.
-                              print(
-                                  'SELECTED EVENT = ${_selectedEvents.value.length}');
-                              print(
-                                  'EVENT AFTER DELETE IN A DAY = ${events[date]?.length}');
-                              print(
-                                  'EVENTS LIST AFTER DELETE = ${events.length}');
-                            },
-                            background: Card(color: Colors.red[100]),
-                            child: Container(
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 12, vertical: 4),
-                                child: Card(
-                                  margin: const EdgeInsets.all(5.0),
-                                  child: ListTile(
-                                    onTap: () {
-                                      editReminder(
-                                          context, index, value[index]);
-                                      print('dose = ${value[index].dose}');
-                                    },
-                                    leading: Icon(
-                                        MedicineFormHelper.getIconByDose(
-                                            value[index].dose),
-                                        size: 30.0),
-                                    title: Text(
-                                      '${value[index].getMedicine()}',
-                                      style: const TextStyle(
-                                        fontSize: 16.0,
-                                        height:
-                                            1.5, // Adjust line spacing to preference
+                                        ),
                                       ),
-                                    ),
-                                    trailing: Text(
-                                      '${value[index].getTime(context)}',
-                                      style: const TextStyle(
-                                        fontSize:
-                                            14.0, // Adjust line spacing to preference
-                                      ),
-                                    ),
-                                  ),
-                                )));
-                      });
-                }),
-          )
-        ]);
+                                    )));
+                          });
+                    }),
+              )
+            ]));
   }
 }

@@ -9,7 +9,6 @@ import 'app.dart';
 
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  await LocalNotifications.init();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

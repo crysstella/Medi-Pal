@@ -1,11 +1,13 @@
+import 'package:bloc_notification/bloc_notification.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:unicons/unicons.dart';
-import '../Schedule/event.dart';
-import 'localNotification.dart';
-import 'notification_details.dart';
+import '../../blocs/notification_bloc/notification_bloc.dart';
+
 
 class Notifications extends StatefulWidget {
+  // Notifications({Key? key, required this.notificationBloc}) : super(key: key);
+
   const Notifications({super.key});
 
   @override
@@ -13,53 +15,65 @@ class Notifications extends StatefulWidget {
 }
 
 class NotificationsState extends State<Notifications> {
-  static List<Event> events = [];
-
   @override
   void initState() {
     super.initState();
-    /*LocalNotifications.notificationStreamController.stream
-        .listen((String event) {
-      handleNotification(event);
-    });*/
-    //listenToNotification();
-    //notificationReceived();
   }
-
-  // Handle notification and adding event to page
-  void handleNotification(String event) {
-    setState(() {
-      Event _event = Event.deserialize(event);
-      events.add(_event);
-      print('length = ${events.length}');
-    });
-  }
-
-  /*// Listen to any notification
-  notificationReceived(){
-    LocalNotifications.onNotificationStream.stream.listen((String? event) {
-      if (event != null){
-        handleNotification(event);
-      }
-    });
-  }*/
-
-  // Listen to any notification clicked or not
-  /*listenToNotification() {
-    LocalNotifications.onClickNotification.stream.listen((String event) {
-      handleNotification(event);
-    });
-  }*/
-
-  /* @override
-  void dispose(){
-    LocalNotifications.onNotificationStream.close();
-  }*/
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.separated(
+        body: BlocNotificationListener<NotificationBloc, NotificationState,
+            MyNotifications>(
+      notificationListener: (context, notification) {
+        if (notification is UpdateNotificationPageIndex) {
+          // When page update
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              backgroundColor: Theme.of(context).primaryColor,
+              content: Text("Notification page updated!")));
+        }
+      },
+      child: BlocBuilder<NotificationBloc, NotificationState>(
+        builder: (context, state) {
+          return ListView.builder(
+            itemCount: state.events.length,
+            itemBuilder: (context, index) {
+              final event = state.events[index];
+              print('THIS IS IN BLOCBUILDER NOTIFICATION PAGE');
+              print(event);
+              return Card(
+                margin: EdgeInsets.all(8.0),
+                child: ListTile(
+                  title: Text('Medicine Reminder at ${event.getTime(context)}'),
+                  subtitle: Text("It's time to take ${event.medicine}."),
+                  trailing: const Icon(UniconsLine.angle_right),
+                  onTap: () {
+                    // Handle the tap
+                  },
+                ),
+              );
+            },
+          );
+        },
+      ),
+    ));
+  }
+  /*body: ValueListenableBuilder<List<Event>>(
+        valueListenable: notifiedEvents,
+        builder: (context, events, child) {
+          return ListView.builder(
+            itemCount: events.length,
+            itemBuilder: (context, index) {
+              Event event = events[index];
+              return ListTile(
+                title: Text('Reminder for ${event.medicine}'),
+                subtitle: Text('Scheduled at ${event.time.format(context)} on ${event.date}'),
+              );
+            },
+          );
+        },
+      ),*/
+  /*ListView.separated(
         padding: const EdgeInsets.all(8),
         itemCount: events.length,
         itemBuilder: (context, index) {
@@ -92,8 +106,8 @@ class NotificationsState extends State<Notifications> {
               ));
         },
         separatorBuilder: (context, index) => const SizedBox(),
-      ),
-      /*body: ListView.builder(
+      ),*/
+  /*body: ListView.builder(
         itemCount: events.length,
         itemBuilder: (context, index) {
           Event event = events[index];
@@ -110,6 +124,4 @@ class NotificationsState extends State<Notifications> {
           );
         },
       ),*/
-    );
-  }
 }
