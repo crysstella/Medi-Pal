@@ -41,3 +41,4 @@ class _SearchPageState extends State<SearchPage> {
             body: const TabBarView(children: [/*SearchRecipe()*/ SearchRecipePage(), DiseaseSearch()])));
   }
 }
+
