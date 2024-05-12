@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.medipal.app-mergeDebugResources-14:/values-sw/values-sw.xml",
+            "outputFile": "com.example.medipal.app-mergeDebugResources-16:/values-sw/values-sw.xml",
             "map": [
                 {
                     "source": "C:\\Users\\tramb\\.gradle\\caches\\transforms-3\\4e7f9690383d26d26133e30bd361248d\\transformed\\core-1.6.0\\res\\values-sw\\values-sw.xml",

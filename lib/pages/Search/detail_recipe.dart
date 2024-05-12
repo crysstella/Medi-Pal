@@ -6,8 +6,8 @@ import 'extend_detail.dart';
 
 
 class SearchRecipeDetail extends StatefulWidget {
-  final SearchRecipeModel recipeModel;
-  const SearchRecipeDetail({super.key, required this.recipeModel});
+  final SearchRecipeModel searchRecipeModel;
+  const SearchRecipeDetail({super.key, required this.searchRecipeModel});
 
   @override
   State<SearchRecipeDetail> createState() => _SearchRecipeDetailState();
@@ -79,7 +79,7 @@ class _SearchRecipeDetailState extends State<SearchRecipeDetail> {
                   height: 30,
                 ),
                 Text(
-                  widget.recipeModel.title,
+                  widget.searchRecipeModel.title,
                   style: textTheme.headlineSmall,
                 ),
                 const SizedBox(
@@ -94,7 +94,7 @@ class _SearchRecipeDetailState extends State<SearchRecipeDetail> {
                     const SizedBox(
                       width: 5,
                     ),
-                    Text(widget.recipeModel.kcal.toString()),
+                    Text(widget.searchRecipeModel.kcal.toString()),
                     const SizedBox(
                       width: 10,
                     ),
@@ -102,7 +102,7 @@ class _SearchRecipeDetailState extends State<SearchRecipeDetail> {
                     const SizedBox(
                       width: 5,
                     ),
-                    Text(widget.recipeModel.cookingTime.toString()),
+                    Text(widget.searchRecipeModel.cookingTime.toString()),
                     const SizedBox(
                       width: 25,
                     ),
@@ -118,7 +118,7 @@ class _SearchRecipeDetailState extends State<SearchRecipeDetail> {
                     const SizedBox(
                       width: 5,
                     ),
-                    Text("${widget.recipeModel.servings} Servings"),
+                    Text("${widget.searchRecipeModel.servings} Servings"),
                   ],
                 ),
                 const SizedBox(
@@ -159,9 +159,8 @@ class _SearchRecipeDetailState extends State<SearchRecipeDetail> {
                         Expanded(
                           child: TabBarView(
                             children: [
-                              SearchRecipeIngredients(searchRecipeModel: widget.recipeModel),
-                              SearchRecipeCooking(
-                                searchRecipeModel: widget.recipeModel,
+                              SearchRecipeIngredients(searchRecipeModel: widget.searchRecipeModel),
+                              SearchRecipeCooking(searchRecipeModel: widget.searchRecipeModel,
                               )
                             ],
                           ),

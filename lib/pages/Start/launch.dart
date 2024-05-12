@@ -54,7 +54,7 @@ class _LaunchScreenState extends State<LaunchScreen> with TickerProviderStateMix
 								const Text(
 									'Medi-Pal',
 									style: TextStyle(
-										fontSize: 32,
+										fontSize: 40,
 										fontWeight: FontWeight.bold
 									),
 								),

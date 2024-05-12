@@ -102,7 +102,7 @@ class _SearchRecipePageState extends State<SearchRecipePage> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => SearchRecipeDetail(
-                                  recipeModel: _searchResults[index],
+                                  searchRecipeModel: _searchResults[index],
                                 ),
                               ),
                             ),

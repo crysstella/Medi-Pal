@@ -4,6 +4,8 @@ import 'package:unicons/unicons.dart';
 import '../../pages/ChatBot/chatBot.dart';
 import '../../pages/Favorites/favorites.dart';
 import '../../pages/Home/home.dart';
+import '../../pages/Home/home_page.dart';
+
 import '../../pages/Notification/notification.dart';
 import '../../pages/Profile/profile.dart';
 import '../../pages/Schedule/med_schedule.dart';
@@ -21,7 +23,9 @@ class NavigationItem {
   static List<NavigationItem> get items => [
         // 0
         NavigationItem(
-            page: Home(), icon: Icon(UniconsLine.home), title: 'HOME'),
+            page: HomePage(), 
+            icon: Icon(UniconsLine.home), 
+            title: 'HOME'),
         // 1
         NavigationItem(
             page: SearchPage(),

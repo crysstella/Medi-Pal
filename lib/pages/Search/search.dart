@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:medipal/pages/Search/a_recipeSearch.dart';
-import 'search_recipe.dart';
+import 'a_recipeSearch.dart';
+//import 'search_recipe.dart';
 import 'a_diseaseSearch.dart';
 
 class SearchPage extends StatefulWidget {

@@ -65,8 +65,17 @@ class MyAppView extends StatelessWidget{
 					} else {
 						return const LaunchScreen();
 					}
+        }
+      )
+      );
+
+
 				}
+
+
 			),
     );
+
+
   }
 }

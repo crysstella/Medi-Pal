@@ -1,74 +1,74 @@
 [
     {
-        "merged": "com.example.medipal.app-merged_res-16:/drawable-xxxhdpi_ic_launcher_foreground.png.flat",
-        "source": "com.example.medipal.app-main-10:/drawable-xxxhdpi/ic_launcher_foreground.png"
+        "merged": "com.example.medipal.app-merged_res-18:/drawable-mdpi_ic_launcher_foreground.png.flat",
+        "source": "com.example.medipal.app-main-12:/drawable-mdpi/ic_launcher_foreground.png"
     },
     {
-        "merged": "com.example.medipal.app-merged_res-16:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.example.medipal.app-main-10:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "com.example.medipal.app-merged_res-18:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.example.medipal.app-main-12:/mipmap-xhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.example.medipal.app-merged_res-16:/mipmap-mdpi_ic_launcher.png.flat",
-        "source": "com.example.medipal.app-main-10:/mipmap-mdpi/ic_launcher.png"
+        "merged": "com.example.medipal.app-merged_res-18:/drawable-xxxhdpi_ic_noti.png.flat",
+        "source": "com.example.medipal.app-main-12:/drawable-xxxhdpi/ic_noti.png"
     },
     {
-        "merged": "com.example.medipal.app-merged_res-16:/drawable-xhdpi_ic_launcher_foreground.png.flat",
-        "source": "com.example.medipal.app-main-10:/drawable-xhdpi/ic_launcher_foreground.png"
+        "merged": "com.example.medipal.app-merged_res-18:/drawable-xxhdpi_ic_noti.png.flat",
+        "source": "com.example.medipal.app-main-12:/drawable-xxhdpi/ic_noti.png"
     },
     {
-        "merged": "com.example.medipal.app-merged_res-16:/mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "com.example.medipal.app-main-10:/mipmap-xxhdpi/ic_launcher.png"
+        "merged": "com.example.medipal.app-merged_res-18:/drawable-hdpi_ic_launcher_foreground.png.flat",
+        "source": "com.example.medipal.app-main-12:/drawable-hdpi/ic_launcher_foreground.png"
     },
     {
-        "merged": "com.example.medipal.app-merged_res-16:/drawable-xxhdpi_ic_noti.png.flat",
-        "source": "com.example.medipal.app-main-10:/drawable-xxhdpi/ic_noti.png"
+        "merged": "com.example.medipal.app-merged_res-18:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.example.medipal.app-main-12:/mipmap-hdpi/ic_launcher.png"
     },
     {
-        "merged": "com.example.medipal.app-merged_res-16:/mipmap-hdpi_ic_launcher.png.flat",
-        "source": "com.example.medipal.app-main-10:/mipmap-hdpi/ic_launcher.png"
+        "merged": "com.example.medipal.app-merged_res-18:/drawable-hdpi_ic_noti.png.flat",
+        "source": "com.example.medipal.app-main-12:/drawable-hdpi/ic_noti.png"
     },
     {
-        "merged": "com.example.medipal.app-merged_res-16:/drawable-hdpi_ic_noti.png.flat",
-        "source": "com.example.medipal.app-main-10:/drawable-hdpi/ic_noti.png"
+        "merged": "com.example.medipal.app-merged_res-18:/drawable-xxhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.example.medipal.app-main-12:/drawable-xxhdpi/ic_launcher_foreground.png"
     },
     {
-        "merged": "com.example.medipal.app-merged_res-16:/mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "com.example.medipal.app-main-10:/mipmap-xxxhdpi/ic_launcher.png"
+        "merged": "com.example.medipal.app-merged_res-18:/drawable-xhdpi_ic_noti.png.flat",
+        "source": "com.example.medipal.app-main-12:/drawable-xhdpi/ic_noti.png"
     },
     {
-        "merged": "com.example.medipal.app-merged_res-16:/mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "com.example.medipal.app-main-10:/mipmap-xhdpi/ic_launcher.png"
+        "merged": "com.example.medipal.app-merged_res-18:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.example.medipal.app-main-12:/mipmap-xxxhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.example.medipal.app-merged_res-16:/drawable-mdpi_ic_launcher_foreground.png.flat",
-        "source": "com.example.medipal.app-main-10:/drawable-mdpi/ic_launcher_foreground.png"
+        "merged": "com.example.medipal.app-merged_res-18:/drawable_launch_background.xml.flat",
+        "source": "com.example.medipal.app-main-12:/drawable/launch_background.xml"
     },
     {
-        "merged": "com.example.medipal.app-merged_res-16:/drawable-xxxhdpi_ic_noti.png.flat",
-        "source": "com.example.medipal.app-main-10:/drawable-xxxhdpi/ic_noti.png"
+        "merged": "com.example.medipal.app-merged_res-18:/drawable-xhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.example.medipal.app-main-12:/drawable-xhdpi/ic_launcher_foreground.png"
     },
     {
-        "merged": "com.example.medipal.app-merged_res-16:/drawable-xxhdpi_ic_launcher_foreground.png.flat",
-        "source": "com.example.medipal.app-main-10:/drawable-xxhdpi/ic_launcher_foreground.png"
+        "merged": "com.example.medipal.app-merged_res-18:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.example.medipal.app-main-12:/mipmap-xxhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.example.medipal.app-merged_res-16:/drawable-hdpi_ic_launcher_foreground.png.flat",
-        "source": "com.example.medipal.app-main-10:/drawable-hdpi/ic_launcher_foreground.png"
+        "merged": "com.example.medipal.app-merged_res-18:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.medipal.app-main-12:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
-        "merged": "com.example.medipal.app-merged_res-16:/drawable-mdpi_ic_noti.png.flat",
-        "source": "com.example.medipal.app-main-10:/drawable-mdpi/ic_noti.png"
+        "merged": "com.example.medipal.app-merged_res-18:/drawable-xxxhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.example.medipal.app-main-12:/drawable-xxxhdpi/ic_launcher_foreground.png"
     },
     {
-        "merged": "com.example.medipal.app-merged_res-16:/drawable-v21_launch_background.xml.flat",
-        "source": "com.example.medipal.app-main-10:/drawable-v21/launch_background.xml"
+        "merged": "com.example.medipal.app-merged_res-18:/drawable-v21_launch_background.xml.flat",
+        "source": "com.example.medipal.app-main-12:/drawable-v21/launch_background.xml"
     },
     {
-        "merged": "com.example.medipal.app-merged_res-16:/drawable-xhdpi_ic_noti.png.flat",
-        "source": "com.example.medipal.app-main-10:/drawable-xhdpi/ic_noti.png"
+        "merged": "com.example.medipal.app-merged_res-18:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.example.medipal.app-main-12:/mipmap-mdpi/ic_launcher.png"
     },
     {
-        "merged": "com.example.medipal.app-merged_res-16:/drawable_launch_background.xml.flat",
-        "source": "com.example.medipal.app-main-10:/drawable/launch_background.xml"
+        "merged": "com.example.medipal.app-merged_res-18:/drawable-mdpi_ic_noti.png.flat",
+        "source": "com.example.medipal.app-main-12:/drawable-mdpi/ic_noti.png"
     }
 ]
