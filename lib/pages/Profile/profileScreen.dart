@@ -25,6 +25,7 @@ double calculateWater(String lbs) {
       appBar: AppBar(
         title: const Text('Profile'),
       ),
+      
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -125,7 +126,9 @@ double calculateWater(String lbs) {
             ),
           ),
         ),
+
       ),
+      
     );
   }
 }

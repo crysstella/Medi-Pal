@@ -59,22 +59,7 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
             ),
-            TextButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ProfileInput(email: email),
-                  ),
-                );
-              },
-              child: Text(
-                'Profile Input',
-                style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                  color: Theme.of(context).colorScheme.onPrimaryContainer,
-                ),
-              ),
-            ),
+
           ],
         ),
       ),

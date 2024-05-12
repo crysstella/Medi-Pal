@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:unicons/unicons.dart';
+import '../../pages/Profile/profileInput.dart';
+import '../../sharedPref.dart';
+import '../HealthAssessment/inputScreen.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -12,6 +14,33 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  late Future<String?> email;
+    late Future<String?> name;
+  String? userEmail;
+  String? userName;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize email in initState
+    email = getEmail();
+    name = getName();
+    // Set the userEmail when email is resolved
+    email.then((value) {
+      setState(() {
+        userEmail = value;
+      });
+    });
+
+    name.then((value) {
+      setState(() {
+        userName = value;
+      });
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -74,17 +103,17 @@ class _HomePageState extends State<HomePage> {
             SizedBox(width: 2),
             Text(
               "Welcome user ! ",  //link user, add bloc listener
-              style: const TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.w900),
+              style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: 30, fontWeight: FontWeight.w900),
             ),
             const SizedBox(height: 12),
             Text(
               "Keep your information up to date to get the most of your services. You can edit your profile or make changes to your health history here.",
-              style: const TextStyle(color: Colors.white, fontSize: 16),
+              style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: 16),
             ),
             const SizedBox(height: 14),
             Text(
               "New? Add your information now to access your profile.",
-              style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w100),
+              style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: 14, fontWeight: FontWeight.w100),
             ),
             const SizedBox(height: 18),
             Row(
@@ -93,21 +122,27 @@ class _HomePageState extends State<HomePage> {
                 _btnEdit(
                     title: "Edit Profile",
                     icon: UniconsLine.history,
-                    backgroundcolor: Theme.of(context).dialogBackgroundColor ,
-                    onTap: () async {
-                        ///
-                        ///profile input
-                        ///
+                    backgroundcolor: Theme.of(context).colorScheme.primaryContainer,
+                      onTap: () async {
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProfileInput(email: email),
+                       ),
+                     );
                     }),
 
                 _btnEdit(
                     title: "Add Disease",
-                    backgroundcolor: Theme.of(context).dialogBackgroundColor,
+                    backgroundcolor: Theme.of(context).colorScheme.tertiaryContainer,
                     icon: UniconsLine.plus,
                     onTap: () {
-                      ////
-                      ///disease input
-                      ///
+                      Navigator.push(
+                       context,
+                       MaterialPageRoute(
+                         builder: (context) => InputScreen(email: userEmail),
+                        ),
+                      );
                     })
               ],
             ),
@@ -148,8 +183,7 @@ class _HomePageState extends State<HomePage> {
           ),
         );
 
-
-      }
+    }
 
       return Container(
         padding: const EdgeInsets.all(16),
@@ -158,9 +192,11 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const SizedBox(height: 8),
-            Text("GET HELP WITH YOUR HEALTH",style: const TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold)),
+            Text("GET HELP WITH YOUR HEALTH",style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 18, fontWeight: FontWeight.bold)),
             const SizedBox(height: 8),
             SizedBox(
+
+              
               // height: MediaQuery.of(context).size.width / 3,
               width: MediaQuery.of(context).size.width,
               child: Row(
@@ -168,18 +204,20 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   __helpItem(
-                    title: "Get medication reminders.",
+                    title: "Search for recommended food.",
                   ),
                   __helpItem(
-                    title: "Search for recommended food.",
+                    title: "Get medication reminders.",
                   ),
                   __helpItem(
                     title: "Look up disease information.",
                   ),
                 ],
               ),
+
+
             ),
-            const SizedBox(height: 100),
+            const SizedBox(height: 110),
           ],
         ),
       );
@@ -198,11 +236,11 @@ class _HomePageState extends State<HomePage> {
                   top: 12,
                   bottom: 12),
               decoration: BoxDecoration(
-                  // color: ThemePrimary.primaryColor,
+                //color: Theme.of(context).colorScheme.tertiary.withOpacity(0.8),
                   gradient: LinearGradient(colors: [
-                    Theme.of(context).primaryColor,
-                    Theme.of(context).primaryColor.withOpacity(0.4)
-                  ], begin: Alignment.topRight, end: Alignment.topLeft),
+                    Theme.of(context).colorScheme.tertiary.withOpacity(0.9),
+                    Theme.of(context).colorScheme.tertiary.withOpacity(0.6),
+                  ], begin: Alignment.topRight, end: Alignment.center),
                   borderRadius: BorderRadius.circular(10)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -210,13 +248,13 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   const SizedBox(height: 4),
                   Text(
-                    "Want to know more?",
-                    style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w100),
+                    "Questions?",
+                    style: TextStyle(color: Theme.of(context).colorScheme.onSecondary, fontSize: 16, fontWeight: FontWeight.w100),
                   ),
                    const SizedBox(height: 4),
                   Text(
                     "Read our privacy policy and learn more about us under our SUPPORT located in your app settings.",
-                    style: const TextStyle(color: Colors.white, fontSize: 14),
+                    style: TextStyle(color: Theme.of(context).colorScheme.onTertiary, fontSize: 13.5),
                   ),
                   const SizedBox(height: 6),
                 ],

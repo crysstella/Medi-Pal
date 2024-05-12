@@ -23,6 +23,7 @@ class NavigationItem {
   static List<NavigationItem> get items => [
         // 0
         NavigationItem(
+            //page: Home(), 
             page: HomePage(), 
             icon: Icon(UniconsLine.home), 
             title: 'HOME'),

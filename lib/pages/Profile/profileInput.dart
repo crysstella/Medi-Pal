@@ -49,33 +49,58 @@ class _ProfileInputState extends State<ProfileInput> {
   Widget _buildProfileInput(String? email) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(24.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              "Here you can edit your profile by inputting your height, weight, and birthday",
+            Text(
+              "Make edits to your profile by inputting your height, weight, and birthday here:",
               style: TextStyle(
                 fontSize: 20,
                 fontStyle: FontStyle.italic,
-                color: Colors.black,
+                color: Theme.of(context).colorScheme.onBackground,
               ),
             ),
-            const SizedBox(height: 20.0),
+            const SizedBox(height: 60.0),
+            
+            //Row(),
+            Text(
+              "SELECT YOUR BIRTHDAY", 
+              style: TextStyle(
+                fontSize: 16,
+                color: Theme.of(context).colorScheme.secondary,
+              ),),
+            const SizedBox(height: 4.0),
             TextButton(
               onPressed: () {
                 _selectDate(context);
               },
+              style: ButtonStyle(
+                fixedSize: MaterialStateProperty.all(
+                  Size(MediaQuery.of(context).size.width * 0.40, 20)),
+                  padding: MaterialStateProperty.all(
+                  const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10)),
+                  backgroundColor:
+                    MaterialStateProperty.all(Theme.of(context).colorScheme.secondaryContainer), //Background Color
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(70.0),
+                  ),
+                ),      
+              ),
+
               child: Text(
-                _birthday.isEmpty ? 'Select your Birthday' : _birthday,
+                _birthday.isEmpty ? 'D.O.B.' : _birthday,
                 style: TextStyle(
-                  fontSize: 20,
-                  fontStyle: FontStyle.italic,
-                  color: Colors.black,
+                  fontSize: 14,
+                  //fontStyle: FontStyle.italic,
+                  color: Theme.of(context).colorScheme.onSecondaryContainer,
                 ),
+                
               ),
             ),
-            const SizedBox(height: 22.0),
+
+            const SizedBox(height: 24.0),
             DropdownButtonFormField<String>(
               value: _height,
               onChanged: (value) {
@@ -86,7 +111,11 @@ class _ProfileInputState extends State<ProfileInput> {
               items: [
                 DropdownMenuItem<String>(
                   value: "Select Your Height",
-                  child: Text("Select Your Height"),
+                  child: Text("CHOOSE YOUR HEIGHT",
+                  style: TextStyle(
+                     fontSize: 16,
+                    color: Theme.of(context).colorScheme.secondary,
+                  )),
                 ),
                 ..._heightOptions.map((String heightOption) {
                   return DropdownMenuItem<String>(
@@ -104,17 +133,16 @@ class _ProfileInputState extends State<ProfileInput> {
               //   ),
               // ),
             ),
-            const SizedBox(height: 20.0),
+            const SizedBox(height: 24.0),
             TextField(
               onChanged: (value) {
                 _weight = value;
               },
-              decoration: const InputDecoration(
-                labelText: "Enter your Weight:",
+              decoration: InputDecoration(
+                labelText: "ENTER YOUR WEIGHT:",
                 labelStyle: TextStyle(
-                  fontSize: 20,
-                  fontStyle: FontStyle.italic,
-                  color: Colors.black,
+                  fontSize: 16,
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
               ),
             ),

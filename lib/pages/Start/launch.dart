@@ -51,11 +51,12 @@ class _LaunchScreenState extends State<LaunchScreen> with TickerProviderStateMix
 						padding: const EdgeInsets.symmetric(horizontal: 30),
 						child: Column(
 							children: [
-								const Text(
+								Text(
 									'Medi-Pal',
 									style: TextStyle(
-										fontSize: 40,
-										fontWeight: FontWeight.bold
+										fontSize: 50,
+										fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.primaryContainer,
 									),
 								),
 								const SizedBox(height: kToolbarHeight),
@@ -69,7 +70,7 @@ class _LaunchScreenState extends State<LaunchScreen> with TickerProviderStateMix
 											child: Text(
 												'Log In',
 												style: TextStyle(
-													fontSize: 16,
+													fontSize: 18,
 												),
 											),
 										),
@@ -78,7 +79,7 @@ class _LaunchScreenState extends State<LaunchScreen> with TickerProviderStateMix
 											child: Text(
 												'Register',
 												style: TextStyle(
-													fontSize: 16,
+													fontSize: 18,
 												),
 											),
 										),

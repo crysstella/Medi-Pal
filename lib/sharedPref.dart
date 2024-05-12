@@ -23,3 +23,9 @@ Future<List<String>?> getFavoriteFoods() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   return prefs.getStringList('favoriteFoods');
 }
+
+// Function to retrieve user name using shared preferences
+Future<String?> getName() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  return prefs.getString('name');
+}
