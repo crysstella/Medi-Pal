@@ -70,6 +70,7 @@ class DiseaseInfoScreen extends StatelessWidget {
               padding: EdgeInsets.all(20),
               children: [
                 Card(
+                  color: Theme.of(context).colorScheme.tertiaryContainer,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -77,8 +78,8 @@ class DiseaseInfoScreen extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.all(10),
                         child: Text(
-                          "Foods Recommended:",
-                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          "Food Recommended:",
+                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
                         ),
                       ),
                       Column(
@@ -91,14 +92,15 @@ class DiseaseInfoScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 20),
                 Card(
+                  color: Theme.of(context).colorScheme.tertiaryContainer,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
                         padding: EdgeInsets.all(10),
                         child: Text(
-                          "Foods to Avoid:",
-                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          "Food to Avoid:",
+                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
                         ),
                       ),
                       Column(

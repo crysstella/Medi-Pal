@@ -61,29 +61,50 @@ Widget _buildProfileInput(String? email) {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              "Here you can edit your profile by inputting your height, weight, and birthday",
+              "Edit your profile by inputting your height, weight, and birthday",
               style: TextStyle(
                 fontSize: 20,
                 fontStyle: FontStyle.italic,
                 color: Colors.black,
               ),
             ),
-            const SizedBox(height: 20.0),
+            const SizedBox(height: 32.0),
             //call select Date function here
+            Text(
+              "SELECT YOUR BIRTHDAY",
+              style: TextStyle(
+                fontSize: 18,
+                //fontStyle: FontStyle.italic,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+            ),
+            const SizedBox(height: 4.0),
             TextButton(
               onPressed: () {
                 _selectDate(context);
               },
+              style: ButtonStyle(
+                fixedSize: MaterialStateProperty.all(
+                  Size(MediaQuery.of(context).size.width * 0.40, 20)),
+                  padding: MaterialStateProperty.all(
+                  const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10)),
+                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(70.0),
+                  ),
+                ),  
+                backgroundColor: MaterialStateProperty.all(Theme.of(context).colorScheme.primaryContainer),
+              ),
               child: Text(
-                _birthday.isEmpty ? 'Select your Birthday' : _birthday,
+                _birthday.isEmpty ? 'D.O.B' : _birthday,
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 18,
                   fontStyle: FontStyle.italic,
-                  color: Colors.black,
+                  color: Theme.of(context).colorScheme.onPrimaryContainer,
                 ),
               ),
             ),
-            const SizedBox(height: 22.0),
+            const SizedBox(height: 26.0),
             //when user clicks a date to be selected it will be initialized to height
             DropdownButtonFormField<String>(
               value: _height,
@@ -96,7 +117,11 @@ Widget _buildProfileInput(String? email) {
                 //create menu from height arr
                 DropdownMenuItem<String>(
                   value: "Select Your Height",
-                  child: Text("Select Your Height"),
+                  child: Text("CHOOSE YOUR HEIGHT",
+                   style: TextStyle(
+                     fontSize: 18,
+                     color: Theme.of(context).colorScheme.primary,
+                  )),
                 ),
                 //list each element of the array for the menu
                 ..._heightOptions.map((String heightOption) {
@@ -108,17 +133,17 @@ Widget _buildProfileInput(String? email) {
               ],
             ),
             //enter weight here
-            const SizedBox(height: 20.0),
+            const SizedBox(height: 24.0),
             TextFormField(
               onChanged: (value) {
                 _weight = value;
               },
-              decoration: const InputDecoration(
-                labelText: "Enter your Weight:",
+              decoration: InputDecoration(
+                labelText: "ENTER YOUR WEIGHT:",
                 labelStyle: TextStyle(
-                  fontSize: 20,
-                  fontStyle: FontStyle.italic,
-                  color: Colors.black,
+                  fontSize: 18,
+                  //fontStyle: FontStyle.italic,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
               ),
               keyboardType: TextInputType.number,
@@ -129,7 +154,7 @@ Widget _buildProfileInput(String? email) {
                 return null;
               },
             ),
-            const SizedBox(height: 20.0),
+            const SizedBox(height: 26.0),
             ElevatedButton(
               onPressed: () {
                 //validate the form before calling _saveProfile
@@ -137,7 +162,10 @@ Widget _buildProfileInput(String? email) {
                   _saveProfile(email);
                 }
               },
-              child: const Text("Next"),
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Theme.of(context).colorScheme.primary), 
+                 ),
+              child: Text("Next", style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),),
             ),
           ],
         ),
@@ -184,7 +212,7 @@ void _saveProfile(String? email) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Information uploaded successfully'),
-            backgroundColor: Colors.green,
+            backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
           ),
         );
       }).catchError((error) {

@@ -19,7 +19,7 @@ class _DietScreenState extends State<DietScreen> {
 
   String? selectedDisease;
   String? selectedDiet;
-  String instructions = 'Users must choose a disease and the diet they would like to pursue, this will then create an array based on that combination';
+  String instructions = 'Choose a disease and the diet you would like to pursue to receive an array of food associated with that combination.';
 
   //gets info from food db
   Future<Map<String, dynamic>> _getAllFoodInfo(String foodID) async {
@@ -43,10 +43,13 @@ class _DietScreenState extends State<DietScreen> {
         children: <Widget>[
           Text(
             instructions,
-            style: TextStyle(fontSize: 16),
+            style: TextStyle(fontSize: 18),
           ),
           SizedBox(height: 20),
           //allows for input of a disease
+          Container(padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+             decoration: BoxDecoration(color: Theme.of(context).colorScheme.tertiary.withOpacity(0.1)),
+             child: 
           DropdownButton<String>(
             value: selectedDisease,
             onChanged: (String? newValue) {
@@ -64,8 +67,15 @@ class _DietScreenState extends State<DietScreen> {
               );
             }).toList(),
           ),
+          ),
+
+
           SizedBox(height: 20),
           //allows for input of the diet
+
+          Container(padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary.withOpacity(0.4)),
+                  child: 
           DropdownButton<String>(
             value: selectedDiet,
             onChanged: (String? newValue) {
@@ -75,6 +85,7 @@ class _DietScreenState extends State<DietScreen> {
                 });
               }
             },
+            
             //creates dropdown menu of diets
             items: dietArr.map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
@@ -82,6 +93,7 @@ class _DietScreenState extends State<DietScreen> {
                 child: Text(value),
               );
             }).toList(),
+          ),
           ),
           SizedBox(height: 20),
           Expanded(

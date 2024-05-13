@@ -113,8 +113,8 @@ class _CalorieCalculatorScreenState extends State<CalorieCalculatorScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Logged Foods',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          'Logged Food: ',
+          style: TextStyle(color: Theme.of(context).colorScheme.secondary, fontSize: 20, fontWeight: FontWeight.bold),
         ),
         if (_loggedFoods.isNotEmpty)
           Column(
@@ -133,7 +133,7 @@ class _CalorieCalculatorScreenState extends State<CalorieCalculatorScreen> {
                         child: Text(
                           //displays the logged food element name and it's calories
                           '$foodName - $totalCalories Calories',
-                          style: TextStyle(fontSize: 14),
+                          style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
                         ),
                       ),
                       IconButton(
@@ -182,19 +182,19 @@ Future<void> _deleteLoggedFood(String id) async {
   
   //builds the add food button
   Widget _buildAddFoodButton(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        //navigates to logFood when presses
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => LogFood()),
-        );
-      },
-      child: Text(
-        'Add Food',
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blue),
-      ),
-    );
+
+             return ElevatedButton(
+              onPressed: () {
+                        Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LogFood()),
+                  );
+              },
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 191, 222, 247)), 
+                 ),
+              child: Text("ADD FOOD", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.blue ),),
+            );
   }
 
   @override
@@ -203,7 +203,7 @@ Future<void> _deleteLoggedFood(String id) async {
     Widget exceededCalorieGoalMessage = _calorieGoal != null && _totalCalories > _calorieGoal!
         ? Text(
             'You have exceeded your calorie goal for today!',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.red),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.error),
           )
         : SizedBox.shrink();
 
@@ -219,7 +219,7 @@ Future<void> _deleteLoggedFood(String id) async {
             SizedBox(height: 20),
             Text(
               'Calories Eaten: $_totalCalories',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 20),
             //display message if calorie goal is exceeded
@@ -227,7 +227,7 @@ Future<void> _deleteLoggedFood(String id) async {
             //builds the loggedFood and add button for the user to view
             SizedBox(height: 20),
             _buildLoggedFoods(),
-            SizedBox(height: 20),
+            SizedBox(height: 36),
             _buildAddFoodButton(context),
           ],
         ),

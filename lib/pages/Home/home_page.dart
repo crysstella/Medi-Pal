@@ -155,7 +155,7 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () => onTap(),
             style: ButtonStyle(
               fixedSize: MaterialStateProperty.all(
-                  Size(100,100)),
+                  Size(110,110)),
               padding: MaterialStateProperty.all(const EdgeInsets.only(
                   left: 8, right: 8, top: 8, bottom: 8)),
               backgroundColor:
@@ -175,7 +175,7 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(width: 4.0),
                 Text(
                   title,
-                  style: TextStyle(color: Theme.of(context).colorScheme.onSecondaryContainer, fontSize: 13.5),
+                  style: TextStyle(color: Theme.of(context).colorScheme.onSecondaryContainer, fontSize: 13.5, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
                 ),
               ],
             ),
@@ -191,12 +191,14 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const SizedBox(height: 8),
+            const SizedBox(height: 12),
+            
             Text("GET HELP WITH YOUR HEALTH",
                 style: TextStyle(
-                    color: Theme.of(context).colorScheme.onBackground,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold)),
+                    color: Theme.of(context).colorScheme.secondary,
+                    fontSize: 23,
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic)),
             const SizedBox(height: 20),
             SizedBox(
               height: MediaQuery.of(context).size.width * .2,
@@ -206,8 +208,8 @@ class _HomePageState extends State<HomePage> {
               children: [
                 _helpItem(
                     title: "MEDICINE",
-                    backgroundcolor:
-                        Theme.of(context).colorScheme.secondaryContainer,
+                    backgroundcolor: 
+                        Theme.of(context).colorScheme.secondaryContainer.withOpacity(0.8),
                     onTap: () async {
                       Navigator.push(
                         context,
@@ -217,26 +219,26 @@ class _HomePageState extends State<HomePage> {
                     );
                   }),
                 _helpItem(
-                    title: "NUTRIENTS",
+                    title: "DIET",
                     backgroundcolor:
-                        Theme.of(context).colorScheme.secondaryContainer,
+                        Theme.of(context).colorScheme.secondaryContainer.withOpacity(0.8),
                     onTap: () {
                       Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const CalorieCalculatorScreen(),
+                    builder: (context) => DietScreen(),
                     ),
                   );
                   }),
                   _helpItem(
-                    title: "DIET",
+                    title: "TRACKING",
                     backgroundcolor:
-                        Theme.of(context).colorScheme.secondaryContainer,
+                        Theme.of(context).colorScheme.secondaryContainer.withOpacity(0.8),
                     onTap: () {
                            Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => DietScreen(),
+                              builder: (context) => const CalorieCalculatorScreen(),
                             ),
                      );
                   }),
@@ -244,119 +246,11 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             ),
-            const SizedBox(height: 120),
+            const SizedBox(height: 130),
           ],
         ),
       );
     }
-
-
-    // Widget _middle() {
-    //   Widget _btnDiet(
-    //       {required String title,
-    //       required IconData icon,
-    //       required Function onTap,
-    //       required Color backgroundcolor}) {
-    //     return Flexible(
-    //       child: TextButton(
-    //         onPressed: () => onTap(),
-    //         child: Row(
-    //           crossAxisAlignment: CrossAxisAlignment.center,
-    //           mainAxisAlignment: MainAxisAlignment.center,
-    //           children: [
-    //             const SizedBox(width: 4.0),
-    //             Text(
-    //               title,
-    //               style: const TextStyle(color: Colors.black, fontSize: 16),
-    //             ),
-    //           ],
-    //         ),
-    //         style: ButtonStyle(
-    //           fixedSize: MaterialStateProperty.all(
-    //               Size(40, 30)),
-    //           padding: MaterialStateProperty.all(const EdgeInsets.only(
-    //               left: 12, right: 12, top: 12, bottom: 12)),
-    //           backgroundColor:
-    //               MaterialStateProperty.all(backgroundcolor), //Background Color
-    //           elevation: MaterialStateProperty.all(4), //Defines Elevation
-    //           shadowColor: MaterialStateProperty.all(Colors.grey), //Define
-    //           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-    //             RoundedRectangleBorder(
-    //               borderRadius: BorderRadius.circular(0),
-    //             ),
-    //           ),
-    //         ),
-    //       ),
-    //     );
-    //   }
-
-    //   return Container(
-    //     padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
-    //     decoration: BoxDecoration(
-    //         color: Theme.of(context).primaryColor,
-    //         borderRadius: const BorderRadius.only(
-    //             bottomLeft: Radius.circular(0),
-    //             bottomRight: Radius.circular(0))),
-    //     child: Column(
-    //       mainAxisAlignment: MainAxisAlignment.center,
-    //       crossAxisAlignment: CrossAxisAlignment.start,
-    //       children: [    
-    //         Row(
-    //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //           children: [
-    //             _btnDiet(
-    //                 title: "Medicine",
-    //                 icon: UniconsLine.history,
-    //                 backgroundcolor:
-    //                     Theme.of(context).colorScheme.secondaryContainer,
-    //                 onTap: () async {
-    //                   Navigator.push(
-    //               context,
-    //               MaterialPageRoute(
-    //                 builder: (context) => MedicineInfoScreen(),
-    //               ),
-    //             );
-    //                 }),
-    //             _btnDiet(
-    //                 title: "Calulate Calories",
-    //                 backgroundcolor:
-    //                     Theme.of(context).colorScheme.secondaryContainer,
-    //                 icon: UniconsLine.plus,
-    //                 onTap: () {
-    //               //     Navigator.push(
-    //               // context,
-    //               // MaterialPageRoute(
-    //               //   builder: (context) => CalorieCalculatorScreen(),
-    //               //   ),
-    //               // );
-    //               }),
-    //               _btnDiet(
-    //                 title: "Diet",
-    //                 backgroundcolor:
-    //                     Theme.of(context).colorScheme.secondaryContainer,
-    //                 icon: UniconsLine.plus,
-    //                 onTap: () {
-    //                 //        Navigator.push(
-    //                 //         context,
-    //                 //         MaterialPageRoute(
-    //                 //           builder: (context) => DietScreen(),
-    //                 //         ),
-    //                 //  );
-    //               }),
-
-    //           ],
-    //         ),
-    //         const SizedBox(height: 60.0),
-    //       ],
-    //     ),
-    //   );
-
-    // }
-
-
-
-
-
 
 
     Widget _bottom() {

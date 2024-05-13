@@ -129,7 +129,7 @@ class _LogFoodState extends State<LogFood> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Log Food"),
+        title: Text("Food Log"),
       ),
       body: FutureBuilder<Map<String, dynamic>>(
         future: _getFoodInfo(widget.foodID),
@@ -154,9 +154,14 @@ class _LogFoodState extends State<LogFood> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Add what you have eaten through the scroll down menu",
-                    style: TextStyle(fontSize: 18),
+                    "Scroll down the menu to add what you have eaten.",
+                    style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
                   ),
+                   SizedBox(height: 40),
+
+                  Container(padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondaryContainer.withOpacity(0.4)),
+                  child: 
                   DropdownButton<String>(
                     value: _selectedFood,
                     onChanged: (String? newValue) {
@@ -171,6 +176,11 @@ class _LogFoodState extends State<LogFood> {
                       );
                     }).toList(),
                   ),
+                  
+                  
+                  ),
+
+
                   SizedBox(height: 20),
                   TextFormField(
                     controller: servingSizeController,
@@ -179,12 +189,15 @@ class _LogFoodState extends State<LogFood> {
                       hintText: "Enter serving size in ounces",
                     ),
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 80),
                   ElevatedButton(
                     onPressed: () {
                       _calculateCalories(); 
                     },
-                    child: Text("Log Food"),
+                    style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Theme.of(context).colorScheme.secondary), 
+                 ),
+                    child: Text("LOG FOOD", style: TextStyle(color: Theme.of(context).colorScheme.onSecondary)),
                   ),
                 ],
               ),

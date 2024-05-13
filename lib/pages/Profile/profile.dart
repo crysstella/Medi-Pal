@@ -53,8 +53,8 @@ class _ProfileState extends State<Profile> {
                 );
               },
               child: Text(
-                'Profile',
-                style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                'View Profile',
+                style: Theme.of(context).textTheme.titleLarge!.copyWith(
                   color: Theme.of(context).colorScheme.onPrimaryContainer,
                 ),
               ),

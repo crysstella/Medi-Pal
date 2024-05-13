@@ -98,10 +98,10 @@ class _SearchRecipeState extends State<SearchRecipe> {
                               bottom: 0,
                               child:                             
                                 Container(
-                                  height: 300,
+                                  height: 100,
                                   width: MediaQuery.of(context).size.width,
                                   decoration: BoxDecoration(
-                                    color: Theme.of(context).colorScheme.secondaryContainer,
+                                    color: Theme.of(context).colorScheme.errorContainer.withOpacity(.9),
                                   ),
                                   child: Align(
                                     alignment: Alignment.bottomLeft,
