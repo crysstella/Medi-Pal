@@ -41,13 +41,13 @@ class StartAppState extends State<StartApp> {
 
   // Set the index of side bar
   void _onItemTappedDrawer(int index) {
-    // Close the drawer
-    Navigator.pop(context);
     // Update the state to show new content
     setState(() {
       _lastTappedBar = LastTappedBar.drawer;
       currentIndexSide = index; // Change to the index of profile
       currentIndex = -1; // Unselect bottom bar
+      // Close the drawer
+      Navigator.pop(context);
     });
   }
 
@@ -93,7 +93,9 @@ class StartAppState extends State<StartApp> {
             MyNotifications>(
         notificationListener: (context, notification) {
           if (notification is UpdateNotificationPageIndex) {
-            _onItemTappedBottom(2);
+            if (currentIndex != 2) {
+              _onItemTappedBottom(2);
+            }
           }
         },
         child: Scaffold(

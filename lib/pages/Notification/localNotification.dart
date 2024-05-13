@@ -118,7 +118,7 @@ class LocalNotifications {
 
   static notificationDetails() async {
     return const NotificationDetails(
-      android: AndroidNotificationDetails('eventID', 'Event Reminders',
+      android: AndroidNotificationDetails('Event Hash', 'Event Reminders',
           channelDescription: 'Channel for event reminders',
           importance: Importance.max,
           priority: Priority.high),
@@ -127,20 +127,33 @@ class LocalNotifications {
 
   static Future scheduleNotification({
     required Event event,
-  }) async =>
+  }) async {
+    String title;
+    String body;
+
+    if (event is MedicineReminder) {
+      title = event.getTitle();
+      body = event.getBody();
+    } else if (event is WaterReminder) {
+      title = event.getTitle();
+      body = event.getBody();
+    } else {
+      title = "Reminder";
+      body = 'You have a scheduled reminder.';
+    }
       await flutterLocalNotificationsPlugin.zonedSchedule(
         event.getHash(),
-        event.medicine,
-        'Time to take ${event.medicine}.',
+        title,
+        body,
         tz.TZDateTime.from(
             DateTime(event.date.year, event.date.month, event.date.day,
-                event.time.hour, event.time.minute, event.date.second),
+                event.time.hour, event.time.minute/*, event.date.second*/),
             tz.local),
         await notificationDetails(),
         payload: event.serialize(),
         uiLocalNotificationDateInterpretation:
             UILocalNotificationDateInterpretation.absoluteTime,
-      );
+      );}
 
   // Close a specific channel notification
   static Future<void> cancel(int id) async {
@@ -150,6 +163,7 @@ class LocalNotifications {
     await flutterLocalNotificationsPlugin.pendingNotificationRequests();
     for (var _pendingRequest in pendingNotificationRequests) {
       if (_pendingRequest.id == id){
+        print(_pendingRequest.id);
         flutterLocalNotificationsPlugin.cancel(_pendingRequest.id);
       }
     }

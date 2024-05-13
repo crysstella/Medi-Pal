@@ -27,9 +27,10 @@ class _FavoriteState extends State<Favorite> {
   void initState() {
     super.initState();
     _fetchEmailAndDisease();
-    _loadFavoriteFoods(); // Load favorite foods when widget initializes
+    _loadFavoriteFoods();
   }
 
+  //get users email and disease from sharedPref functions
   Future<void> _fetchEmailAndDisease() async {
     try {
       final email = await getEmail();
@@ -45,12 +46,15 @@ class _FavoriteState extends State<Favorite> {
     }
   }
 
+  //displays favorite foods saved in local
   Future<void> _loadFavoriteFoods() async {
     try {
       final prefs = await SharedPreferences.getInstance();
+      //get an array of the favorite foods from local memory
       final savedFoods = prefs.getStringList('favoriteFoods');
       if (savedFoods != null) {
         setState(() {
+          //initialized favorite to saved foods
           favoriteFoods = savedFoods;
         });
       }
@@ -60,47 +64,52 @@ class _FavoriteState extends State<Favorite> {
   }
 
   Future<Map<String, dynamic>> _getAllFoodInfo(String foodID) async {
-    var collection = FirebaseFirestore.instance.collection("Food Database");
-    var document = await collection.doc(foodID).get();
+  var collection = FirebaseFirestore.instance.collection("Food Database");
+  var document = await collection.doc(foodID).get();
 
-    if (document.exists) {
-      return document.data() as Map<String, dynamic>;
-    } else {
-      throw Exception("Document not found");
-    }
+  if (document.exists) {
+    // convert keys to lowercase and store in a new map
+    Map<String, dynamic> foodData = {};
+    (document.data() as Map<String, dynamic>).forEach((key, value) {
+      foodData[key.toLowerCase()] = value;
+    });
+    return foodData;
+  } else {
+    throw Exception("Document not found");
+  }
+}
+
+Future<String> _getUserDisease(String? userEmail) async {
+  if (userEmail == null) {
+    throw Exception("User email is null");
   }
 
-  Future<String> _getUserDisease(String? userEmail) async {
-    if (userEmail == null) {
-      throw Exception("User email is null");
-    }
+  var collection = FirebaseFirestore.instance.collection("users");
+  var document = await collection.doc(userEmail).get();
 
-    var collection = FirebaseFirestore.instance.collection("users");
-    var document = await collection.doc(userEmail).get();
-
-    if (document.exists) {
-      String? userDisease = document.data()?['userDisease'] as String?;
-      return userDisease ?? '';
-    } else {
-      throw Exception("User data not found for $userEmail");
-    }
+  if (document.exists) {
+    String? userDisease = (document.data()?['userDisease'] as String?)?.toLowerCase();
+    return userDisease ?? '';
+  } else {
+    throw Exception("User data not found for $userEmail");
   }
+}
 
  Future<void> _saveFavoriteFoodsToFirestore(List<String> foods) async {
   try {
     var collection = FirebaseFirestore.instance.collection("users");
-    // Check if userEmail is available
+    //check if userEmail is available
     if (widget.userEmail != null) {
-      // Use userEmail as the document ID
+      //use userEmail as the document ID
       var docRef = collection.doc(widget.userEmail);
-      // Fetch the document snapshot
+      //fetch the document snapshot
       var docSnapshot = await docRef.get();
       
       if (docSnapshot.exists) {
-        // If document exists, update favorite foods
+        //if document exists, update favorite foods
         await docRef.update({"favoriteFoods": foods});
       } else {
-        // If document doesn't exist, create it with userEmail as document ID
+        //if document doesn't exist, create it with userEmail as document ID
         await docRef.set({
           "userEmail": widget.userEmail,
           "favoriteFoods": foods,
@@ -111,7 +120,7 @@ class _FavoriteState extends State<Favorite> {
       throw Exception("User email is null");
     }
 
-    // Save favorite foods to SharedPreferences
+    //save favorite foods to SharedPreferences
     final prefs = await SharedPreferences.getInstance();
     await prefs.setStringList('favoriteFoods', foods);
   } catch (error) {
@@ -138,9 +147,8 @@ class _FavoriteState extends State<Favorite> {
                 child: Text("Data not available for $_userDisease"),
               );
             }
-
+            
             var foodInfo = foodData[_userDisease] as List<dynamic>;
-
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -156,17 +164,17 @@ class _FavoriteState extends State<Favorite> {
                     });
                     if (_selectedFood != null) {
                       if (favoriteFoods.contains(_selectedFood!)) {
-                        // If the selected food is already in favoriteFoods, remove it
+                        //if the selected food is already in favoriteFoods, remove it
                         setState(() {
                           favoriteFoods.remove(_selectedFood!);
                         });
                       } else {
-                        // Otherwise, add it to favoriteFoods
+                        //otherwise, add it to favoriteFoods
                         setState(() {
                           favoriteFoods.add(_selectedFood!);
                         });
                       }
-                      // Save the updated favoriteFoods list
+                      //save the updated favoriteFoods list
                       _saveFavoriteFoodsToFirestore(favoriteFoods);
                     }
                   },

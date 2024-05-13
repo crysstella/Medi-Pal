@@ -38,35 +38,29 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children:[
-            Expanded(
-              child: ProfileScreen(email: ''),
+          children: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProfileScreen(email: userEmail),
+                  ),
+                );
+              },
+              child: Text(
+                'Profile',
+                style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                  color: Theme.of(context).colorScheme.onPrimaryContainer,
+                ),
+              ),
             ),
-          ]
-
-          //children: <Widget>[
-            // TextButton(
-            //   onPressed: () {
-            //     Navigator.push(
-            //       context,
-            //       MaterialPageRoute(
-            //         builder: (context) => ProfileScreen(email: userEmail),
-            //       ),
-            //     );
-            //   },
-            //   child: Text(
-            //     'Profile',
-            //     style: Theme.of(context).textTheme.titleSmall!.copyWith(
-            //       color: Theme.of(context).colorScheme.onPrimaryContainer,
-            //     ),
-            //   ),
-            // ),
-
-          //],
+           
+          ],
         ),
       ),
     );

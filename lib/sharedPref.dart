@@ -1,31 +1,38 @@
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 
-// Function to save email using shared preferences
+// function to save email 
 Future<void> saveEmail(String email) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   await prefs.setString('email', email);
 }
 
-// Function to retrieve email using shared preferences
+// function to retrieve email 
 Future<String?> getEmail() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   return prefs.getString('email');
 }
 
-// Function to save favorite foods using shared preferences
+// function to save favorite foods
 Future<void> saveFavoriteFoods(List<String> favoriteFoods) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   await prefs.setStringList('favoriteFoods', favoriteFoods);
 }
 
-// Function to retrieve favorite foods using shared preferences
+// function to retrieve favorite foods 
 Future<List<String>?> getFavoriteFoods() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   return prefs.getStringList('favoriteFoods');
 }
 
-// Function to retrieve user name using shared preferences
-Future<String?> getName() async {
+// function to retrieve calories
+Future<double?> getCalories() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  return prefs.getString('name');
+  return prefs.getDouble('calories');
+}
+
+// function to retrieve water goal
+Future<double?> getWater() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  return prefs.getDouble('waterGoal');
 }

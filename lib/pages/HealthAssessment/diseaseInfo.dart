@@ -10,7 +10,7 @@ class DiseaseInfoScreen extends StatelessWidget {
   DiseaseInfoScreen({this.userDiseaseID = "EO1oWhfvlkMICXgg0JqI", required this.userDisease});
 
    //function to get the collection Disease Information from db
-  Future<Map<String, dynamic>> _getAllDiseaseInfo(String userDiseaseID) async {
+  Future<Map<String, dynamic>> _getDiseaseInfo(String userDiseaseID) async {
     //initalize the variable to the collection
     var collection = FirebaseFirestore.instance.collection("Disease Information");
     //get the information
@@ -39,7 +39,7 @@ class DiseaseInfoScreen extends StatelessWidget {
       ),
       //call getAllDiseaseInfo
       body: FutureBuilder<Map<String, dynamic>>(
-        future: _getAllDiseaseInfo(userDiseaseID),
+        future: _getDiseaseInfo(userDiseaseID),
         builder: (context, snapshot) {
           //after calling returns a progress bar until this screen starts
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -102,7 +102,7 @@ class DiseaseInfoScreen extends StatelessWidget {
                         ),
                       ),
                       Column(
-                        //return foodAvid as output
+                        //return foodAvoid as output
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: _buildFoodList(foodAvoid),
                       ),

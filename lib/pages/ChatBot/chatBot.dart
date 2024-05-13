@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:unicons/unicons.dart';
@@ -36,8 +35,6 @@ class _ChatBotState extends State<ChatBot> {
   static List<String> topics = ['Foods Avoided', 'Foods Recommended'];
   static List<String> diseases = [];
   static List<String> diseasesLowerCase = [];
-  final String _continue = 'Continue';
-  final String _more = 'Another topics';
 
   bool showTopics = true;
   bool showDisease = false;
@@ -52,7 +49,7 @@ class _ChatBotState extends State<ChatBot> {
       scrollToBottom();
     });
     loadDiseases();
-    if (messages.length < 1){
+    if (messages.isEmpty){
       messages.insert(0, welcome);}
     else{
       print('MESSAGES INITIAL LENGTH = ${messages.length}');

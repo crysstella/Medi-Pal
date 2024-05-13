@@ -1,6 +1,7 @@
 import 'package:bloc_notification/bloc_notification.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notification_repository/notification_repository.dart';
 import 'package:unicons/unicons.dart';
 import '../../blocs/notification_bloc/notification_bloc.dart';
 
@@ -35,17 +36,32 @@ class NotificationsState extends State<Notifications> {
       },
       child: BlocBuilder<NotificationBloc, NotificationState>(
         builder: (context, state) {
-          return ListView.builder(
+           return ListView.builder(
             itemCount: state.events.length,
             itemBuilder: (context, index) {
+              String title;
+              String body;
+
               final event = state.events[index];
+
+              if (event is MedicineReminder) {
+                title = event.getTitle();
+                body = event.getBody();
+              } else if (event is WaterReminder) {
+                title = event.getTitle();
+                body = event.getBody();
+              } else {
+                title = "Reminder";
+                body = 'You have a scheduled reminder.';
+              }
+
               print('THIS IS IN BLOCBUILDER NOTIFICATION PAGE');
               print(event);
               return Card(
                 margin: EdgeInsets.all(8.0),
                 child: ListTile(
-                  title: Text('Medicine Reminder at ${event.getTime(context)}'),
-                  subtitle: Text("It's time to take ${event.medicine}."),
+                  title: Text('${title} at ${event.getTime(context)}'),
+                  subtitle: Text(body),
                   trailing: const Icon(UniconsLine.angle_right),
                   onTap: () {
                     // Handle the tap

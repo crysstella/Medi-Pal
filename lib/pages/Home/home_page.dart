@@ -3,6 +3,9 @@ import 'package:unicons/unicons.dart';
 import '../../pages/Profile/profileInput.dart';
 import '../../sharedPref.dart';
 import '../HealthAssessment/inputScreen.dart';
+import '../medicineDisplay/medicineInfo.dart';
+import '../../pages/dietScreen.dart'; 
+import '../../pages/Calorie Calculator/tracking.dart';
 
 class HomePage extends StatefulWidget {
   //static const String routeName = "/homePage";
@@ -14,26 +17,17 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late Future<String?> email;
-  late Future<String?> name;
   String? userEmail;
-  String? userName;
 
   @override
   void initState() {
     super.initState();
     // Initialize email in initState
     email = getEmail();
-    name = getName();
     // Set the userEmail when email is resolved
     email.then((value) {
       setState(() {
         userEmail = value;
-      });
-    });
-
-    name.then((value) {
-      setState(() {
-        userName = value;
       });
     });
   }
@@ -152,27 +146,43 @@ class _HomePageState extends State<HomePage> {
     }
 
     Widget _center() {
-      Widget __helpItem({required String title}) {
-        return Expanded(
-          child: Column(
-            children: [
-              const SizedBox(height: 12),
-              TextButton(
-                  onPressed: () {},
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(title,
-                          textAlign: TextAlign.center,
-                          maxLines: 3,
-                          style: const TextStyle(
-                              color: Colors.black, fontSize: 14))
-                    ],
-                  )),
-            ],
+      Widget _helpItem({required String title,
+          required Function onTap,
+          required Color backgroundcolor}) {
+
+          return Flexible(
+            child: TextButton(
+                onPressed: () => onTap(),
+            style: ButtonStyle(
+              fixedSize: MaterialStateProperty.all(
+                  Size(100,100)),
+              padding: MaterialStateProperty.all(const EdgeInsets.only(
+                  left: 8, right: 8, top: 8, bottom: 8)),
+              backgroundColor:
+                  MaterialStateProperty.all(backgroundcolor), //Background Color
+              elevation: MaterialStateProperty.all(4), //Defines Elevation
+              shadowColor: MaterialStateProperty.all(Colors.grey), //Define
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(0),
+                ),
+            ),
+            ),
+                child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(width: 4.0),
+                Text(
+                  title,
+                  style: TextStyle(color: Theme.of(context).colorScheme.onSecondaryContainer, fontSize: 13.5),
+                ),
+              ],
+            ),
           ),
+              
         );
+
       }
 
       return Container(
@@ -187,31 +197,167 @@ class _HomePageState extends State<HomePage> {
                     color: Theme.of(context).colorScheme.onBackground,
                     fontSize: 18,
                     fontWeight: FontWeight.bold)),
-            const SizedBox(height: 8),
+            const SizedBox(height: 20),
             SizedBox(
-              // height: MediaQuery.of(context).size.width / 3,
+              height: MediaQuery.of(context).size.width * .2,
               width: MediaQuery.of(context).size.width,
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  __helpItem(
-                    title: "Search for recommended food.",
-                  ),
-                  __helpItem(
-                    title: "Get medication reminders.",
-                  ),
-                  __helpItem(
-                    title: "Look up disease information.",
-                  ),
-                ],
-              ),
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _helpItem(
+                    title: "MEDICINE",
+                    backgroundcolor:
+                        Theme.of(context).colorScheme.secondaryContainer,
+                    onTap: () async {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                       builder: (context) => const MedicineInfoScreen(),
+                        ),
+                    );
+                  }),
+                _helpItem(
+                    title: "NUTRIENTS",
+                    backgroundcolor:
+                        Theme.of(context).colorScheme.secondaryContainer,
+                    onTap: () {
+                      Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CalorieCalculatorScreen(),
+                    ),
+                  );
+                  }),
+                  _helpItem(
+                    title: "DIET",
+                    backgroundcolor:
+                        Theme.of(context).colorScheme.secondaryContainer,
+                    onTap: () {
+                           Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DietScreen(),
+                            ),
+                     );
+                  }),
+
+              ],
             ),
-            const SizedBox(height: 140),
+            ),
+            const SizedBox(height: 120),
           ],
         ),
       );
     }
+
+
+    // Widget _middle() {
+    //   Widget _btnDiet(
+    //       {required String title,
+    //       required IconData icon,
+    //       required Function onTap,
+    //       required Color backgroundcolor}) {
+    //     return Flexible(
+    //       child: TextButton(
+    //         onPressed: () => onTap(),
+    //         child: Row(
+    //           crossAxisAlignment: CrossAxisAlignment.center,
+    //           mainAxisAlignment: MainAxisAlignment.center,
+    //           children: [
+    //             const SizedBox(width: 4.0),
+    //             Text(
+    //               title,
+    //               style: const TextStyle(color: Colors.black, fontSize: 16),
+    //             ),
+    //           ],
+    //         ),
+    //         style: ButtonStyle(
+    //           fixedSize: MaterialStateProperty.all(
+    //               Size(40, 30)),
+    //           padding: MaterialStateProperty.all(const EdgeInsets.only(
+    //               left: 12, right: 12, top: 12, bottom: 12)),
+    //           backgroundColor:
+    //               MaterialStateProperty.all(backgroundcolor), //Background Color
+    //           elevation: MaterialStateProperty.all(4), //Defines Elevation
+    //           shadowColor: MaterialStateProperty.all(Colors.grey), //Define
+    //           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+    //             RoundedRectangleBorder(
+    //               borderRadius: BorderRadius.circular(0),
+    //             ),
+    //           ),
+    //         ),
+    //       ),
+    //     );
+    //   }
+
+    //   return Container(
+    //     padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+    //     decoration: BoxDecoration(
+    //         color: Theme.of(context).primaryColor,
+    //         borderRadius: const BorderRadius.only(
+    //             bottomLeft: Radius.circular(0),
+    //             bottomRight: Radius.circular(0))),
+    //     child: Column(
+    //       mainAxisAlignment: MainAxisAlignment.center,
+    //       crossAxisAlignment: CrossAxisAlignment.start,
+    //       children: [    
+    //         Row(
+    //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //           children: [
+    //             _btnDiet(
+    //                 title: "Medicine",
+    //                 icon: UniconsLine.history,
+    //                 backgroundcolor:
+    //                     Theme.of(context).colorScheme.secondaryContainer,
+    //                 onTap: () async {
+    //                   Navigator.push(
+    //               context,
+    //               MaterialPageRoute(
+    //                 builder: (context) => MedicineInfoScreen(),
+    //               ),
+    //             );
+    //                 }),
+    //             _btnDiet(
+    //                 title: "Calulate Calories",
+    //                 backgroundcolor:
+    //                     Theme.of(context).colorScheme.secondaryContainer,
+    //                 icon: UniconsLine.plus,
+    //                 onTap: () {
+    //               //     Navigator.push(
+    //               // context,
+    //               // MaterialPageRoute(
+    //               //   builder: (context) => CalorieCalculatorScreen(),
+    //               //   ),
+    //               // );
+    //               }),
+    //               _btnDiet(
+    //                 title: "Diet",
+    //                 backgroundcolor:
+    //                     Theme.of(context).colorScheme.secondaryContainer,
+    //                 icon: UniconsLine.plus,
+    //                 onTap: () {
+    //                 //        Navigator.push(
+    //                 //         context,
+    //                 //         MaterialPageRoute(
+    //                 //           builder: (context) => DietScreen(),
+    //                 //         ),
+    //                 //  );
+    //               }),
+
+    //           ],
+    //         ),
+    //         const SizedBox(height: 60.0),
+    //       ],
+    //     ),
+    //   );
+
+    // }
+
+
+
+
+
+
 
     Widget _bottom() {
       return Container(
@@ -254,7 +400,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [_header(), _center(), _bottom()],
+          children: [_header(), _center(), _bottom()], //_middle(),
         ),
       ),
     );
