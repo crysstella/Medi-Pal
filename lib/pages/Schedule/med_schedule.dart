@@ -61,7 +61,6 @@ class _MedicationScheduleState extends State<MedicationSchedule>
   // Water Reminder
   bool waterMode = false;
   TimeOfDay startTime = TimeOfDay(hour: 8, minute: 0); // Start drinking at 8 AM
-  int waterGoal = 64; //  default value
   double frequency = 3;
 
   @override
@@ -142,8 +141,8 @@ class _MedicationScheduleState extends State<MedicationSchedule>
   }
 
   void validateTime(DateTime time) {
-    print('SELECTED DAY:${_selectedDay} ');
-    print('TIME PICK ${time}');
+    debugPrint('SELECTED DAY:${_selectedDay} ');
+    debugPrint('TIME PICK ${time}');
 
     DateTime selected =
         DateTime(_selectedDay!.year, _selectedDay!.month, _selectedDay!.day);
@@ -185,10 +184,10 @@ class _MedicationScheduleState extends State<MedicationSchedule>
 
   void addEventsForDate(Event newEvent) {
     if (events[getNormalizedDate(newEvent.date)] != null) {
-      //print('Events in $date day is not null');
+      //debugPrint('Events in $date day is not null');
       events[getNormalizedDate(newEvent.date)]?.add(newEvent);
     } else {
-      //print(events[getNormalizedDate(date)]?.length);
+      //debugPrint(events[getNormalizedDate(date)]?.length);
       events[getNormalizedDate(newEvent.date)] = [newEvent];
     }
   }
@@ -233,7 +232,6 @@ class _MedicationScheduleState extends State<MedicationSchedule>
     showDialog(
       context: context,
       builder: (context) => SetWaterGoalDialog(
-        defaultWaterGoalIntake: waterGoal,
         initialFrequency: frequency,
         date: _selectedDay!,
         onFrequencyChanged: (newFrequency, newReminders) {
@@ -246,7 +244,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                 events[dateKey] = [reminder];
               }
 
-              print('Events after add water: $events');
+              debugPrint('Events after add water: $events');
             }
             frequency = newFrequency;
             _selectedEvents.value = getEventsForDay(_selectedDay!);
@@ -267,10 +265,10 @@ class _MedicationScheduleState extends State<MedicationSchedule>
           .map((waterReminder) => waterReminder
               .getHash()) // Ensure each WaterReminder has a unique hash/ID.
           .toList();
-      print('HASH TO REMOVE');
+      debugPrint('HASH TO REMOVE');
       // Cancel each notification for water reminders
       for (int hash in waterRemindersHashs) {
-        print(hash);
+        debugPrint(hash.toString());
         LocalNotifications.cancel(hash);
       }
       // Remove all WaterReminder instances from the events list for this day.
@@ -283,9 +281,9 @@ class _MedicationScheduleState extends State<MedicationSchedule>
       });
 
       // Log or display a message about the action taken.
-      print('Water reminders reset for $normalizedSelectedDay.');
+      debugPrint('Water reminders reset for $normalizedSelectedDay.');
     } else {
-      print('No water reminders to reset for $normalizedSelectedDay.');
+      debugPrint('No water reminders to reset for $normalizedSelectedDay.');
     }
   }
 
@@ -356,7 +354,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                     ValueListenableBuilder<String?>(
                       valueListenable: doseError,
                       builder: (context, value, child) {
-                        print(doseError.value);
+                        debugPrint(doseError.value);
                         return doseError.value != null
                             ? Text('${doseError.value}',
                                 style: TextStyle(
@@ -438,7 +436,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                                 hour: timeNotifier.value.hour,
                                 minute: timeNotifier.value.minute));
 
-                        print('new event added = ${newEvent.serialize()}');
+                        debugPrint('new event added = ${newEvent.serialize()}');
                         if (buttonSubmit == 'Save') {
                           // Update current event
                           updateReminder(context, index, newEvent);
@@ -479,11 +477,11 @@ class _MedicationScheduleState extends State<MedicationSchedule>
   void editReminder(BuildContext context, int index, Event event) {
     setState(() {
       editDate = event.date;
-      print('edit date = ${event.date}');
+      debugPrint('edit date = ${event.date}');
       medicineController.text =
           event is MedicineReminder ? event.medicine : 'empty';
       timeNotifier.value = event.time;
-      print('event time = ${timeNotifier.value}');
+      debugPrint('event time = ${timeNotifier.value}');
       currentDoseForm = event is MedicineReminder ? event.dose : 'Select Form';
       isEdit = true;
     });
@@ -497,8 +495,8 @@ class _MedicationScheduleState extends State<MedicationSchedule>
       events[getNormalizedDate(event.date)]?[index] = event;
       isEdit = false;
     });
-    print('LENGTH = ${events[getNormalizedDate(event.date)]?.length}');
-    print('LENGTH LIST = ${events.length}');
+    debugPrint('LENGTH = ${events[getNormalizedDate(event.date)]?.length}');
+    debugPrint('LENGTH LIST = ${events.length}');
   }
 
   // Delete the reminder
@@ -518,7 +516,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
         MyNotifications>(
       notificationListener: (context, notification) {
         if (notification is UpdateNotificationPageIndex) {
-          print('THIS IS BLOC FROM MED_SCHEDULE');
+          debugPrint('THIS IS BLOC FROM MED_SCHEDULE');
         }
       },
       child: BlocBuilder<NotificationBloc, NotificationState>(
@@ -664,7 +662,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                       // Water mode button
                       InkWell(
                         onTap: () {
-                          print('water with state water mode = ${waterMode}');
+                          debugPrint('water with state water mode = ${waterMode}');
                           setState(() {
                             waterMode = !waterMode;
                             if (waterMode == true) {
@@ -710,7 +708,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                               ? Colors.lightBlue
                               : Theme.of(context).colorScheme.primaryContainer,
                           onPressed: () {
-                            print('TAP DATE ${_selectedDay}');
+                            debugPrint('TAP DATE ${_selectedDay}');
                             DateTime selected = DateTime(_selectedDay!.year,
                                 _selectedDay!.month, _selectedDay!.day);
                             DateTime thisMoment =
@@ -724,7 +722,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                                 addReminder(context, 'New Reminder', 'Add', -1);
                               } else {
                                 // water mode
-                                print('WATER MODE');
+                                debugPrint('WATER MODE');
                                 DateTime normalizeSelectedDay =
                                     getNormalizedDate(_selectedDay!);
                                 if (events.containsKey(normalizeSelectedDay)) {
@@ -830,8 +828,8 @@ class _MedicationScheduleState extends State<MedicationSchedule>
             child: ValueListenableBuilder(
                 valueListenable: _selectedEvents,
                 builder: (context, value, _) {
-                  print('THIS IS VALUE LISTENER IN BUILDER');
-                  print('$_selectedEvents');
+                  debugPrint('THIS IS VALUE LISTENER IN BUILDER');
+                  debugPrint('$_selectedEvents');
                   // Filter events based on waterMode
                   List<Event> filteredEvents = waterMode
                       ? value.where((event) => event is WaterReminder).toList()
@@ -916,11 +914,11 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                               ));
 
                               // Test if the reminder is removed.
-                              print(
+                              debugPrint(
                                   'SELECTED EVENT = ${_selectedEvents.value.length}');
-                              print(
+                              debugPrint(
                                   'EVENT AFTER DELETE IN A DAY = ${events[date]?.length}');
-                              print(
+                              debugPrint(
                                   'EVENTS LIST AFTER DELETE = ${events.length}');
                             },
                             background: Card(
@@ -939,7 +937,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                                     onTap: () {
                                       editReminder(
                                           context, index, value[index]);
-                                      print(
+                                      debugPrint(
                                           'dose = ${(value[index] as MedicineReminder).dose}');
                                     },
                                     leading: Icon(
