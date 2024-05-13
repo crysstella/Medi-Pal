@@ -54,7 +54,7 @@ class _DiseaseSearchState extends State<DiseaseSearch> {
     setState(() {
       // Get diseases suggestion from database
       diseases = loadedDiseases.cast<String>();
-      print('Diseases = ${diseases}');
+      debugPrint('Diseases = ${diseases}');
     });
   }
 
@@ -77,8 +77,8 @@ class _DiseaseSearchState extends State<DiseaseSearch> {
                 // padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
                 itemCount: searchResults.length,
                 itemBuilder: (context, index) {
-                  print('THIS IS IN BUILD SEARCH RESULTS:');
-                  print(searchResults);
+                  debugPrint('THIS IS IN BUILD SEARCH RESULTS:');
+                  debugPrint(searchResults.toString());
                   return Card(
                       child: ListTile(
                     title: Text(searchResults[index]),
@@ -108,7 +108,7 @@ class _DiseaseSearchState extends State<DiseaseSearch> {
   }
 
   Future<void> handleInputDisease(String disease) async {
-    print('HANDLE INPUT DISEASE');
+    debugPrint('HANDLE INPUT DISEASE');
     _searchResults = [];
 
     if (isInListIgnoreCase(disease, diseases)) {
@@ -118,14 +118,14 @@ class _DiseaseSearchState extends State<DiseaseSearch> {
       try {
         List<dynamic> foods = await foodService.getFoodsByDisease(disease);
         if (foods.isNotEmpty) {
-          print('FOODS IS NOT EMPTY');
+          debugPrint('FOODS IS NOT EMPTY');
           setState(() {
             _isLoading = false;
             _searchResults = foods.cast<String>();
           });
         }
       } catch (e) {
-        print(e);
+        debugPrint(e.toString());
       } finally {
         setState(() {
           _isLoading = false;
@@ -194,8 +194,8 @@ class _DiseaseSearchState extends State<DiseaseSearch> {
                               isSearchPressed = true;
                             });
                             if (disease.isNotEmpty) {
-                              print('TYPE: ${disease}');
-                              print('BEFORE CALL HANDLE INPUT DISEASE');
+                              debugPrint('TYPE: ${disease}');
+                              debugPrint('BEFORE CALL HANDLE INPUT DISEASE');
                               setState(() {
                                 userInput = disease;
                               });
@@ -216,7 +216,7 @@ class _DiseaseSearchState extends State<DiseaseSearch> {
                         isSearchPressed = true;
                       });
                       if (disease.isNotEmpty) {
-                        print('TYPE: ${disease}');
+                        debugPrint('TYPE: ${disease}');
                         setState(() {
                           userInput = disease;
                         });
