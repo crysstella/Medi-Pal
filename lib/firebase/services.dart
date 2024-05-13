@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 
 class DiseaseAdvice {
   List<String> recommendations;
@@ -44,17 +45,17 @@ class DataService {
   }
 // Get foods by disease name
   Future<List<String>> getFoodsByDisease(String disease) async{
-    print('DISEASE FOOD');
+    debugPrint('DISEASE FOOD');
     var collection = firestore.collection(foodCollection);
     var document = await collection.doc(foodID).get();
 
     if (document.exists) {
-      print('DOCUMENT EXISTS');
+      debugPrint('DOCUMENT EXISTS');
       Map<String, dynamic> data = document.data()!;
       if (data.containsKey(disease)) {
-        print('DISEASE EXISTS: ${disease}');
-        print('FOODS LIST EXISTS!!!!!!!');
-        print(List<String>.from(data[disease]));
+        debugPrint('DISEASE EXISTS: ${disease}');
+        debugPrint('FOODS LIST EXISTS!!!!!!!');
+        debugPrint(List<String>.from(data[disease]).toString());
         return List<String>.from(data[disease]);
       } else {
         throw Exception("Disease key not found in the document");
@@ -133,7 +134,7 @@ class DataService {
 
     if (document.exists) {
       List<dynamic> diseases = document.get(diseaseName) as List<dynamic>;
-      print('IN SERVICE DISEASE GET = $diseases');
+      debugPrint('IN SERVICE DISEASE GET = $diseases');
       List<String> foodsRecommended = [];
       List<String> foodsAvoided = [];
 
@@ -158,13 +159,13 @@ class DataService {
           }
         }
 
-        print('avoid: $foodsAvoided');
-        print('recommend: $foodsRecommended');
+        debugPrint('avoid: $foodsAvoided');
+        debugPrint('recommend: $foodsRecommended');
       }
       return DiseaseAdvice(
           recommendations: foodsRecommended, avoidances: foodsAvoided);
     } else {
-      throw Exception("PRINT Document not found");
+      throw Exception("debugPrint Document not found");
     }
   }
 
@@ -181,7 +182,7 @@ class DataService {
         diseaseName.add(key);
       });
     }
-    print('Disease name: $diseaseName');
+    debugPrint('Disease name: $diseaseName');
     return diseaseName;
   }
 }
