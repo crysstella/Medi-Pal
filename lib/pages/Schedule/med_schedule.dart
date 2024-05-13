@@ -1,4 +1,3 @@
-
 import 'package:bloc_notification/bloc_notification.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:medipal/pages/Schedule/dose.dart';
 import 'package:medipal/pages/Schedule/waterRemind.dart';
 import 'package:notification_repository/notification_repository.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:unicons/unicons.dart';
 import 'package:timezone/data/latest.dart' as tz;
@@ -32,7 +32,6 @@ class _MedicationScheduleState extends State<MedicationSchedule>
   CalendarFormat _format = CalendarFormat.month;
   Icon _buttonDropDown = const Icon(UniconsLine.angle_up);
 
-  bool _isExpanded = false;
   TimeOfDay timeSelected = TimeOfDay.now();
   late ValueNotifier<TimeOfDay> timeNotifier;
 
@@ -63,9 +62,39 @@ class _MedicationScheduleState extends State<MedicationSchedule>
   TimeOfDay startTime = TimeOfDay(hour: 8, minute: 0); // Start drinking at 8 AM
   double frequency = 3;
 
+  Future<void> requestNotificationPermission() async {
+    var status = await Permission.notification.status;
+    if (status.isDenied || status.isPermanentlyDenied) {
+      // Open settings if permanently denied
+      debugPrint(status.toString());
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text("Notification Permission"),
+          content: Text(
+              "This feature needs notification permissions to function properly. Please enable it in the settings."),
+          actions: <Widget>[
+            TextButton(
+              child: Text("Cancel"),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            TextButton(
+              child: Text("Settings"),
+              onPressed: () {
+                Navigator.of(context).pop();
+                openAppSettings();
+              },
+            ),
+          ],
+        ),
+      );
+    }
+  }
+
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => requestNotificationPermission());
     _selectedDay = _focusedDay;
     _selectedEvents = ValueNotifier(getEventsForDay(_selectedDay!));
     timeNotifier = ValueNotifier(timeSelected);
@@ -662,7 +691,8 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                       // Water mode button
                       InkWell(
                         onTap: () {
-                          debugPrint('water with state water mode = ${waterMode}');
+                          debugPrint(
+                              'water with state water mode = ${waterMode}');
                           setState(() {
                             waterMode = !waterMode;
                             if (waterMode == true) {
@@ -707,78 +737,87 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                           backgroundColor: waterMode
                               ? Colors.lightBlue
                               : Theme.of(context).colorScheme.primaryContainer,
-                          onPressed: () {
-                            debugPrint('TAP DATE ${_selectedDay}');
-                            DateTime selected = DateTime(_selectedDay!.year,
-                                _selectedDay!.month, _selectedDay!.day);
-                            DateTime thisMoment =
-                                DateTime(today.year, today.month, today.day);
+                          onPressed: () async {
+                            requestNotificationPermission();
+                            var status = await Permission.notification.status;
+                            if (status.isGranted) {
+                              debugPrint('TAP DATE ${_selectedDay}');
+                              DateTime selected = DateTime(_selectedDay!.year,
+                                  _selectedDay!.month, _selectedDay!.day);
+                              DateTime thisMoment =
+                                  DateTime(today.year, today.month, today.day);
 
-                            if (selected.isAfter(thisMoment) ||
-                                selected.isAtSameMomentAs(thisMoment)) {
-                              if (waterMode == false) {
-                                // medicine mode
-                                // Medicine Reminder
-                                addReminder(context, 'New Reminder', 'Add', -1);
-                              } else {
-                                // water mode
-                                debugPrint('WATER MODE');
-                                DateTime normalizeSelectedDay =
-                                    getNormalizedDate(_selectedDay!);
-                                if (events.containsKey(normalizeSelectedDay)) {
-                                  // Retrieve the list of events for the selected day.
-                                  List<Event> dayEvents =
-                                      events[normalizeSelectedDay]!;
+                              if (selected.isAfter(thisMoment) ||
+                                  selected.isAtSameMomentAs(thisMoment)) {
+                                if (waterMode == false) {
+                                  // medicine mode
+                                  // Medicine Reminder
+                                  addReminder(
+                                      context, 'New Reminder', 'Add', -1);
+                                } else {
+                                  // water mode
+                                  debugPrint('WATER MODE');
+                                  DateTime normalizeSelectedDay =
+                                      getNormalizedDate(_selectedDay!);
+                                  if (events
+                                      .containsKey(normalizeSelectedDay)) {
+                                    // Retrieve the list of events for the selected day.
+                                    List<Event> dayEvents =
+                                        events[normalizeSelectedDay]!;
 
-                                  // Check if there is any WaterReminder in the list of events for this day.
-                                  bool hasWaterReminder = dayEvents
-                                      .any((event) => event is WaterReminder);
+                                    // Check if there is any WaterReminder in the list of events for this day.
+                                    bool hasWaterReminder = dayEvents
+                                        .any((event) => event is WaterReminder);
 
-                                  if (hasWaterReminder) {
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) => AlertDialog(
-                                        title:
-                                            const Text('Reset Water Reminder'),
-                                        content: const Text(
-                                            'Are you sure you want to reset the water reminder for this day?'),
-                                        actions: <Widget>[
-                                          TextButton(
-                                            onPressed: () => Navigator.of(
-                                                    context)
-                                                .pop(), // Close the dialog without any action.
-                                            child: const Text('Cancel'),
-                                          ),
-                                          TextButton(
-                                            onPressed: () {
-                                              resetWaterReminderForDay(
-                                                  _selectedDay!);
-                                              setWater(context);
-                                              Navigator.of(context).pop();
-                                              Navigator.of(context)
-                                                  .pop(); // Close the dialog after performing the action.
-                                            },
-                                            child: const Text('Reset'),
-                                          ),
-                                        ],
-                                      ),
-                                    );
+                                    if (hasWaterReminder) {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) => AlertDialog(
+                                          title: const Text(
+                                              'Reset Water Reminder'),
+                                          content: const Text(
+                                              'Are you sure you want to reset the water reminder for this day?'),
+                                          actions: <Widget>[
+                                            TextButton(
+                                              onPressed: () => Navigator.of(
+                                                      context)
+                                                  .pop(), // Close the dialog without any action.
+                                              child: const Text('Cancel'),
+                                            ),
+                                            TextButton(
+                                              onPressed: () {
+                                                resetWaterReminderForDay(
+                                                    _selectedDay!);
+                                                setWater(context);
+                                                Navigator.of(context).pop();
+                                                Navigator.of(context)
+                                                    .pop(); // Close the dialog after performing the action.
+                                              },
+                                              child: const Text('Reset'),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    } else {
+                                      setWater(context);
+                                      //Navigator.of(context).pop();
+                                    }
                                   } else {
                                     setWater(context);
-                                    //Navigator.of(context).pop();
                                   }
-                                } else {
-                                  setWater(context);
                                 }
+                              } else {
+                                // Show deleted message
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
+                                  backgroundColor:
+                                      Theme.of(context).primaryColor,
+                                  content: Text('Invalid date.'),
+                                  duration: const Duration(seconds: 2),
+                                ));
                               }
-                            } else {
-                              // Show deleted message
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(SnackBar(
-                                backgroundColor: Theme.of(context).primaryColor,
-                                content: Text('Invalid date.'),
-                                duration: const Duration(seconds: 2),
-                              ));
+                            }else{
+                              // do nothing until the user turns on the  notification
                             }
                           },
                           child: Icon(UniconsLine.plus,
