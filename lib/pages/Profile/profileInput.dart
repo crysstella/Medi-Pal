@@ -68,7 +68,7 @@ class _ProfileInputState extends State<ProfileInput> {
               "SELECT YOUR BIRTHDAY", 
               style: TextStyle(
                 fontSize: 16,
-                color: Theme.of(context).colorScheme.secondary,
+                color: Theme.of(context).colorScheme.primary,
               ),),
             const SizedBox(height: 4.0),
             TextButton(
@@ -81,7 +81,7 @@ class _ProfileInputState extends State<ProfileInput> {
                   padding: MaterialStateProperty.all(
                   const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10)),
                   backgroundColor:
-                    MaterialStateProperty.all(Theme.of(context).colorScheme.secondaryContainer), //Background Color
+                    MaterialStateProperty.all(Theme.of(context).colorScheme.primaryContainer), //Background Color
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(70.0),
@@ -94,7 +94,7 @@ class _ProfileInputState extends State<ProfileInput> {
                 style: TextStyle(
                   fontSize: 14,
                   //fontStyle: FontStyle.italic,
-                  color: Theme.of(context).colorScheme.onSecondaryContainer,
+                  color: Theme.of(context).colorScheme.onPrimaryContainer,
                 ),
                 
               ),
@@ -114,7 +114,7 @@ class _ProfileInputState extends State<ProfileInput> {
                   child: Text("CHOOSE YOUR HEIGHT",
                   style: TextStyle(
                      fontSize: 16,
-                    color: Theme.of(context).colorScheme.secondary,
+                    color: Theme.of(context).colorScheme.primary,
                   )),
                 ),
                 ..._heightOptions.map((String heightOption) {
@@ -142,15 +142,18 @@ class _ProfileInputState extends State<ProfileInput> {
                 labelText: "ENTER YOUR WEIGHT:",
                 labelStyle: TextStyle(
                   fontSize: 16,
-                  color: Theme.of(context).colorScheme.secondary,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
               ),
             ),
-            const SizedBox(height: 20.0),
+            const SizedBox(height: 30.0),
             ElevatedButton(
               onPressed: () {
                 _saveProfile(email);
               },
+               style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Theme.of(context).colorScheme.primaryContainer), 
+                 ),
               child: const Text("Next"),
             ),
           ],

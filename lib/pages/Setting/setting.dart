@@ -38,46 +38,7 @@ class SettingsScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 2),
 
-                     //notifications 
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                      TextButton(
-                        onPressed: () {
-                          //;
-                        },
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Icon(UniconsLine.bell),
-                                Text(
-                                  "Notifications",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                  ),
-                                )                                
-                              ],                              
-                            ),
-                          ],
-                        ),
-
-                      ),
-                      SizedBox(
-                              height: 4,
-                              child: Switch(
-                                value: true,
-                                onChanged: null,
-                                activeTrackColor: const Color(0x9EA0A1FA),
-                                //thumbColor:
-                                //MaterialStateProperty.all(Colors.white),
-                              ),
-                            )
-                      ]
-                  ),
-                 const SizedBox(height: 2),
-
+    
 
                  //theme
                   Row(
@@ -288,7 +249,7 @@ class SettingsScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                   const SizedBox(height: 200),
+                   const SizedBox(height: 250),
 
 
                       Row(

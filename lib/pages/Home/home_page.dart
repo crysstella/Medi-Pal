@@ -102,7 +102,8 @@ class _HomePageState extends State<HomePage> {
           children: [
             SizedBox(width: 2),
             Text(
-              "Welcome user ! ",  //link user, add bloc listener
+              //"Welcome ! ", 
+              'Welcome $userName !',
               style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: 30, fontWeight: FontWeight.w900),
             ),
             const SizedBox(height: 12),
@@ -192,7 +193,7 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const SizedBox(height: 8),
-            Text("GET HELP WITH YOUR HEALTH",style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 18, fontWeight: FontWeight.bold)),
+            Text("MEDI-PAL WILL HELP WITH YOUR HEALTH",style: TextStyle(color: Theme.of(context).colorScheme.onBackground, fontSize: 18, fontWeight: FontWeight.bold)),
             const SizedBox(height: 8),
             SizedBox(
 

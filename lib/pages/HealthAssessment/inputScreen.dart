@@ -29,7 +29,7 @@ class _InputScreenState extends State<InputScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Hello name !",
+                "Add your medical history:",
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -38,7 +38,7 @@ class _InputScreenState extends State<InputScreen> {
               ),
               const SizedBox(height: 8.0),
               Text(
-                "To use Medi-Pal and its features to the utmost effectiveness, we recommend completing the health assessment:",
+                "To use Medi-Pal and its features to the utmost effectiveness, we recommend completing the health assessment.",
                 style: TextStyle(
                   fontSize: 16,
                   fontStyle: FontStyle.italic,
@@ -60,7 +60,7 @@ class _InputScreenState extends State<InputScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 20.0),
+              const SizedBox(height: 30.0),
               ElevatedButton(
                 onPressed: () {
                   _saveDisease();
@@ -71,6 +71,9 @@ class _InputScreenState extends State<InputScreen> {
                     ),
                   );
                 },
+                 style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Theme.of(context).colorScheme.tertiaryContainer), 
+                 ),
                 child: const Text("Next"),
               ),
             ],
