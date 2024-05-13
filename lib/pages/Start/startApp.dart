@@ -56,8 +56,8 @@ class StartAppState extends State<StartApp> {
         icon: const Icon(UniconsLine.user_circle, size: 50),
         onPressed: () {
           _onItemTappedDrawer(3);
-          print(currentIndexSide);
-          print(currentIndex);
+          debugPrint(currentIndexSide.toString());
+          debugPrint(currentIndex.toString());
         },
         isSelected:
             (currentIndexSide == 3 && currentIndex == -1) ? true : false,
@@ -71,8 +71,8 @@ class StartAppState extends State<StartApp> {
               icon: const Icon(UniconsLine.setting, size: 38),
               onPressed: () {
                 _onItemTappedDrawer(7);
-                print(currentIndexSide);
-                print(currentIndex);
+                debugPrint(currentIndexSide.toString());
+                debugPrint(currentIndex.toString());
               },
               isSelected:
                   (currentIndexSide == 7 && currentIndex == -1) ? true : false,
@@ -144,8 +144,8 @@ class StartAppState extends State<StartApp> {
                       icon: const Icon(UniconsLine.schedule, size: 38),
                       onPressed: () {
                         _onItemTappedDrawer(4);
-                        print(currentIndexSide);
-                        print(currentIndex);
+                        debugPrint(currentIndexSide.toString());
+                        debugPrint(currentIndex.toString());
                       },
                       isSelected: (currentIndexSide == 4 && currentIndex == -1)
                           ? true
@@ -155,8 +155,8 @@ class StartAppState extends State<StartApp> {
                       icon: const Icon(UniconsLine.comment_alt, size: 38),
                       onPressed: () {
                         _onItemTappedDrawer(5);
-                        print(currentIndexSide);
-                        print(currentIndex);
+                        debugPrint(currentIndexSide.toString());
+                        debugPrint(currentIndex.toString());
                       },
                       isSelected: (currentIndexSide == 5 && currentIndex == -1)
                           ? true
@@ -166,8 +166,8 @@ class StartAppState extends State<StartApp> {
                       icon: const Icon(UniconsLine.heart, size: 38),
                       onPressed: () {
                         _onItemTappedDrawer(6);
-                        print(currentIndexSide);
-                        print(currentIndex);
+                        debugPrint(currentIndexSide.toString());
+                        debugPrint(currentIndex.toString());
                       },
                       isSelected: (currentIndexSide == 6 && currentIndex == -1)
                           ? true
