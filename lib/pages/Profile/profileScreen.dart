@@ -4,8 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProfileScreen extends StatelessWidget {
   final String? email;
-    const ProfileScreen({Key? key, required this.email}) : super(key: key);
-
+  const ProfileScreen({super.key, required this.email});
 
   Future<DocumentSnapshot<Map<String, dynamic>>> _displayProfile() async {
     var collection = FirebaseFirestore.instance.collection("users");
@@ -21,12 +20,12 @@ double calculateWater(String lbs) {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile'),
-      ),
+    return Container(
+      // appBar: AppBar(
+      //   title: const Text('Profile'),
+      // ),
       
-      body: Container(
+      //body: Container(
         width: double.infinity,
         height: double.infinity,
         decoration: BoxDecoration(
@@ -127,7 +126,7 @@ double calculateWater(String lbs) {
           ),
         ),
 
-      ),
+     // ),
       
     );
   }
