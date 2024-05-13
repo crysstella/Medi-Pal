@@ -39,12 +39,13 @@ class DataService {
       } else {
         throw Exception("Document not found");
       }
-    }else{
+    } else {
       throw Exception("Document not found");
     }
   }
+
 // Get foods by disease name
-  Future<List<String>> getFoodsByDisease(String disease) async{
+  Future<List<String>> getFoodsByDisease(String disease) async {
     debugPrint('DISEASE FOOD');
     var collection = firestore.collection(foodCollection);
     var document = await collection.doc(foodID).get();
@@ -185,4 +186,89 @@ class DataService {
     debugPrint('Disease name: $diseaseName');
     return diseaseName;
   }
+
+  Future<void> saveLogFoodToFirestore(
+      Map<String, dynamic> loggedFood, String email) async {
+    try {
+      var collection = firestore.collection("users");
+      if (email != null) {
+        var docRef = collection.doc(email);
+        var docSnapshot = await docRef.get();
+
+        if (docSnapshot.exists) {
+          // Get a unique ID for the new food entry
+          String foodId = docRef.collection("loggedFoods").doc().id;
+
+          // Add the foodId to the logged food data
+          loggedFood['id'] = foodId;
+
+          // Get the current logged foods array
+          List<dynamic> currentLoggedFoods =
+              docSnapshot.data()?['loggedFoods'] ?? [];
+          // Append the new logged food to the array
+          currentLoggedFoods.add(loggedFood);
+          // Update the array in Firestore
+          await docRef.update({
+            "loggedFoods": currentLoggedFoods,
+          });
+        } else {
+          await docRef.set({
+            "userEmail": email,
+            "loggedFoods": [loggedFood],
+          });
+        }
+      } else {
+        throw Exception("User email is null");
+      }
+    } catch (error) {
+      print("Failed to save logged foods: $error");
+    }
+  }
+
+  //get the food info from fooddb
+  Future<Map<String, dynamic>> getFoodInfo(String foodID) async {
+    var collection = firestore.collection("Food Database");
+    var document = await collection.doc(foodID).get();
+    if (document.exists) {
+      //make array of food db based on disease
+      Map<String, dynamic> foodData = {};
+      (document.data() as Map<String, dynamic>).forEach((key, value) {
+        foodData[key.toLowerCase()] = value;
+      });
+      return foodData;
+    } else {
+      throw Exception("Document not found");
+    }
+  }
+
+  //calorie info from calorie db
+  Future<Map<String, dynamic>> getCalorieInfo(String calorieID) async {
+    var collection = firestore.collection("Calories Database");
+    var document = await collection.doc(calorieID).get();
+    //return the info
+    if (document.exists) {
+      return document.data() as Map<String, dynamic>;
+    } else {
+      throw Exception("Document not found");
+    }
+  }
+
+  //get userDisease that is saved to userEmail
+  Future<String> getUserDisease(String? userEmail) async {
+    if (userEmail == null) {
+      throw Exception("User email is null");
+    }
+    var collection = firestore.collection("users");
+    var document = await collection.doc(userEmail).get();
+
+    if (document.exists) {
+      String? userDisease =
+          (document.data()?['userDisease'] as String?)?.toLowerCase();
+      return userDisease ?? '';
+    } else {
+      throw Exception("User data not found for $userEmail");
+    }
+  }
+
+
 }

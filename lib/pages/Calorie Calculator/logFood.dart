@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:medipal/firebase/services.dart';
 import '../../sharedPref.dart';
 
 class LogFood extends StatefulWidget {
@@ -24,6 +25,8 @@ class _LogFoodState extends State<LogFood> {
   late String _userDisease;
   String? _selectedFood;
   TextEditingController servingSizeController = TextEditingController();
+  DataService firebaseService = DataService();
+
 
   @override
   void initState() {
@@ -37,7 +40,8 @@ class _LogFoodState extends State<LogFood> {
       setState(() {
         widget.userEmail = email;
       });
-      final disease = await _getUserDisease(widget.userEmail);
+      final disease = await firebaseService.getUserDisease(widget.userEmail);
+
       setState(() {
         _userDisease = disease;
       });
@@ -46,84 +50,6 @@ class _LogFoodState extends State<LogFood> {
     }
   }
 
-  Future<void> _saveLogFoodToFirestore(Map<String, dynamic> loggedFood) async {
-    try {
-      var collection = FirebaseFirestore.instance.collection("users");
-      if (widget.userEmail != null) {
-        var docRef = collection.doc(widget.userEmail);
-        var docSnapshot = await docRef.get();
-        
-        if (docSnapshot.exists) {
-          // Get a unique ID for the new food entry
-          String foodId = docRef.collection("loggedFoods").doc().id;
-
-          // Add the foodId to the logged food data
-          loggedFood['id'] = foodId;
-
-          // Get the current logged foods array
-          List<dynamic> currentLoggedFoods = docSnapshot.data()?['loggedFoods'] ?? [];
-          // Append the new logged food to the array
-          currentLoggedFoods.add(loggedFood);
-          // Update the array in Firestore
-          await docRef.update({
-            "loggedFoods": currentLoggedFoods,
-          });
-        } else {
-          await docRef.set({
-            "userEmail": widget.userEmail,
-            "loggedFoods": [loggedFood],
-          });
-        }
-      } else {
-        throw Exception("User email is null");
-      }
-    } catch (error) {
-      print("Failed to save logged foods: $error");
-    }
-  }
-
-  //get the food info from fooddb
-  Future<Map<String, dynamic>> _getFoodInfo(String foodID) async {
-    var collection = FirebaseFirestore.instance.collection("Food Database");
-    var document = await collection.doc(foodID).get();
-    if (document.exists) {
-      //make array of food db based on disease
-      Map<String, dynamic> foodData = {};
-      (document.data() as Map<String, dynamic>).forEach((key, value) {
-        foodData[key.toLowerCase()] = value;
-      });
-      return foodData;
-    } else {
-      throw Exception("Document not found");
-    }
-  }
-  //calorie info from calorie db
-  Future<Map<String, dynamic>> _getCalorieInfo(String calorieID) async {
-    var collection = FirebaseFirestore.instance.collection("Calories Database");
-    var document = await collection.doc(calorieID).get();
-    //return the info
-    if (document.exists) {
-      return document.data() as Map<String, dynamic>;
-    } else {
-      throw Exception("Document not found");
-    }
-  }
-
-  //get userDisease that is saved to userEmail
-  Future<String> _getUserDisease(String? userEmail) async {
-    if (userEmail == null) {
-      throw Exception("User email is null");
-    }
-    var collection = FirebaseFirestore.instance.collection("users");
-    var document = await collection.doc(userEmail).get();
-
-    if (document.exists) {
-      String? userDisease = (document.data()?['userDisease'] as String?)?.toLowerCase();
-      return userDisease ?? '';
-    } else {
-      throw Exception("User data not found for $userEmail");
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -132,7 +58,7 @@ class _LogFoodState extends State<LogFood> {
         title: Text("Food Log"),
       ),
       body: FutureBuilder<Map<String, dynamic>>(
-        future: _getFoodInfo(widget.foodID),
+        future: firebaseService.getFoodInfo(widget.foodID),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
@@ -222,7 +148,7 @@ class _LogFoodState extends State<LogFood> {
     }
     try {
       //gets calories from db
-      var calorieData = await _getCalorieInfo(widget.calorieID);
+      var calorieData = await firebaseService.getCalorieInfo(widget.calorieID);
       //initialized to to the logged food element
       var caloriesForSelectedFood = calorieData[_selectedFood!.toLowerCase()];
       if (caloriesForSelectedFood != null) {
@@ -234,7 +160,7 @@ class _LogFoodState extends State<LogFood> {
           "food": _selectedFood,
           "totalCalories": totalCalories,
         };
-        await _saveLogFoodToFirestore(loggedFood);
+        await firebaseService.saveLogFoodToFirestore(loggedFood, widget.userEmail!);
 
       } else {
         print("Calories data not available for $_selectedFood");

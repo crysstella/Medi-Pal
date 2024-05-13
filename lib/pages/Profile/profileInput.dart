@@ -217,14 +217,14 @@ void _saveProfile(String? email) {
         );
       }).catchError((error) {
         //anhdle error
-        print("Failed to save profile: $error");
+        debugPrint("Failed to save profile: $error");
       });
     } else {
       //handle invalid weight input
-      print("Please enter a valid integer weight");
+      debugPrint("Please enter a valid integer weight");
     }
   } else {
-    print("Please fill in all fields");
+    debugPrint("Please fill in all fields");
   }
 }
 

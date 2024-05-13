@@ -26,7 +26,6 @@ int heightStringToInches(height) {
   int inches = int.parse(parts[1].replaceAll("'", ""));
   return (feet * 12 + inches);
 }
-
 int calculateAge(String birthdayString) {
   //convert the birthdayString to a valid format (assuming MM-DD-YYYY)
   List<String> parts = birthdayString.split("-");
