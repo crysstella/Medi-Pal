@@ -55,8 +55,8 @@ class NotificationsState extends State<Notifications> {
                 body = 'You have a scheduled reminder.';
               }
 
-              print('THIS IS IN BLOCBUILDER NOTIFICATION PAGE');
-              print(event);
+              debugPrint('THIS IS IN BLOCBUILDER NOTIFICATION PAGE');
+              debugPrint(event.toString());
               return Card(
                 margin: EdgeInsets.all(8.0),
                 child: ListTile(
@@ -93,7 +93,7 @@ class NotificationsState extends State<Notifications> {
         padding: const EdgeInsets.all(8),
         itemCount: events.length,
         itemBuilder: (context, index) {
-          print('EVENT LENGTH = ${events.length}');
+          debugPrint('EVENT LENGTH = ${events.length}');
           Event event = events[index];
           return Dismissible(
               key: Key(event.hashCode
