@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:medipal/pages/Notification/localNotification.dart';
+import 'package:medipal/sharedPref.dart';
 import 'package:notification_repository/notification_repository.dart';
 
 class SetWaterGoalDialog extends StatefulWidget {
-  final int defaultWaterGoalIntake;
   final double initialFrequency;
   final DateTime date;
   final Function(double, List<Event>) onFrequencyChanged;
 
   SetWaterGoalDialog({
     required this.date,
-    required this.defaultWaterGoalIntake,
     required this.initialFrequency,
     required this.onFrequencyChanged,
   });
@@ -22,14 +22,27 @@ class SetWaterGoalDialog extends StatefulWidget {
 class _SetWaterGoalDialogState extends State<SetWaterGoalDialog> {
   late double frequency;
   late DateTime date;
+  late double waterGoal;
 
   @override
   void initState() {
     super.initState();
     frequency = widget.initialFrequency;
     date = widget.date;
+    getWaterGoal();
   }
 
+  Future<void> getWaterGoal() async{
+    double? goal = await getWater();
+    if (goal.isBlank == false){
+      setState(() {
+        waterGoal = goal!;
+      });
+    }else{
+      debugPrint("No water goal set yet");
+    }
+
+  }
   List<Event> calculateReminderTimes(WaterReminder waterEvent) {
     List<Event> reminders = [];
     TimeOfDay sleepTime = waterEvent.sleepTime;
@@ -78,7 +91,7 @@ class _SetWaterGoalDialogState extends State<SetWaterGoalDialog> {
             TextField(
               enabled: false,
               controller: TextEditingController(
-                  text: '${widget.defaultWaterGoalIntake} ounces'),
+                  text: '${waterGoal} ounces'),
               decoration: const InputDecoration(
                 labelText: 'Water Goal Calculated',
                 helperText: 'Calculated goal based on your weight.',
@@ -112,7 +125,7 @@ class _SetWaterGoalDialogState extends State<SetWaterGoalDialog> {
         TextButton(
             child: const Text('Set'),
             onPressed: () {
-              int amountPerReminder = (widget.defaultWaterGoalIntake / frequency.round()).toInt();
+              int amountPerReminder = (waterGoal / frequency.round()).toInt();
               TimeOfDay nowTime = TimeOfDay.fromDateTime(date);
               WaterReminder waterReminder = WaterReminder(
                   amount: amountPerReminder,
