@@ -1,5 +1,4 @@
 import 'package:bloc_notification/bloc_notification.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
@@ -32,6 +31,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
   CalendarFormat _format = CalendarFormat.month;
   Icon _buttonDropDown = const Icon(UniconsLine.angle_up);
 
+  bool _isExpanded = false;
   TimeOfDay timeSelected = TimeOfDay.now();
   late ValueNotifier<TimeOfDay> timeNotifier;
 
