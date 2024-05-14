@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             _header(context),
             _center(context),
-            _bottom(context)
+            _bottom(context),
           ], //_middle(),
         ),
       ),
@@ -276,7 +276,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _bottom(BuildContext context) {
-    return Container(
+    return Expanded(
+        child: Container(
       margin: const EdgeInsets.symmetric(horizontal: 20),
       padding: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
@@ -308,6 +309,6 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 6),
         ],
       ),
-    );
+    ));
   }
 }
