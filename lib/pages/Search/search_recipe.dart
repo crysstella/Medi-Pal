@@ -7,31 +7,27 @@ import 'package:flutter/material.dart';
 import 'package:search_repository/search_repository.dart';
 import 'package:medipal/components/recipe_images.dart';
 
- class SearchRecipe extends StatefulWidget {
+class SearchRecipe extends StatefulWidget {
   String query;
-  SearchRecipe({Key? key, required this.query}): super(key:key);
-
+  SearchRecipe({Key? key, required this.query}) : super(key: key);
 
   @override
   _SearchRecipeState createState() => _SearchRecipeState();
 }
 
-
 class _SearchRecipeState extends State<SearchRecipe> {
-   
-
   final searchcontroller = TextEditingController();
-  bool loading =true;
-  List<SearchRecipeModel>searchItem =[];
-  getsearchrecipe(String query) async{
-    String url = 'https://api.edamam.com/search?q=$query&app_id=a7df912f&app_key=3eb2b5b687d167b85b4f79c47e4c9abb';
+  bool loading = true;
+  List<SearchRecipeModel> searchItem = [];
+  getsearchrecipe(String query) async {
+    String url =
+        'https://api.edamam.com/search?q=$query&app_id=a7df912f&app_key=3eb2b5b687d167b85b4f79c47e4c9abb';
     final response = await http.get(Uri.parse(url));
 
     searchItem.clear();
     Map data = jsonDecode(response.body);
 
-    data["hits"].forEach((element){
-
+    data["hits"].forEach((element) {
       SearchRecipeModel searchRecipeModel = new SearchRecipeModel();
       searchRecipeModel = SearchRecipeModel.fromMap(element["recipe"]);
 
@@ -40,98 +36,93 @@ class _SearchRecipeState extends State<SearchRecipe> {
       setState(() {
         loading = false;
       });
-
     });
-
   }
 
   @override
   void initState() {
     getsearchrecipe(widget.query);
 
-
     super.initState();
   }
 
-  @override 
-   Widget build(BuildContext context) {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-              backgroundColor: const Color(0xFFc6c6ff),
-             
-       ),
-      
-      body: loading?Center (child: CircularProgressIndicator()):
-
-        Column(
-          children: [
-            SizedBox(height: 8),            
-   
-               Expanded(
-                child: ListView.builder(
-
-                   itemCount: searchItem.length,
-                   itemBuilder: (context, index) {
-
-                    return Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(16),
-
-                        // child: Inkwell(
-                        //   onTap: () {
-                        //     Navigator.push(context, MaterialPageRoute(builder: (context)
-                        //     =>RecipeDetail(baseurl: searchItem[index].recipeSource.toString(),)));              
-                        //   },
-                          child: Stack(
-                          children: [
-                            Container(
-                              height: 300,
-                              width: MediaQuery.of(context).size.width,
-                              decoration: BoxDecoration(
-                               color: Theme.of(context).colorScheme.background,
-                              ),
-                              child: RecipeImageComponent(image: searchItem[index].recipeImage.toString()),
-                            ),
-
-                            Positioned(
-                              bottom: 0,
-                              child:                             
-                                Container(
-                                  height: 100,
-                                  width: MediaQuery.of(context).size.width,
-                                  decoration: BoxDecoration(
-                                    color: Theme.of(context).colorScheme.errorContainer.withOpacity(.9),
-                                  ),
-                                  child: Align(
-                                    alignment: Alignment.bottomLeft,
-                                    child: Text(searchItem[index].recipeName.toString(), style: TextStyle(
-                                    fontWeight: FontWeight.w600, fontSize: 20 ),),
-                                  ),
-                                 
-                
-                                ), 
-                            ),
-                       
-                          ],
-               
-
-                      ),
-
-
-     
-                      )
-                    );
-
-                  }),
-
-               )
-            
-          ],
+        title: Text('Search Results: ${widget.query}'),
+        titleTextStyle: const TextStyle(color: Colors.white, fontSize: 23),
+        iconTheme: const IconThemeData(
+          color: Colors.white
         ),
+        backgroundColor: Theme.of(context).primaryColor,
+      ),
+      body: loading
+          ? Center(child: CircularProgressIndicator())
+          : Column(
+              children: [
+                SizedBox(height: 8),
+                Expanded(
+                  child: ListView.builder(
+                      itemCount: searchItem.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(16),
+
+                              // child: Inkwell(
+                              //   onTap: () {
+                              //     Navigator.push(context, MaterialPageRoute(builder: (context)
+                              //     =>RecipeDetail(baseurl: searchItem[index].recipeSource.toString(),)));
+                              //   },
+                              child: Stack(
+                                children: [
+                                  Container(
+                                    height: 300,
+                                    width: MediaQuery.of(context).size.width,
+                                    decoration: BoxDecoration(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .background,
+                                    ),
+                                    child: RecipeImageComponent(
+                                        image: searchItem[index]
+                                            .recipeImage
+                                            .toString()),
+                                  ),
+                                  Positioned(
+                                    bottom: 0,
+                                    child: Container(
+                                      height: 100,
+                                      width: MediaQuery.of(context).size.width,
+                                      decoration: BoxDecoration(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .errorContainer
+                                            .withOpacity(.9),
+                                      ),
+                                      child: Align(
+                                        alignment: Alignment.bottomLeft,
+                                        child: Text(
+                                          searchItem[index]
+                                              .recipeName
+                                              .toString(),
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 20),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ));
+                      }),
+                )
+              ],
+            ),
       //)
-
-
     );
     //  return Column(
     //    children: [
@@ -189,7 +180,7 @@ class _SearchRecipeState extends State<SearchRecipe> {
 
     //                         Positioned(
     //                           bottom: 0,
-    //                           child:                             
+    //                           child:
     //                             Container(
     //                               height: 300,
     //                               width: MediaQuery.of(context).size.width,
@@ -198,9 +189,9 @@ class _SearchRecipeState extends State<SearchRecipe> {
     //                               ),
     //                               child: Text(controller.itemList[index].recipeName.toString(), style: TextStyle(
     //                                 fontWeight: FontWeight.w600, fontSize: 20 ),),
-    //                             ), 
+    //                             ),
     //                         ),
-                       
+
     //                       ],
     //                     ),
     //                   )
@@ -210,13 +201,11 @@ class _SearchRecipeState extends State<SearchRecipe> {
 
     //            )
     //          ],
-             
+
     //        ),
     //      )
     //    ]
     //  );
-
-
   }
 }
 
@@ -228,13 +217,12 @@ class _SearchRecipeState extends State<SearchRecipe> {
 //  class SearchRecipe extends StatefulWidget {
 //   const SearchRecipe({super.key});
 
-
 //   @override
 //   _SearchRecipeState createState() => _SearchRecipeState();
 // }
 
 // class _SearchRecipeState extends State<SearchRecipe> {
-//   final SearchRecipeRepository _repository = SearchRecipeRepository(); 
+//   final SearchRecipeRepository _repository = SearchRecipeRepository();
 //   TextEditingController _searchEditingController = TextEditingController();
 //   bool _isLoading = false;
 //   bool _hasSearched = false;
@@ -263,14 +251,13 @@ class _SearchRecipeState extends State<SearchRecipe> {
 
 //   }
 
-
 //   Widget recipeList() {
-//     return _hasSearched ? (_searchResults.isEmpty) ? 
+//     return _hasSearched ? (_searchResults.isEmpty) ?
 //     Padding(
 //       padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
 //       child: Center(child: Text('No results available...')),
 //     )
-//     : 
+//     :
 //     ListView.builder(
 //       shrinkWrap: true,
 //       itemCount: _searchResults.length,
@@ -278,7 +265,7 @@ class _SearchRecipeState extends State<SearchRecipe> {
 
 //         final recipe = _searchResults[index];
 //         return GestureDetector (
-//           onTap: () {}, 
+//           onTap: () {},
 //           child: ListTile(
 //               title: Text(recipe.title),
 //               subtitle: Text('${recipe.kcal} Calories'),
