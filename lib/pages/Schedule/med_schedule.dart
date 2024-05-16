@@ -94,7 +94,8 @@ class _MedicationScheduleState extends State<MedicationSchedule>
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => requestNotificationPermission());
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) => requestNotificationPermission());
     _selectedDay = _focusedDay;
     _selectedEvents = ValueNotifier(getEventsForDay(_selectedDay!));
     timeNotifier = ValueNotifier(timeSelected);
@@ -222,14 +223,16 @@ class _MedicationScheduleState extends State<MedicationSchedule>
   }
 
   void removeEventFromSchedule(Event targetEvent) {
-    // Iterate over each date and its associated events
-    for (DateTime date in events.keys) {
-      // Look for the event in the list of events for this date
-      events[date]?.removeWhere((event) => event.id == targetEvent.id);
-      // If no events are left for this date, also remove the date key
-      if (events[date]?.isEmpty ?? true) {
-        events.remove(date);
+    DateTime dateKey = getNormalizedDate(targetEvent.date);
+    if (events.containsKey(dateKey)) {
+      debugPrint('LENGTH BEFORE REMOVE = ${events[dateKey]!.length}');
+      events[dateKey]!.removeWhere((event) => event.id == targetEvent.id);
+      if (events[dateKey]!.isEmpty) {
+        events.remove(dateKey);
       }
+      _selectedEvents.value = getEventsForDay(targetEvent.date);
+    } else {
+      debugPrint('The event is not set up yet.');
     }
   }
 
@@ -284,11 +287,12 @@ class _MedicationScheduleState extends State<MedicationSchedule>
   }
 
   void resetWaterReminderForDay(DateTime selectedDay) {
-    DateTime normalizedSelectedDay = getNormalizedDate(selectedDay);
+    DateTime dateKey = getNormalizedDate(selectedDay);
+    debugPrint('WATER REMINDER BEFORE REMOVE IN RESET WATER -> EVENT = ${events[dateKey]!.length}');
 
     // Check if there are events for that day and if any are WaterReminder.
-    if (events.containsKey(normalizedSelectedDay)) {
-      List<Event> dayEvents = events[normalizedSelectedDay]!;
+    if (events.containsKey(dateKey)) {
+      List<Event> dayEvents = events[dateKey]!;
       List<int> waterRemindersHashs = dayEvents
           .where((event) => event is WaterReminder)
           .map((waterReminder) => waterReminder
@@ -300,19 +304,22 @@ class _MedicationScheduleState extends State<MedicationSchedule>
         debugPrint(hash.toString());
         LocalNotifications.cancel(hash);
       }
-      // Remove all WaterReminder instances from the events list for this day.
-      events[normalizedSelectedDay]!
-          .removeWhere((event) => event is WaterReminder);
-
-      // Optionally, update the state to reflect changes in the UI.
-      setState(() {
-        _selectedEvents.value = getEventsForDay(normalizedSelectedDay);
-      });
+        // Remove all WaterReminder instances from the events list for this day.
+        events[dateKey]!
+            .removeWhere((event) => event is WaterReminder);
+        debugPrint('WATER REMINDER IN RESET WATER -> EVENT = ${events[dateKey]!.length}');
+        if (events[dateKey]!.isEmpty) {
+          debugPrint('IT IS EMPTY');
+          events.remove(dateKey);
+        }
+        setState((){
+          _selectedEvents.value = getEventsForDay(dateKey);
+        });
 
       // Log or display a message about the action taken.
-      debugPrint('Water reminders reset for $normalizedSelectedDay.');
+      debugPrint('Water reminders reset for $dateKey.');
     } else {
-      debugPrint('No water reminders to reset for $normalizedSelectedDay.');
+      debugPrint('No water reminders to reset for $dateKey.');
     }
   }
 
@@ -467,6 +474,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
 
                         debugPrint('new event added = ${newEvent.serialize()}');
                         if (buttonSubmit == 'Save') {
+                          debugPrint('SAVE TAP WITH INDEX = $index');
                           // Update current event
                           updateReminder(context, index, newEvent);
                         } else {
@@ -520,10 +528,15 @@ class _MedicationScheduleState extends State<MedicationSchedule>
 
   // Update reminder in a specific date.
   void updateReminder(BuildContext context, int index, Event event) {
-    setState(() {
-      events[getNormalizedDate(event.date)]?[index] = event;
-      isEdit = false;
-    });
+    DateTime dateKey = getNormalizedDate(event.date);
+    debugPrint('EVENTS[$dateKey][$index] = ${events[dateKey]![index]}');
+    Event existingEvent = events[dateKey]![index];
+    LocalNotifications.cancel(existingEvent.getHash());
+    events[dateKey]![index] = event;
+    LocalNotifications.scheduleNotification(event: event);
+    _selectedEvents.value = getEventsForDay(getNormalizedDate(event.date));
+    isEdit = false;
+
     debugPrint('LENGTH = ${events[getNormalizedDate(event.date)]?.length}');
     debugPrint('LENGTH LIST = ${events.length}');
   }
@@ -788,10 +801,8 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                                               onPressed: () {
                                                 resetWaterReminderForDay(
                                                     _selectedDay!);
-                                                setWater(context);
-                                                Navigator.of(context).pop();
                                                 Navigator.of(context)
-                                                    .pop(); // Close the dialog after performing the action.
+                                                    .pop();// Close the dialog after performing the action.
                                               },
                                               child: const Text('Reset'),
                                             ),
@@ -810,13 +821,14 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                                 // Show deleted message
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(SnackBar(
-                                  backgroundColor:
-                                      Theme.of(context).primaryColor,
+                                  backgroundColor: waterMode
+                                      ? Colors.lightBlue
+                                      : Theme.of(context).primaryColor,
                                   content: Text('Invalid date.'),
                                   duration: const Duration(seconds: 2),
                                 ));
                               }
-                            }else{
+                            } else {
                               // do nothing until the user turns on the  notification
                             }
                           },
@@ -974,10 +986,21 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                                   margin: const EdgeInsets.all(5.0),
                                   child: ListTile(
                                     onTap: () {
-                                      editReminder(
-                                          context, index, value[index]);
-                                      debugPrint(
-                                          'dose = ${(value[index] as MedicineReminder).dose}');
+                                      if (waterMode == false) {
+                                        // medicine mode
+                                        editReminder(
+                                            context, index, filteredEvents[index]);
+                                        debugPrint(
+                                            'dose = ${(value[index] as MedicineReminder).dose}');
+                                      } else {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(const SnackBar(
+                                          backgroundColor: Colors.lightBlue,
+                                          content: Text(
+                                              "You cannot edit water reminder once it's set."),
+                                          duration: Duration(seconds: 1),
+                                        ));
+                                      }
                                     },
                                     leading: Icon(
                                         filteredEvents[index]
@@ -999,7 +1022,7 @@ class _MedicationScheduleState extends State<MedicationSchedule>
                                       ),
                                     ),
                                     trailing: Text(
-                                      '${value[index].getTime(context)}',
+                                      '${filteredEvents[index].getTime(context)}',
                                       style: const TextStyle(
                                         fontSize:
                                             14.0, // Adjust line spacing to preference
