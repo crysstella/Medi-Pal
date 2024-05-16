@@ -30,16 +30,17 @@ class LocalNotifications {
     final InitializationSettings initializationSettings =
         InitializationSettings(android: initializationSettingsAndroid);
 
-    await flutterLocalNotificationsPlugin.initialize(initializationSettings,
-        // foreground
-        onDidReceiveNotificationResponse: (NotificationResponse response) {
-      // Extract details and add the event to the bloc
-      final details = extractEventDetails(response.payload);
-      print('INIT LOCAL NOTIFICATION = ${details}');
-      BlocProvider.of<NotificationBloc>(context)
-          .add(ReceiveNotificationEvent(details));
-    },
-     );
+    await flutterLocalNotificationsPlugin.initialize(
+      initializationSettings,
+      // foreground
+      onDidReceiveNotificationResponse: (NotificationResponse response) {
+        // Extract details and add the event to the bloc
+        final details = extractEventDetails(response.payload);
+        print('INIT LOCAL NOTIFICATION = ${details}');
+        BlocProvider.of<NotificationBloc>(context)
+            .add(ReceiveNotificationEvent(details));
+      },
+    );
     /*final DarwinInitializationSettings initializationSettingsDarwin =
         DarwinInitializationSettings(
       requestAlertPermission: false,
@@ -118,11 +119,32 @@ class LocalNotifications {
 
   static notificationDetails() async {
     return const NotificationDetails(
-      android: AndroidNotificationDetails('Event Hash', 'Event Reminders',
-          channelDescription: 'Channel for event reminders',
-          importance: Importance.max,
-          priority: Priority.high),
-    );
+        android: AndroidNotificationDetails(
+      'Event Hash',
+      'Event Reminders',
+      channelDescription: 'Channel for event reminders',
+      importance: Importance.max,
+      priority: Priority.high,
+      largeIcon: DrawableResourceAndroidBitmap('ic_remind')
+    ));
+  }
+
+  static Future showNotification({
+    required String title,
+    required String body,
+    required String payload,
+  }) async {
+    const AndroidNotificationDetails androidNotificationDetails =
+        AndroidNotificationDetails('channelId', 'channelName',
+            channelDescription: 'description',
+            importance: Importance.max,
+            priority: Priority.high,
+            ticker: 'ticker',
+          largeIcon: DrawableResourceAndroidBitmap('ic_remind'));
+    const NotificationDetails _notificationDetails = NotificationDetails(android: androidNotificationDetails);
+    await flutterLocalNotificationsPlugin.show(
+        0, 'plain title', 'plain body', _notificationDetails,
+        payload: 'item x');
   }
 
   static Future scheduleNotification({
@@ -141,29 +163,30 @@ class LocalNotifications {
       title = "Reminder";
       body = 'You have a scheduled reminder.';
     }
-      await flutterLocalNotificationsPlugin.zonedSchedule(
-        event.getHash(),
-        title,
-        body,
-        tz.TZDateTime.from(
-            DateTime(event.date.year, event.date.month, event.date.day,
-                event.time.hour, event.time.minute/*, event.date.second*/),
-            tz.local),
-        await notificationDetails(),
-        payload: event.serialize(),
-        uiLocalNotificationDateInterpretation:
-            UILocalNotificationDateInterpretation.absoluteTime,
-      );}
+    await flutterLocalNotificationsPlugin.zonedSchedule(
+      event.getHash(),
+      title,
+      body,
+      tz.TZDateTime.from(
+          DateTime(event.date.year, event.date.month, event.date.day,
+              event.time.hour, event.time.minute /*, event.date.second*/),
+          tz.local),
+      await notificationDetails(),
+      payload: event.serialize(),
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
+    );
+  }
 
   // Close a specific channel notification
   static Future<void> cancel(int id) async {
     print('EVENT ID = ${id}');
     // Show unpresented/scheduled notifications
     final List<PendingNotificationRequest> pendingNotificationRequests =
-    await flutterLocalNotificationsPlugin.pendingNotificationRequests();
+        await flutterLocalNotificationsPlugin.pendingNotificationRequests();
     for (var _pendingRequest in pendingNotificationRequests) {
-      if (_pendingRequest.id == id){
-        print(_pendingRequest.id);
+      if (_pendingRequest.id == id) {
+        debugPrint(_pendingRequest.id.toString());
         flutterLocalNotificationsPlugin.cancel(_pendingRequest.id);
       }
     }
