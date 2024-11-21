@@ -7,7 +7,7 @@ Medi-Pal is a user-friendly mobile application designed to streamline healthcare
 - `User Access:`
   - **Login:** Secure access to your profile.
   - **Registration:** Create your personalized account.
-  - **Medical History Input:** Store your medical data for easy access.
+  - **Medical History Input:** Store your medical data easily.
 - `Reminders:` 
   - **Medication Reminders:** Set and get notified about your medication schedule to stay on track.
   - **Water Reminders:** Stay hydrated with personalized water consumption alerts based on your daily goals.
@@ -24,4 +24,4 @@ Medi-Pal is a user-friendly mobile application designed to streamline healthcare
 - [Stellar Nguyen](https://github.com/crysstella)
 - [Alvin Jin](https://github.com/JheneJin)
 - [Tram-Bui Vu](https://github.com/easymac60)
-<span style="color:blue">Madison Hoang Nguyen</span> - App Logo and Mascot Designer
+- <span style="color:blue">Madison Hoang Nguyen</span>
