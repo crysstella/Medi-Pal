@@ -7,8 +7,8 @@ Medi-Pal is a user-friendly mobile application designed to streamline healthcare
   - **Registration:** Create your personalized account.
   - **Medical History Input:** Store your medical data for easy access.
 - `Reminders:` 
-  - `Medication Reminders:` Set and get notified about your medication schedule to stay on track.
-  - `Water Reminders:` Stay hydrated with personalized water consumption alerts based on your daily goals.
+  - **Medication Reminders:** Set and get notified about your medication schedule to stay on track.
+  - **Water Reminders:** Stay hydrated with personalized water consumption alerts based on your daily goals.
 - `Medicine Display:` Display the generic drug types, following brands, and foods that cause side effects.
 - `Food Recommendation:` Allows users to search for food recommendations.
   - **Favoriting food:** Users can save their favorite foods.
