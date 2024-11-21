@@ -1,6 +1,5 @@
 # Medi-Pal Health App
-![![image](https://github.com/user-attachments/assets/3132045b-c9e4-4de0-9792-867cf962a1d4)
-](./assets/images/logo_app.png)
+<img src="/assets/images/logo_app.png" alt="App Screenshot" width="300">
 ## Overview
 Medi-Pal is a user-friendly mobile application designed to streamline healthcare management. Built with **Flutter** and **Firebase**, the app allows users to set medication reminders, provide personalized food recommendations, and manage their health records efficiently in one place.
 ## Features
