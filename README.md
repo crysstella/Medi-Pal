@@ -24,4 +24,4 @@ Medi-Pal is a user-friendly mobile application designed to streamline healthcare
 - [Stellar Nguyen](https://github.com/crysstella)
 - [Alvin Jin](https://github.com/JheneJin)
 - [Tram-Bui Vu](https://github.com/easymac60)
-- <code style="color:blue">Madison Hoang Nguyen</code>
+- <code style="color:orange">Madison Hoang Nguyen</code>
