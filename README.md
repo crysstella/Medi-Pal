@@ -18,3 +18,7 @@ Medi-Pal is a user-friendly mobile application designed to streamline healthcare
 - `Framework:` Flutter (Dart)
 - `Backend:` Firebase
 - `Development Environment:` Android Studio/Visual Studio Code
+## Contributors
+- [Stellar Nguyen](https://github.com/crysstella)
+- [Alvin Jin](https://github.com/JheneJin)
+- [Tram-Bui Vu](https://github.com/easymac60)
