@@ -21,6 +21,9 @@ Medi-Pal is a user-friendly mobile application designed to streamline healthcare
 - `Backend:` Firebase
 - `Development Environment:` Android Studio/Visual Studio Code
 ## Contributors
+### Developers
 - [Stellar Nguyen](https://github.com/crysstella)
 - [Alvin Jin](https://github.com/JheneJin)
 - [Tram-Bui Vu](https://github.com/easymac60)
+### App Logo & Mascot Designer
+- [Madison H Nguyen](https://www.behance.net/madisonhng)
