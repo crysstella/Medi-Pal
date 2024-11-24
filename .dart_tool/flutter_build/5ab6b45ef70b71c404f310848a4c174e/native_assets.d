@@ -1,1 +1,0 @@
- C:\\Users\\tramb\\MPflutter\\Medi-Pal\\.dart_tool\\flutter_build\\5ab6b45ef70b71c404f310848a4c174e\\native_assets.yaml: 
